@@ -3,7 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Yazonii — Websites That Get You Noticed</title>
+
+  <title>Yazonii — Websites Built to Grow Your Business</title>
+  <meta name="description" content="Yazonii builds modern, fast and responsive websites for businesses, creators and entrepreneurs.">
 
   <style>
     * {
@@ -13,12 +15,15 @@
     }
 
     :root {
-      --bg: #090909;
-      --surface: #111111;
-      --text: #f5f5f2;
-      --muted: #a5a5a0;
-      --accent: #6d7cff;
-      --border: rgba(255,255,255,0.1);
+      --bg: #070707;
+      --bg-soft: #0d0d0d;
+      --card: #111111;
+      --text: #f7f5f2;
+      --muted: #a4a19c;
+      --orange: #ff6a00;
+      --orange-light: #ff9b52;
+      --border: rgba(255,255,255,.10);
+      --radius: 22px;
     }
 
     html {
@@ -26,10 +31,14 @@
     }
 
     body {
-      font-family: Arial, Helvetica, sans-serif;
-      background: var(--bg);
+      background:
+        radial-gradient(circle at 80% 0%, rgba(255,106,0,.14), transparent 28%),
+        radial-gradient(circle at 0% 35%, rgba(255,70,0,.06), transparent 28%),
+        var(--bg);
       color: var(--text);
+      font-family: Inter, Arial, Helvetica, sans-serif;
       line-height: 1.6;
+      overflow-x: hidden;
     }
 
     a {
@@ -38,77 +47,130 @@
     }
 
     .container {
-      width: min(1100px, 90%);
+      width: min(1120px, 90%);
       margin: auto;
     }
 
-    /* NAV */
+    /* NAVIGATION */
 
     nav {
-      height: 80px;
+      height: 82px;
       display: flex;
       align-items: center;
       justify-content: space-between;
+      border-bottom: 1px solid rgba(255,255,255,.06);
     }
 
     .logo {
-      font-size: 1.4rem;
-      font-weight: 800;
-      letter-spacing: -0.05em;
+      font-size: 1.45rem;
+      font-weight: 900;
+      letter-spacing: -.06em;
     }
 
     .logo span {
-      color: var(--accent);
+      color: var(--orange);
     }
 
-    .nav-link {
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+    }
+
+    .nav-links a:not(.nav-cta) {
       color: var(--muted);
-      font-size: 0.9rem;
+      font-size: .9rem;
+      transition: .2s;
+    }
+
+    .nav-links a:not(.nav-cta):hover {
+      color: white;
+    }
+
+    .nav-cta {
+      background: linear-gradient(135deg, var(--orange), var(--orange-light));
+      padding: 11px 18px;
+      border-radius: 10px;
+      font-size: .85rem;
+      font-weight: 800;
+      box-shadow: 0 10px 30px rgba(255,106,0,.18);
     }
 
     /* HERO */
 
     .hero {
-      min-height: 82vh;
+      min-height: 88vh;
       display: flex;
       align-items: center;
-      padding: 80px 0;
+      position: relative;
+      padding: 100px 0;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      width: 450px;
+      height: 450px;
+      background: var(--orange);
+      opacity: .06;
+      filter: blur(120px);
+      right: -200px;
+      top: 80px;
+      pointer-events: none;
     }
 
     .hero-content {
-      max-width: 850px;
+      max-width: 920px;
+      position: relative;
+      z-index: 1;
     }
 
     .eyebrow {
-      color: var(--accent);
-      font-size: 0.75rem;
-      font-weight: 700;
-      letter-spacing: 0.16em;
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      color: #d7d3cd;
+      font-size: .72rem;
+      font-weight: 800;
+      letter-spacing: .16em;
       text-transform: uppercase;
       margin-bottom: 25px;
     }
 
+    .eyebrow::before {
+      content: "";
+      width: 7px;
+      height: 7px;
+      background: var(--orange);
+      border-radius: 50%;
+      box-shadow: 0 0 15px var(--orange);
+    }
+
     h1 {
       font-size: clamp(3.3rem, 8vw, 7rem);
-      line-height: 0.95;
-      letter-spacing: -0.07em;
-      margin-bottom: 30px;
+      line-height: .92;
+      letter-spacing: -.075em;
+      max-width: 950px;
+      margin-bottom: 32px;
     }
 
-    .hero h1 span {
-      color: var(--accent);
+    h1 span {
+      background: linear-gradient(90deg, #ff6200, #ffb16e);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
     }
 
-    .hero-text {
-      max-width: 620px;
+    .hero-description {
+      max-width: 650px;
       color: var(--muted);
-      font-size: 1.15rem;
-      margin-bottom: 40px;
+      font-size: 1.13rem;
+      margin-bottom: 38px;
     }
 
     .buttons {
       display: flex;
-      gap: 15px;
+      gap: 13px;
       flex-wrap: wrap;
     }
 
@@ -116,114 +178,181 @@
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      padding: 15px 24px;
-      border-radius: 10px;
-      font-weight: 700;
-      transition: 0.2s;
+      padding: 15px 23px;
+      border-radius: 11px;
+      font-weight: 800;
+      font-size: .9rem;
+      transition: .25s ease;
     }
 
     .btn-primary {
-      background: var(--accent);
+      background: linear-gradient(135deg, #ff6200, #ff923d);
       color: white;
+      box-shadow: 0 15px 40px rgba(255,106,0,.20);
     }
 
     .btn-secondary {
       border: 1px solid var(--border);
-      color: var(--text);
+      background: rgba(255,255,255,.025);
     }
 
     .btn:hover {
-      transform: translateY(-2px);
+      transform: translateY(-3px);
     }
 
-    /* TRUST */
+    /* STATS */
 
-    .trust {
+    .stats {
       border-top: 1px solid var(--border);
       border-bottom: 1px solid var(--border);
-      padding: 25px 0;
-      color: var(--muted);
-      text-align: center;
-      font-size: 0.9rem;
     }
 
-    /* SECTIONS */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    .stat {
+      padding: 28px 20px;
+      border-right: 1px solid var(--border);
+    }
+
+    .stat:last-child {
+      border-right: none;
+    }
+
+    .stat strong {
+      display: block;
+      font-size: 1rem;
+      margin-bottom: 4px;
+    }
+
+    .stat span {
+      color: var(--muted);
+      font-size: .82rem;
+    }
+
+    /* GENERAL SECTIONS */
 
     section {
-      padding: 110px 0;
+      padding: 120px 0;
     }
 
     .section-label {
-      color: var(--accent);
+      color: var(--orange);
+      font-size: .7rem;
+      font-weight: 900;
+      letter-spacing: .16em;
       text-transform: uppercase;
-      letter-spacing: 0.15em;
-      font-size: 0.7rem;
-      font-weight: 700;
       margin-bottom: 15px;
     }
 
     h2 {
-      font-size: clamp(2.2rem, 5vw, 4rem);
-      letter-spacing: -0.05em;
-      line-height: 1;
-      margin-bottom: 50px;
+      font-size: clamp(2.4rem, 5vw, 4.5rem);
+      line-height: .98;
+      letter-spacing: -.065em;
+      max-width: 750px;
+      margin-bottom: 55px;
     }
 
-    /* SERVICES */
+    /* WHAT I MAKE */
 
     .services {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
-      gap: 15px;
+      gap: 16px;
     }
 
     .service {
-      background: var(--surface);
+      position: relative;
+      overflow: hidden;
+      background:
+        linear-gradient(145deg, rgba(255,106,0,.07), transparent 45%),
+        var(--card);
       border: 1px solid var(--border);
-      padding: 35px;
-      border-radius: 18px;
+      border-radius: var(--radius);
+      padding: 36px;
+      min-height: 245px;
+      transition: .3s ease;
+    }
+
+    .service:hover {
+      transform: translateY(-5px);
+      border-color: rgba(255,106,0,.35);
+      box-shadow: 0 20px 60px rgba(255,106,0,.08);
     }
 
     .service-number {
-      color: var(--accent);
-      font-size: 0.8rem;
-      margin-bottom: 35px;
+      color: var(--orange);
+      font-weight: 900;
+      font-size: .75rem;
+      margin-bottom: 45px;
     }
 
     .service h3 {
-      font-size: 1.4rem;
+      font-size: 1.45rem;
       margin-bottom: 10px;
+      letter-spacing: -.03em;
     }
 
     .service p {
       color: var(--muted);
+      max-width: 470px;
+    }
+
+    /* CAPABILITIES */
+
+    .capabilities {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 50px;
+      align-items: start;
+    }
+
+    .capability-list {
+      border-top: 1px solid var(--border);
+    }
+
+    .capability {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      padding: 22px 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .capability span:last-child {
+      color: var(--muted);
+      text-align: right;
     }
 
     /* PROCESS */
 
     .process {
-      display: grid;
-      gap: 0;
+      border-top: 1px solid var(--border);
     }
 
     .process-item {
       display: grid;
-      grid-template-columns: 80px 1fr;
-      padding: 30px 0;
-      border-top: 1px solid var(--border);
+      grid-template-columns: 90px 1fr;
+      gap: 20px;
+      padding: 32px 0;
+      border-bottom: 1px solid var(--border);
     }
 
     .process-number {
-      color: var(--accent);
-      font-weight: 700;
+      color: var(--orange);
+      font-weight: 900;
     }
 
     .process-item h3 {
-      margin-bottom: 6px;
+      font-size: 1.25rem;
+      margin-bottom: 7px;
     }
 
     .process-item p {
       color: var(--muted);
+      max-width: 650px;
     }
 
     /* PRICING */
@@ -231,112 +360,183 @@
     .pricing {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
-      gap: 15px;
+      gap: 16px;
     }
 
     .price-card {
-      background: var(--surface);
+      position: relative;
+      background: var(--card);
       border: 1px solid var(--border);
-      border-radius: 18px;
-      padding: 35px;
+      border-radius: var(--radius);
+      padding: 40px;
     }
 
     .price-card.featured {
-      border-color: var(--accent);
+      border-color: rgba(255,106,0,.55);
+      background:
+        radial-gradient(circle at 100% 0%, rgba(255,106,0,.12), transparent 40%),
+        var(--card);
+    }
+
+    .badge {
+      display: inline-block;
+      color: var(--orange);
+      font-size: .7rem;
+      font-weight: 900;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      margin-bottom: 18px;
     }
 
     .price-card h3 {
-      margin-bottom: 15px;
+      font-size: 1.5rem;
+      margin-bottom: 12px;
     }
 
     .price {
-      font-size: 2.8rem;
-      font-weight: 800;
-      letter-spacing: -0.05em;
-      margin-bottom: 20px;
+      font-size: 3rem;
+      font-weight: 900;
+      letter-spacing: -.06em;
+      margin-bottom: 15px;
     }
 
-    .price-card p {
+    .price-card > p {
       color: var(--muted);
-      margin-bottom: 25px;
+      margin-bottom: 28px;
     }
 
     .price-card ul {
       list-style: none;
-      color: var(--muted);
     }
 
     .price-card li {
-      margin: 10px 0;
+      color: #d4d1cc;
+      margin: 11px 0;
+      font-size: .9rem;
     }
 
     .price-card li::before {
-      content: "✓ ";
-      color: var(--accent);
+      content: "✓";
+      color: var(--orange);
+      margin-right: 10px;
+      font-weight: 900;
     }
 
     /* CONTACT */
 
     .contact-box {
-      background: var(--surface);
+      position: relative;
+      overflow: hidden;
+      background:
+        radial-gradient(circle at 90% 0%, rgba(255,106,0,.20), transparent 35%),
+        var(--card);
       border: 1px solid var(--border);
-      border-radius: 22px;
-      padding: 50px;
+      border-radius: 28px;
+      padding: 65px;
     }
 
-    .contact-box p {
+    .contact-box h2 {
+      margin-bottom: 18px;
+    }
+
+    .contact-box > p {
       color: var(--muted);
-      max-width: 600px;
-      margin-bottom: 30px;
+      max-width: 650px;
+      margin-bottom: 35px;
     }
 
     .contact-details {
       display: grid;
       gap: 12px;
-      margin-bottom: 30px;
+      margin-bottom: 35px;
     }
 
     .contact-details a {
-      color: var(--text);
-      font-weight: 600;
+      font-weight: 700;
+      transition: .2s;
+    }
+
+    .contact-details a:hover {
+      color: var(--orange-light);
     }
 
     /* FOOTER */
 
     footer {
       border-top: 1px solid var(--border);
-      padding: 30px 0;
+      padding: 35px 0;
       color: var(--muted);
-      font-size: 0.85rem;
+      font-size: .8rem;
+    }
+
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
     }
 
     /* MOBILE */
 
-    @media (max-width: 700px) {
+    @media (max-width: 720px) {
+
+      nav {
+        height: 72px;
+      }
+
+      .nav-links a:not(.nav-cta) {
+        display: none;
+      }
+
       .hero {
-        min-height: 75vh;
-        padding: 60px 0;
+        min-height: 80vh;
+        padding: 75px 0;
       }
 
       h1 {
-        font-size: 3.5rem;
+        font-size: clamp(3.1rem, 15vw, 5rem);
+      }
+
+      .hero-description {
+        font-size: 1rem;
       }
 
       section {
-        padding: 80px 0;
+        padding: 85px 0;
       }
 
-      .services,
-      .pricing {
+      .stats-grid {
         grid-template-columns: 1fr;
       }
 
-      .contact-box {
-        padding: 30px;
+      .stat {
+        border-right: none;
+        border-bottom: 1px solid var(--border);
+      }
+
+      .stat:last-child {
+        border-bottom: none;
+      }
+
+      .services,
+      .pricing,
+      .capabilities {
+        grid-template-columns: 1fr;
+      }
+
+      .service {
+        min-height: auto;
       }
 
       .process-item {
         grid-template-columns: 55px 1fr;
+      }
+
+      .contact-box {
+        padding: 35px 25px;
+      }
+
+      .footer-inner {
+        flex-direction: column;
       }
     }
   </style>
@@ -344,244 +544,469 @@
 
 <body>
 
-  <header class="container">
-    <nav>
-      <a href="#" class="logo">Yazonii<span>.</span></a>
-      <a href="#contact" class="nav-link">Start a project →</a>
-    </nav>
-  </header>
+<header class="container">
+  <nav>
 
-  <main>
+    <a href="#" class="logo">
+      Yazonii<span>.</span>
+    </a>
 
-    <section class="hero">
-      <div class="container hero-content">
+    <div class="nav-links">
+      <a href="#services">Services</a>
+      <a href="#pricing">Pricing</a>
 
-        <div class="eyebrow">Websites for ambitious businesses</div>
-
-        <h1>
-          Websites that make your business
-          <span>impossible to ignore.</span>
-        </h1>
-
-        <p class="hero-text">
-          Modern, responsive websites built around your business,
-          your customers and the actions that matter.
-        </p>
-
-        <div class="buttons">
-          <a href="#contact" class="btn btn-primary">
-            Start a project →
-          </a>
-
-          <a href="#services" class="btn btn-secondary">
-            See what I build
-          </a>
-        </div>
-
-      </div>
-    </section>
-
-    <div class="trust">
-      <div class="container">
-        Fast delivery · Fixed pricing · No unnecessary calls
-      </div>
+      <a href="#contact" class="nav-cta">
+        Start a Project →
+      </a>
     </div>
 
-    <section id="services">
-      <div class="container">
+  </nav>
+</header>
 
-        <div class="section-label">What I build</div>
 
-        <h2>Built for your business.</h2>
+<main>
 
-        <div class="services">
+  <!-- HERO -->
 
-          <div class="service">
-            <div class="service-number">01</div>
-            <h3>Business Websites</h3>
-            <p>
-              Professional websites that clearly explain what
-              your business does and make it easy for customers
-              to take action.
-            </p>
-          </div>
+  <section class="hero">
 
-          <div class="service">
-            <div class="service-number">02</div>
-            <h3>Landing Pages</h3>
-            <p>
-              Focused pages designed around one goal:
-              turning visitors into customers.
-            </p>
-          </div>
+    <div class="container hero-content">
 
-          <div class="service">
-            <div class="service-number">03</div>
-            <h3>Website Redesigns</h3>
-            <p>
-              Modernize an outdated website with cleaner design,
-              better mobile experience and clearer messaging.
-            </p>
-          </div>
+      <div class="eyebrow">
+        Web design & development
+      </div>
 
-          <div class="service">
-            <div class="service-number">04</div>
-            <h3>Mobile-First Design</h3>
-            <p>
-              Websites designed to look great and work properly
-              on phones, tablets and desktops.
-            </p>
-          </div>
+      <h1>
+        Websites built to make your business
+        <span>stand out.</span>
+      </h1>
 
-        </div>
+      <p class="hero-description">
+        I create modern, responsive websites for businesses,
+        creators and entrepreneurs who want a stronger presence
+        online — without unnecessary complexity.
+      </p>
+
+      <div class="buttons">
+
+        <a href="#contact" class="btn btn-primary">
+          Start a Project →
+        </a>
+
+        <a href="#services" class="btn btn-secondary">
+          What I Make
+        </a>
 
       </div>
-    </section>
 
-    <section>
-      <div class="container">
+    </div>
 
-        <div class="section-label">Process</div>
+  </section>
 
-        <h2>Simple. Fast. Clear.</h2>
 
-        <div class="process">
+  <!-- STATS / PROMISE -->
 
-          <div class="process-item">
-            <div class="process-number">01</div>
-            <div>
-              <h3>Tell me what you need</h3>
-              <p>
-                Send the details of your business and what
-                you want your website to accomplish.
-              </p>
-            </div>
-          </div>
+  <div class="stats">
 
-          <div class="process-item">
-            <div class="process-number">02</div>
-            <div>
-              <h3>I build it</h3>
-              <p>
-                I turn your requirements into a polished,
-                responsive website.
-              </p>
-            </div>
-          </div>
+    <div class="container stats-grid">
 
-          <div class="process-item">
-            <div class="process-number">03</div>
-            <div>
-              <h3>You review it</h3>
-              <p>
-                You give feedback and I make the necessary
-                adjustments.
-              </p>
-            </div>
-          </div>
-
-          <div class="process-item">
-            <div class="process-number">04</div>
-            <div>
-              <h3>Launch</h3>
-              <p>
-                Your website goes live and is ready for
-                your customers.
-              </p>
-            </div>
-          </div>
-
-        </div>
-
+      <div class="stat">
+        <strong>Fast delivery</strong>
+        <span>Focused builds without unnecessary delays.</span>
       </div>
-    </section>
 
-    <section>
-      <div class="container">
-
-        <div class="section-label">Pricing</div>
-
-        <h2>Simple pricing.</h2>
-
-        <div class="pricing">
-
-          <div class="price-card">
-            <h3>Starter</h3>
-            <div class="price">1,500 SEK</div>
-
-            <p>For businesses that need a clean online presence.</p>
-
-            <ul>
-              <li>Professional website</li>
-              <li>Mobile responsive</li>
-              <li>Contact section</li>
-              <li>Basic SEO setup</li>
-            </ul>
-          </div>
-
-          <div class="price-card featured">
-            <h3>Business</h3>
-            <div class="price">3,000 SEK</div>
-
-            <p>For businesses that want a stronger online presence.</p>
-
-            <ul>
-              <li>Custom multi-section website</li>
-              <li>Mobile responsive</li>
-              <li>Contact / inquiry system</li>
-              <li>Advanced design</li>
-              <li>Basic SEO setup</li>
-            </ul>
-          </div>
-
-        </div>
-
+      <div class="stat">
+        <strong>Mobile-first</strong>
+        <span>Designed for phones, tablets and desktops.</span>
       </div>
-    </section>
 
-    <section id="contact">
-      <div class="container">
+      <div class="stat">
+        <strong>Clear pricing</strong>
+        <span>Simple packages with no confusing hourly rates.</span>
+      </div>
 
-        <div class="contact-box">
+    </div>
 
-          <div class="section-label">Start a project</div>
+  </div>
 
-          <h2>Let's build something useful.</h2>
+
+  <!-- SERVICES -->
+
+  <section id="services">
+
+    <div class="container">
+
+      <div class="section-label">
+        What I make
+      </div>
+
+      <h2>
+        Websites designed around what you actually need.
+      </h2>
+
+      <div class="services">
+
+        <article class="service">
+
+          <div class="service-number">01</div>
+
+          <h3>Business Websites</h3>
 
           <p>
-            Tell me about your business and what you need.
-            I'll get back to you with the next steps.
+            Professional websites that explain what your
+            business does and make it easy for customers
+            to contact you.
           </p>
 
-          <div class="contact-details">
-            <a href="mailto:yayazan.mahmoud@gmail.com">
-              ✉ yayazan.mahmoud@gmail.com
-            </a>
+        </article>
 
-            <a href="tel:+46707358046">
-              ☎ +46 70 735 80 46
-            </a>
+
+        <article class="service">
+
+          <div class="service-number">02</div>
+
+          <h3>Landing Pages</h3>
+
+          <p>
+            Focused pages built around a specific goal,
+            product or service.
+          </p>
+
+        </article>
+
+
+        <article class="service">
+
+          <div class="service-number">03</div>
+
+          <h3>Website Redesigns</h3>
+
+          <p>
+            Turn an outdated website into a cleaner,
+            faster and more modern experience.
+          </p>
+
+        </article>
+
+
+        <article class="service">
+
+          <div class="service-number">04</div>
+
+          <h3>Personal & Creator Sites</h3>
+
+          <p>
+            Personal brands, portfolios and creator websites
+            that present your work professionally.
+          </p>
+
+        </article>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- CAPABILITIES -->
+
+  <section>
+
+    <div class="container capabilities">
+
+      <div>
+
+        <div class="section-label">
+          What I focus on
+        </div>
+
+        <h2>
+          More than just making things look good.
+        </h2>
+
+      </div>
+
+      <div class="capability-list">
+
+        <div class="capability">
+          <span>Responsive design</span>
+          <span>All devices</span>
+        </div>
+
+        <div class="capability">
+          <span>Modern UI</span>
+          <span>Clean & clear</span>
+        </div>
+
+        <div class="capability">
+          <span>Performance</span>
+          <span>Fast loading</span>
+        </div>
+
+        <div class="capability">
+          <span>SEO basics</span>
+          <span>Search ready</span>
+        </div>
+
+        <div class="capability">
+          <span>Contact systems</span>
+          <span>Lead focused</span>
+        </div>
+
+        <div class="capability">
+          <span>Custom functionality</span>
+          <span>Built around you</span>
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- PROCESS -->
+
+  <section>
+
+    <div class="container">
+
+      <div class="section-label">
+        Process
+      </div>
+
+      <h2>
+        From idea to live website.
+      </h2>
+
+      <div class="process">
+
+        <div class="process-item">
+
+          <div class="process-number">01</div>
+
+          <div>
+            <h3>Tell me what you need</h3>
+
+            <p>
+              Send me information about your business,
+              your goals and the type of website you want.
+            </p>
           </div>
+
+        </div>
+
+
+        <div class="process-item">
+
+          <div class="process-number">02</div>
+
+          <div>
+            <h3>I build it</h3>
+
+            <p>
+              I turn the idea into a polished, responsive
+              website designed around your business.
+            </p>
+          </div>
+
+        </div>
+
+
+        <div class="process-item">
+
+          <div class="process-number">03</div>
+
+          <div>
+            <h3>You review it</h3>
+
+            <p>
+              You review the website and tell me what
+              needs to be changed or improved.
+            </p>
+          </div>
+
+        </div>
+
+
+        <div class="process-item">
+
+          <div class="process-number">04</div>
+
+          <div>
+            <h3>Launch</h3>
+
+            <p>
+              Once everything is ready, your website goes
+              live and is ready for your customers.
+            </p>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- PRICING -->
+
+  <section id="pricing">
+
+    <div class="container">
+
+      <div class="section-label">
+        Pricing
+      </div>
+
+      <h2>
+        Simple packages. No guessing.
+      </h2>
+
+      <div class="pricing">
+
+        <article class="price-card">
+
+          <div class="badge">
+            Starter
+          </div>
+
+          <h3>Essential Website</h3>
+
+          <div class="price">
+            1,500 SEK
+          </div>
+
+          <p>
+            For small businesses that need a professional
+            online presence.
+          </p>
+
+          <ul>
+            <li>Custom website</li>
+            <li>Mobile responsive design</li>
+            <li>Contact section</li>
+            <li>Basic SEO setup</li>
+            <li>Launch assistance</li>
+          </ul>
+
+        </article>
+
+
+        <article class="price-card featured">
+
+          <div class="badge">
+            Most Popular
+          </div>
+
+          <h3>Business Website</h3>
+
+          <div class="price">
+            3,000 SEK
+          </div>
+
+          <p>
+            A more complete website for businesses that
+            want to make a stronger impression online.
+          </p>
+
+          <ul>
+            <li>Custom multi-section website</li>
+            <li>Advanced responsive design</li>
+            <li>Contact / inquiry system</li>
+            <li>Custom interactions</li>
+            <li>Basic SEO setup</li>
+            <li>Launch assistance</li>
+          </ul>
+
+        </article>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- CONTACT -->
+
+  <section id="contact">
+
+    <div class="container">
+
+      <div class="contact-box">
+
+        <div class="section-label">
+          Start a project
+        </div>
+
+        <h2>
+          Have a website in mind?
+        </h2>
+
+        <p>
+          Tell me what you're building, what your business does
+          and what you need from your website. I'll get back to
+          you with the next steps.
+        </p>
+
+        <div class="contact-details">
+
+          <a href="mailto:yayazan.mahmoud@gmail.com">
+            ✉ yayazan.mahmoud@gmail.com
+          </a>
+
+          <a href="tel:+46707358046">
+            ☎ +46 70 735 80 46
+          </a>
+
+        </div>
+
+        <div class="buttons">
 
           <a
             href="mailto:yayazan.mahmoud@gmail.com?subject=Website%20Project%20Inquiry"
             class="btn btn-primary"
           >
-            Contact me →
+            Email Me →
+          </a>
+
+          <a
+            href="tel:+46707358046"
+            class="btn btn-secondary"
+          >
+            Call Me
           </a>
 
         </div>
 
       </div>
-    </section>
 
-  </main>
-
-  <footer>
-    <div class="container">
-      © 2026 Yazonii. All rights reserved.
     </div>
-  </footer>
+
+  </section>
+
+</main>
+
+
+<footer>
+
+  <div class="container footer-inner">
+
+    <span>
+      © 2026 Yazonii.
+    </span>
+
+    <span>
+      Websites built with purpose.
+    </span>
+
+  </div>
+
+</footer>
 
 </body>
 </html>

@@ -1,29 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#060606" />
 
-  <title>Yazonii — Websites Built to Grow Your Business</title>
-  <meta name="description" content="Yazonii builds modern, fast and responsive websites for businesses, creators and entrepreneurs.">
+  <title>Yazonii — Web Design & Development</title>
 
   <style>
+    :root {
+      --orange: #ff6900;
+      --orange-light: #ff9b4a;
+      --black: #060606;
+      --white: #fff;
+      --muted: rgba(255,255,255,.68);
+    }
+
     * {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
-    }
-
-    :root {
-      --bg: #070707;
-      --bg-soft: #0d0d0d;
-      --card: #111111;
-      --text: #f7f5f2;
-      --muted: #a4a19c;
-      --orange: #ff6a00;
-      --orange-light: #ff9b52;
-      --border: rgba(255,255,255,.10);
-      --radius: 22px;
     }
 
     html {
@@ -31,13 +27,9 @@
     }
 
     body {
-      background:
-        radial-gradient(circle at 80% 0%, rgba(255,106,0,.14), transparent 28%),
-        radial-gradient(circle at 0% 35%, rgba(255,70,0,.06), transparent 28%),
-        var(--bg);
-      color: var(--text);
-      font-family: Inter, Arial, Helvetica, sans-serif;
-      line-height: 1.6;
+      font-family: Inter, Arial, sans-serif;
+      background: #060606;
+      color: var(--white);
       overflow-x: hidden;
     }
 
@@ -46,363 +38,923 @@
       text-decoration: none;
     }
 
-    .container {
-      width: min(1120px, 90%);
-      margin: auto;
+    /* =====================================================
+       DAY HERO
+    ===================================================== */
+
+    .day-scene {
+      position: relative;
+      height: 100svh;
+      min-height: 720px;
+      overflow: hidden;
+      color: #071116;
+
+      background:
+        linear-gradient(
+          180deg,
+          #69c9f3 0%,
+          #8fd9f7 35%,
+          #bfe9ef 63%,
+          #e8e6ca 82%,
+          #ffd28c 100%
+        );
     }
 
-    /* NAVIGATION */
+    .day-scene::before {
+      content: "";
+      position: absolute;
+      inset: 0;
 
-    nav {
-      height: 82px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      border-bottom: 1px solid rgba(255,255,255,.06);
+      background:
+        radial-gradient(
+          circle at 50% 25%,
+          rgba(255,255,255,.42),
+          transparent 28%
+        ),
+        linear-gradient(
+          180deg,
+          transparent 55%,
+          rgba(255,215,150,.2)
+        );
+
+      pointer-events: none;
     }
+
+    /* =====================================================
+       SUN
+    ===================================================== */
+
+    .sun {
+      position: absolute;
+
+      width: clamp(100px, 13vw, 175px);
+      aspect-ratio: 1;
+
+      left: 50%;
+      top: 24%;
+
+      transform: translate(-50%, -50%);
+
+      border-radius: 50%;
+
+      background:
+        radial-gradient(
+          circle at 35% 32%,
+          #fffef0 0%,
+          #fff6b2 34%,
+          #ffd75d 67%,
+          #ffad2d 100%
+        );
+
+      box-shadow:
+        0 0 45px rgba(255,232,125,.95),
+        0 0 115px rgba(255,194,62,.55),
+        0 0 190px rgba(255,179,40,.25);
+
+      z-index: 1;
+
+      animation:
+        sunFloat 7s ease-in-out infinite,
+        sunGlow 4s ease-in-out infinite alternate;
+    }
+
+    @keyframes sunFloat {
+      0%,100% {
+        transform: translate(-50%, -50%) translateY(0);
+      }
+
+      50% {
+        transform: translate(-50%, -50%) translateY(-10px);
+      }
+    }
+
+    @keyframes sunGlow {
+      from {
+        box-shadow:
+          0 0 45px rgba(255,232,125,.9),
+          0 0 110px rgba(255,194,62,.5),
+          0 0 180px rgba(255,179,40,.2);
+      }
+
+      to {
+        box-shadow:
+          0 0 60px rgba(255,240,150,1),
+          0 0 145px rgba(255,200,70,.65),
+          0 0 220px rgba(255,179,40,.28);
+      }
+    }
+
+    /* =====================================================
+       CLOUDS
+    ===================================================== */
+
+    .cloud {
+      position: absolute;
+
+      width: 190px;
+      height: 48px;
+
+      border-radius: 100px;
+
+      background: rgba(255,255,255,.52);
+
+      filter: blur(.25px);
+
+      box-shadow:
+        0 10px 35px rgba(255,255,255,.1);
+
+      z-index: 2;
+    }
+
+    .cloud::before,
+    .cloud::after {
+      content: "";
+
+      position: absolute;
+
+      border-radius: 50%;
+
+      background: inherit;
+    }
+
+    .cloud::before {
+      width: 75px;
+      height: 75px;
+
+      left: 28px;
+      bottom: 12px;
+    }
+
+    .cloud::after {
+      width: 95px;
+      height: 95px;
+
+      right: 22px;
+      bottom: 5px;
+    }
+
+    .cloud-1 {
+      top: 18%;
+      left: 8%;
+
+      transform: scale(.75);
+
+      animation: cloudMoveOne 35s linear infinite;
+    }
+
+    .cloud-2 {
+      top: 35%;
+      right: 7%;
+
+      transform: scale(.58);
+
+      opacity: .65;
+
+      animation: cloudMoveTwo 45s linear infinite;
+    }
+
+    .cloud-3 {
+      top: 48%;
+      left: 28%;
+
+      transform: scale(.42);
+
+      opacity: .5;
+
+      animation: cloudMoveThree 55s linear infinite;
+    }
+
+    @keyframes cloudMoveOne {
+      0% {
+        margin-left: -20px;
+      }
+
+      50% {
+        margin-left: 55px;
+      }
+
+      100% {
+        margin-left: -20px;
+      }
+    }
+
+    @keyframes cloudMoveTwo {
+      0% {
+        margin-right: 20px;
+      }
+
+      50% {
+        margin-right: -60px;
+      }
+
+      100% {
+        margin-right: 20px;
+      }
+    }
+
+    @keyframes cloudMoveThree {
+      0% {
+        margin-left: 0;
+      }
+
+      50% {
+        margin-left: -70px;
+      }
+
+      100% {
+        margin-left: 0;
+      }
+    }
+
+    /* =====================================================
+       NAV
+    ===================================================== */
 
     .logo {
+      position: absolute;
+
+      top: 28px;
+      left: 7%;
+
+      z-index: 30;
+
       font-size: 1.45rem;
       font-weight: 900;
-      letter-spacing: -.06em;
+
+      letter-spacing: -.07em;
+
+      animation: navEnter .9s cubic-bezier(.2,.8,.2,1) both;
     }
 
     .logo span {
       color: var(--orange);
     }
 
-    .nav-links {
-      display: flex;
-      align-items: center;
-      gap: 28px;
-    }
-
-    .nav-links a:not(.nav-cta) {
-      color: var(--muted);
-      font-size: .9rem;
-      transition: .2s;
-    }
-
-    .nav-links a:not(.nav-cta):hover {
-      color: white;
-    }
-
-    .nav-cta {
-      background: linear-gradient(135deg, var(--orange), var(--orange-light));
-      padding: 11px 18px;
-      border-radius: 10px;
-      font-size: .85rem;
-      font-weight: 800;
-      box-shadow: 0 10px 30px rgba(255,106,0,.18);
-    }
-
-    /* HERO */
-
-    .hero {
-      min-height: 88vh;
-      display: flex;
-      align-items: center;
-      position: relative;
-      padding: 100px 0;
-    }
-
-    .hero::before {
-      content: "";
+    .nav-contact {
       position: absolute;
-      width: 450px;
-      height: 450px;
-      background: var(--orange);
-      opacity: .06;
-      filter: blur(120px);
-      right: -200px;
-      top: 80px;
-      pointer-events: none;
+
+      top: 25px;
+      right: 7%;
+
+      z-index: 30;
+
+      padding: 11px 17px;
+
+      border-radius: 10px;
+
+      background: rgba(255,255,255,.2);
+
+      border:
+        1px solid rgba(255,255,255,.35);
+
+      backdrop-filter: blur(12px);
+
+      font-size: .75rem;
+      font-weight: 800;
+
+      transition:
+        transform .25s ease,
+        background .25s ease,
+        color .25s ease;
     }
+
+    .nav-contact:hover {
+      transform: translateY(-3px);
+
+      background: white;
+
+      color: #111;
+    }
+
+    @keyframes navEnter {
+      from {
+        opacity: 0;
+        transform: translateY(-20px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* =====================================================
+       HERO CONTENT
+    ===================================================== */
 
     .hero-content {
-      max-width: 920px;
       position: relative;
-      z-index: 1;
+
+      z-index: 10;
+
+      width: min(900px, 86%);
+
+      margin: auto;
+
+      padding-top: 22vh;
     }
 
     .eyebrow {
-      display: inline-flex;
+      display: flex;
       align-items: center;
+
       gap: 9px;
-      color: #d7d3cd;
-      font-size: .72rem;
-      font-weight: 800;
-      letter-spacing: .16em;
+
+      margin-bottom: 24px;
+
+      font-size: .7rem;
+      font-weight: 900;
+
+      letter-spacing: .17em;
+
       text-transform: uppercase;
-      margin-bottom: 25px;
+
+      animation:
+        heroFade .9s .15s cubic-bezier(.2,.8,.2,1) both;
     }
 
     .eyebrow::before {
       content: "";
+
       width: 7px;
       height: 7px;
-      background: var(--orange);
+
       border-radius: 50%;
-      box-shadow: 0 0 15px var(--orange);
+
+      background: var(--orange);
+
+      animation: dotPulse 2s ease-in-out infinite;
+    }
+
+    @keyframes dotPulse {
+      0%,100% {
+        box-shadow: 0 0 0 0 rgba(255,105,0,.4);
+      }
+
+      50% {
+        box-shadow: 0 0 0 7px rgba(255,105,0,0);
+      }
     }
 
     h1 {
-      font-size: clamp(3.3rem, 8vw, 7rem);
-      line-height: .92;
-      letter-spacing: -.075em;
-      max-width: 950px;
-      margin-bottom: 32px;
+      max-width: 900px;
+
+      font-size:
+        clamp(3.6rem, 9vw, 8rem);
+
+      line-height: .88;
+
+      letter-spacing: -.085em;
+
+      margin-bottom: 30px;
+
+      animation:
+        heroTitle 1.1s .2s cubic-bezier(.16,1,.3,1) both;
     }
 
     h1 span {
-      background: linear-gradient(90deg, #ff6200, #ffb16e);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
+      color: var(--orange);
     }
 
     .hero-description {
-      max-width: 650px;
-      color: var(--muted);
-      font-size: 1.13rem;
-      margin-bottom: 38px;
+      max-width: 590px;
+
+      font-size:
+        clamp(1rem, 2vw, 1.2rem);
+
+      line-height: 1.6;
+
+      color: rgba(7,17,22,.7);
+
+      animation:
+        heroFade 1s .45s cubic-bezier(.2,.8,.2,1) both;
     }
 
-    .buttons {
-      display: flex;
-      gap: 13px;
-      flex-wrap: wrap;
+    @keyframes heroFade {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
 
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      padding: 15px 23px;
-      border-radius: 11px;
+    @keyframes heroTitle {
+      from {
+        opacity: 0;
+        transform:
+          translateY(45px)
+          scale(.97);
+      }
+
+      to {
+        opacity: 1;
+        transform:
+          translateY(0)
+          scale(1);
+      }
+    }
+
+    /* =====================================================
+       SCROLL INDICATOR
+    ===================================================== */
+
+    .scroll-hint {
+      position: absolute;
+
+      left: 7%;
+      bottom: 70px;
+
+      z-index: 20;
+
+      font-size: .68rem;
       font-weight: 800;
-      font-size: .9rem;
-      transition: .25s ease;
+
+      letter-spacing: .16em;
+
+      text-transform: uppercase;
+
+      color: rgba(7,17,22,.65);
+
+      animation:
+        heroFade 1s 1s both;
     }
 
-    .btn-primary {
-      background: linear-gradient(135deg, #ff6200, #ff923d);
-      color: white;
-      box-shadow: 0 15px 40px rgba(255,106,0,.20);
+    .scroll-line {
+      width: 1px;
+      height: 55px;
+
+      margin-top: 13px;
+
+      background: rgba(7,17,22,.6);
+
+      animation:
+        scrollPulse 1.5s ease-in-out infinite;
     }
 
-    .btn-secondary {
-      border: 1px solid var(--border);
-      background: rgba(255,255,255,.025);
+    @keyframes scrollPulse {
+      0%,100% {
+        transform: scaleY(.35);
+        transform-origin: top;
+      }
+
+      50% {
+        transform: scaleY(1);
+        transform-origin: top;
+      }
     }
 
-    .btn:hover {
-      transform: translateY(-3px);
+    /* =====================================================
+       LAYERED MOUNTAINS
+    ===================================================== */
+
+    .horizon {
+      position: absolute;
+
+      left: 0;
+      bottom: -1px;
+
+      width: 100%;
+      height: 48vh;
+
+      min-height: 260px;
+
+      z-index: 7;
+
+      pointer-events: none;
     }
 
-    /* STATS */
+    .hill {
+      position: absolute;
 
-    .stats {
-      border-top: 1px solid var(--border);
-      border-bottom: 1px solid var(--border);
+      left: -5%;
+      bottom: 0;
+
+      width: 110%;
+      height: 100%;
+
+      transform-origin: bottom;
     }
 
-    .stats-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
+    .hill-back {
+      height: 90%;
+
+      background:
+        linear-gradient(
+          180deg,
+          #6a8588,
+          #49666b
+        );
+
+      opacity: .88;
+
+      clip-path: polygon(
+        0 69%,
+        7% 58%,
+        15% 65%,
+        24% 45%,
+        33% 61%,
+        43% 37%,
+        52% 57%,
+        61% 44%,
+        71% 62%,
+        80% 50%,
+        90% 63%,
+        100% 53%,
+        100% 100%,
+        0 100%
+      );
+
+      animation:
+        mountainFloat 12s ease-in-out infinite;
     }
 
-    .stat {
-      padding: 28px 20px;
-      border-right: 1px solid var(--border);
+    .hill-middle {
+      height: 77%;
+
+      background:
+        linear-gradient(
+          180deg,
+          #304b51,
+          #20383d
+        );
+
+      clip-path: polygon(
+        0 71%,
+        10% 54%,
+        19% 68%,
+        30% 41%,
+        39% 60%,
+        48% 47%,
+        57% 65%,
+        69% 42%,
+        78% 59%,
+        88% 47%,
+        100% 64%,
+        100% 100%,
+        0 100%
+      );
+
+      animation:
+        mountainFloat 15s 1s ease-in-out infinite reverse;
     }
 
-    .stat:last-child {
-      border-right: none;
+    .hill-front {
+      height: 63%;
+
+      background:
+        linear-gradient(
+          180deg,
+          #13272b,
+          #0a1719
+        );
+
+      clip-path: polygon(
+        0 63%,
+        12% 51%,
+        21% 65%,
+        34% 44%,
+        44% 61%,
+        56% 38%,
+        67% 60%,
+        78% 46%,
+        89% 61%,
+        100% 51%,
+        100% 100%,
+        0 100%
+      );
+
+      animation:
+        mountainFloat 18s 2s ease-in-out infinite;
     }
 
-    .stat strong {
-      display: block;
-      font-size: 1rem;
-      margin-bottom: 4px;
+    .hill-ground {
+      height: 38%;
+
+      background:
+        linear-gradient(
+          180deg,
+          #081113,
+          #060606
+        );
+
+      clip-path: polygon(
+        0 29%,
+        20% 19%,
+        40% 27%,
+        60% 15%,
+        80% 26%,
+        100% 16%,
+        100% 100%,
+        0 100%
+      );
     }
 
-    .stat span {
-      color: var(--muted);
-      font-size: .82rem;
+    @keyframes mountainFloat {
+      0%,100% {
+        transform: translateX(0);
+      }
+
+      50% {
+        transform: translateX(-1.2%);
+      }
     }
 
-    /* GENERAL SECTIONS */
+    /* Soft gradient that connects the landscape to dark portfolio */
 
-    section {
-      padding: 120px 0;
+    .horizon-fade {
+      position: absolute;
+
+      left: 0;
+      right: 0;
+      bottom: 0;
+
+      height: 38%;
+
+      z-index: 9;
+
+      background:
+        linear-gradient(
+          180deg,
+          rgba(6,6,6,0) 0%,
+          rgba(6,6,6,.35) 35%,
+          rgba(6,6,6,.82) 75%,
+          #060606 100%
+        );
+    }
+
+    /* =====================================================
+       PORTFOLIO
+    ===================================================== */
+
+    .portfolio {
+      position: relative;
+
+      z-index: 10;
+
+      background:
+        radial-gradient(
+          circle at 85% 0%,
+          rgba(255,105,0,.15),
+          transparent 30%
+        ),
+        #060606;
+
+      padding:
+        140px 7% 100px;
+    }
+
+    .portfolio-inner {
+      max-width: 1150px;
+      margin: auto;
     }
 
     .section-label {
+      margin-bottom: 16px;
+
       color: var(--orange);
+
       font-size: .7rem;
       font-weight: 900;
-      letter-spacing: .16em;
+
+      letter-spacing: .17em;
+
       text-transform: uppercase;
-      margin-bottom: 15px;
     }
 
     h2 {
-      font-size: clamp(2.4rem, 5vw, 4.5rem);
-      line-height: .98;
-      letter-spacing: -.065em;
-      max-width: 750px;
-      margin-bottom: 55px;
+      max-width: 850px;
+
+      font-size:
+        clamp(2.8rem, 6vw, 5.5rem);
+
+      line-height: .94;
+
+      letter-spacing: -.075em;
+
+      margin-bottom: 70px;
     }
 
-    /* WHAT I MAKE */
+    /* =====================================================
+       CARDS
+    ===================================================== */
 
-    .services {
+    .cards {
       display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 16px;
+
+      grid-template-columns:
+        repeat(2, 1fr);
+
+      gap: 18px;
     }
 
-    .service {
-      position: relative;
-      overflow: hidden;
+    .card {
+      min-height: 275px;
+
+      padding: 40px;
+
+      border-radius: 24px;
+
       background:
-        linear-gradient(145deg, rgba(255,106,0,.07), transparent 45%),
-        var(--card);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 36px;
-      min-height: 245px;
-      transition: .3s ease;
+        linear-gradient(
+          145deg,
+          rgba(255,105,0,.08),
+          transparent 48%
+        ),
+        #111;
+
+      border:
+        1px solid rgba(255,255,255,.09);
+
+      opacity: 0;
+
+      transform:
+        translateY(50px)
+        scale(.98);
+
+      transition:
+        opacity .8s ease,
+        transform .8s cubic-bezier(.16,1,.3,1),
+        border-color .3s ease,
+        box-shadow .3s ease;
     }
 
-    .service:hover {
-      transform: translateY(-5px);
-      border-color: rgba(255,106,0,.35);
-      box-shadow: 0 20px 60px rgba(255,106,0,.08);
+    .card.visible {
+      opacity: 1;
+
+      transform:
+        translateY(0)
+        scale(1);
     }
 
-    .service-number {
-      color: var(--orange);
-      font-weight: 900;
-      font-size: .75rem;
+    .card:hover {
+      border-color:
+        rgba(255,105,0,.45);
+
+      transform:
+        translateY(-8px)
+        scale(1.01);
+
+      box-shadow:
+        0 25px 70px rgba(0,0,0,.3);
+    }
+
+    .number {
       margin-bottom: 45px;
+
+      color: var(--orange);
+
+      font-size: .75rem;
+      font-weight: 900;
     }
 
-    .service h3 {
-      font-size: 1.45rem;
-      margin-bottom: 10px;
+    .card h3 {
+      margin-bottom: 12px;
+
+      font-size: 1.5rem;
+
       letter-spacing: -.03em;
     }
 
-    .service p {
+    .card p {
+      max-width: 450px;
+
       color: var(--muted);
-      max-width: 470px;
+
+      line-height: 1.65;
     }
 
-    /* CAPABILITIES */
-
-    .capabilities {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 50px;
-      align-items: start;
-    }
-
-    .capability-list {
-      border-top: 1px solid var(--border);
-    }
-
-    .capability {
-      display: flex;
-      justify-content: space-between;
-      gap: 20px;
-      padding: 22px 0;
-      border-bottom: 1px solid var(--border);
-    }
-
-    .capability span:last-child {
-      color: var(--muted);
-      text-align: right;
-    }
-
-    /* PROCESS */
+    /* =====================================================
+       PROCESS
+    ===================================================== */
 
     .process {
-      border-top: 1px solid var(--border);
+      margin-top: 150px;
     }
 
-    .process-item {
+    .process-row {
       display: grid;
-      grid-template-columns: 90px 1fr;
+
+      grid-template-columns:
+        70px 1fr;
+
       gap: 20px;
+
       padding: 32px 0;
-      border-bottom: 1px solid var(--border);
+
+      border-top:
+        1px solid rgba(255,255,255,.1);
+
+      opacity: 0;
+
+      transform: translateX(-35px);
+
+      transition:
+        opacity .75s ease,
+        transform .75s cubic-bezier(.16,1,.3,1);
+    }
+
+    .process-row.visible {
+      opacity: 1;
+
+      transform: translateX(0);
     }
 
     .process-number {
       color: var(--orange);
+
       font-weight: 900;
     }
 
-    .process-item h3 {
-      font-size: 1.25rem;
-      margin-bottom: 7px;
+    .process-row h3 {
+      margin-bottom: 8px;
     }
 
-    .process-item p {
+    .process-row p {
       color: var(--muted);
-      max-width: 650px;
+
+      line-height: 1.6;
     }
 
-    /* PRICING */
+    /* =====================================================
+       PRICING
+    ===================================================== */
 
     .pricing {
+      margin-top: 150px;
+    }
+
+    .price-grid {
       display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 16px;
+
+      grid-template-columns:
+        repeat(2, 1fr);
+
+      gap: 18px;
     }
 
     .price-card {
-      position: relative;
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
       padding: 40px;
+
+      border-radius: 24px;
+
+      background: #111;
+
+      border:
+        1px solid rgba(255,255,255,.09);
+
+      transition:
+        transform .35s ease,
+        border-color .35s ease,
+        box-shadow .35s ease;
+    }
+
+    .price-card:hover {
+      transform: translateY(-8px);
+
+      border-color:
+        rgba(255,105,0,.4);
+
+      box-shadow:
+        0 25px 70px rgba(0,0,0,.3);
     }
 
     .price-card.featured {
-      border-color: rgba(255,106,0,.55);
-      background:
-        radial-gradient(circle at 100% 0%, rgba(255,106,0,.12), transparent 40%),
-        var(--card);
-    }
+      border-color:
+        rgba(255,105,0,.5);
 
-    .badge {
-      display: inline-block;
-      color: var(--orange);
-      font-size: .7rem;
-      font-weight: 900;
-      letter-spacing: .12em;
-      text-transform: uppercase;
-      margin-bottom: 18px;
+      background:
+        radial-gradient(
+          circle at 100% 0,
+          rgba(255,105,0,.15),
+          transparent 45%
+        ),
+        #111;
     }
 
     .price-card h3 {
-      font-size: 1.5rem;
-      margin-bottom: 12px;
+      font-size: 1.4rem;
     }
 
     .price {
+      margin: 14px 0;
+
       font-size: 3rem;
+
       font-weight: 900;
-      letter-spacing: -.06em;
-      margin-bottom: 15px;
+
+      letter-spacing: -.07em;
     }
 
-    .price-card > p {
+    .price-card p {
+      margin-bottom: 25px;
+
       color: var(--muted);
-      margin-bottom: 28px;
+
+      line-height: 1.6;
     }
 
     .price-card ul {
@@ -410,133 +962,220 @@
     }
 
     .price-card li {
-      color: #d4d1cc;
       margin: 11px 0;
-      font-size: .9rem;
+
+      color: #ddd;
     }
 
     .price-card li::before {
       content: "✓";
-      color: var(--orange);
+
       margin-right: 10px;
+
+      color: var(--orange);
+
       font-weight: 900;
     }
 
-    /* CONTACT */
+    /* =====================================================
+       CONTACT
+    ===================================================== */
 
-    .contact-box {
-      position: relative;
-      overflow: hidden;
+    .contact {
+      margin-top: 150px;
+
+      padding: 70px;
+
+      border-radius: 30px;
+
       background:
-        radial-gradient(circle at 90% 0%, rgba(255,106,0,.20), transparent 35%),
-        var(--card);
-      border: 1px solid var(--border);
-      border-radius: 28px;
-      padding: 65px;
+        radial-gradient(
+          circle at 90% 0,
+          rgba(255,105,0,.2),
+          transparent 35%
+        ),
+        #111;
+
+      border:
+        1px solid rgba(255,255,255,.1);
+
+      opacity: 0;
+
+      transform:
+        translateY(45px);
+
+      transition:
+        opacity 1s ease,
+        transform 1s cubic-bezier(.16,1,.3,1);
     }
 
-    .contact-box h2 {
-      margin-bottom: 18px;
+    .contact.visible {
+      opacity: 1;
+
+      transform:
+        translateY(0);
     }
 
-    .contact-box > p {
+    .contact h2 {
+      margin-bottom: 20px;
+    }
+
+    .contact > p {
+      max-width: 600px;
+
+      margin-bottom: 30px;
+
       color: var(--muted);
-      max-width: 650px;
-      margin-bottom: 35px;
+
+      line-height: 1.65;
     }
 
-    .contact-details {
-      display: grid;
-      gap: 12px;
-      margin-bottom: 35px;
-    }
+    .contact-link {
+      display: block;
 
-    .contact-details a {
+      margin: 11px 0;
+
       font-weight: 700;
-      transition: .2s;
+
+      transition:
+        color .2s ease,
+        transform .2s ease;
     }
 
-    .contact-details a:hover {
+    .contact-link:hover {
       color: var(--orange-light);
+
+      transform: translateX(5px);
     }
 
-    /* FOOTER */
+    .button {
+      display: inline-block;
+
+      margin-top: 25px;
+
+      padding: 15px 23px;
+
+      border-radius: 11px;
+
+      background:
+        linear-gradient(
+          135deg,
+          #ff6200,
+          #ff9b4a
+        );
+
+      color: white;
+
+      font-weight: 900;
+
+      box-shadow:
+        0 15px 45px rgba(255,105,0,.22);
+
+      transition:
+        transform .25s ease,
+        box-shadow .25s ease;
+    }
+
+    .button:hover {
+      transform:
+        translateY(-4px)
+        scale(1.02);
+
+      box-shadow:
+        0 20px 60px rgba(255,105,0,.35);
+    }
+
+    /* =====================================================
+       FOOTER
+    ===================================================== */
 
     footer {
-      border-top: 1px solid var(--border);
-      padding: 35px 0;
-      color: var(--muted);
+      padding: 40px 7%;
+
+      background: #060606;
+
+      color: #666;
+
       font-size: .8rem;
     }
 
-    .footer-inner {
-      display: flex;
-      justify-content: space-between;
-      gap: 20px;
-    }
+    /* =====================================================
+       MOBILE
+    ===================================================== */
 
-    /* MOBILE */
+    @media (max-width: 700px) {
 
-    @media (max-width: 720px) {
-
-      nav {
-        height: 72px;
-      }
-
-      .nav-links a:not(.nav-cta) {
+      .nav-contact {
         display: none;
       }
 
-      .hero {
-        min-height: 80vh;
-        padding: 75px 0;
+      .hero-content {
+        padding-top: 20vh;
       }
 
       h1 {
-        font-size: clamp(3.1rem, 15vw, 5rem);
+        font-size:
+          clamp(3.2rem, 15vw, 5.2rem);
       }
 
       .hero-description {
         font-size: 1rem;
       }
 
-      section {
-        padding: 85px 0;
+      .sun {
+        top: 27%;
       }
 
-      .stats-grid {
+      .cloud-1 {
+        left: -30px;
+      }
+
+      .cloud-2 {
+        right: -80px;
+      }
+
+      .horizon {
+        height: 40vh;
+
+        min-height: 230px;
+      }
+
+      .cards,
+      .price-grid {
         grid-template-columns: 1fr;
       }
 
-      .stat {
-        border-right: none;
-        border-bottom: 1px solid var(--border);
+      .portfolio {
+        padding:
+          100px 7% 80px;
       }
 
-      .stat:last-child {
-        border-bottom: none;
+      .process-row {
+        grid-template-columns:
+          50px 1fr;
       }
 
-      .services,
-      .pricing,
-      .capabilities {
-        grid-template-columns: 1fr;
+      .contact {
+        padding:
+          38px 25px;
       }
+    }
 
-      .service {
-        min-height: auto;
-      }
+    /* =====================================================
+       REDUCED MOTION
+    ===================================================== */
 
-      .process-item {
-        grid-template-columns: 55px 1fr;
-      }
+    @media (prefers-reduced-motion: reduce) {
 
-      .contact-box {
-        padding: 35px 25px;
-      }
+      *,
+      *::before,
+      *::after {
+        scroll-behavior: auto !important;
 
-      .footer-inner {
-        flex-direction: column;
+        animation: none !important;
+
+        transition-duration:
+          .01ms !important;
       }
     }
   </style>
@@ -544,469 +1183,532 @@
 
 <body>
 
-<header class="container">
-  <nav>
+  <!-- ===================================================
+       DAY WORLD
+  ==================================================== -->
+
+  <section class="day-scene">
 
     <a href="#" class="logo">
       Yazonii<span>.</span>
     </a>
 
-    <div class="nav-links">
-      <a href="#services">Services</a>
-      <a href="#pricing">Pricing</a>
+    <a
+      href="#contact"
+      class="nav-contact"
+    >
+      Start a Project →
+    </a>
 
-      <a href="#contact" class="nav-cta">
-        Start a Project →
-      </a>
-    </div>
+    <div class="sun"></div>
 
-  </nav>
-</header>
+    <div class="cloud cloud-1"></div>
+    <div class="cloud cloud-2"></div>
+    <div class="cloud cloud-3"></div>
 
-
-<main>
-
-  <!-- HERO -->
-
-  <section class="hero">
-
-    <div class="container hero-content">
+    <div class="hero-content">
 
       <div class="eyebrow">
-        Web design & development
+        Web Design & Development
       </div>
 
       <h1>
-        Websites built to make your business
+        Websites that make your business
         <span>stand out.</span>
       </h1>
 
       <p class="hero-description">
-        I create modern, responsive websites for businesses,
-        creators and entrepreneurs who want a stronger presence
-        online — without unnecessary complexity.
+        Modern, responsive websites for businesses,
+        creators and entrepreneurs who want a stronger
+        presence online.
       </p>
 
-      <div class="buttons">
+    </div>
 
-        <a href="#contact" class="btn btn-primary">
-          Start a Project →
-        </a>
+    <div class="scroll-hint">
 
-        <a href="#services" class="btn btn-secondary">
-          What I Make
-        </a>
+      Scroll to explore
 
-      </div>
+      <div class="scroll-line"></div>
+
+    </div>
+
+    <!-- Layered landscape -->
+
+    <div class="horizon">
+
+      <div class="hill hill-back"></div>
+
+      <div class="hill hill-middle"></div>
+
+      <div class="hill hill-front"></div>
+
+      <div class="hill hill-ground"></div>
+
+      <div class="horizon-fade"></div>
 
     </div>
 
   </section>
 
 
-  <!-- STATS / PROMISE -->
+  <!-- ===================================================
+       PORTFOLIO
+  ==================================================== -->
 
-  <div class="stats">
+  <main class="portfolio">
 
-    <div class="container stats-grid">
+    <div class="portfolio-inner">
 
-      <div class="stat">
-        <strong>Fast delivery</strong>
-        <span>Focused builds without unnecessary delays.</span>
-      </div>
+      <!-- SERVICES -->
 
-      <div class="stat">
-        <strong>Mobile-first</strong>
-        <span>Designed for phones, tablets and desktops.</span>
-      </div>
-
-      <div class="stat">
-        <strong>Clear pricing</strong>
-        <span>Simple packages with no confusing hourly rates.</span>
-      </div>
-
-    </div>
-
-  </div>
-
-
-  <!-- SERVICES -->
-
-  <section id="services">
-
-    <div class="container">
-
-      <div class="section-label">
-        What I make
-      </div>
-
-      <h2>
-        Websites designed around what you actually need.
-      </h2>
-
-      <div class="services">
-
-        <article class="service">
-
-          <div class="service-number">01</div>
-
-          <h3>Business Websites</h3>
-
-          <p>
-            Professional websites that explain what your
-            business does and make it easy for customers
-            to contact you.
-          </p>
-
-        </article>
-
-
-        <article class="service">
-
-          <div class="service-number">02</div>
-
-          <h3>Landing Pages</h3>
-
-          <p>
-            Focused pages built around a specific goal,
-            product or service.
-          </p>
-
-        </article>
-
-
-        <article class="service">
-
-          <div class="service-number">03</div>
-
-          <h3>Website Redesigns</h3>
-
-          <p>
-            Turn an outdated website into a cleaner,
-            faster and more modern experience.
-          </p>
-
-        </article>
-
-
-        <article class="service">
-
-          <div class="service-number">04</div>
-
-          <h3>Personal & Creator Sites</h3>
-
-          <p>
-            Personal brands, portfolios and creator websites
-            that present your work professionally.
-          </p>
-
-        </article>
-
-      </div>
-
-    </div>
-
-  </section>
-
-
-  <!-- CAPABILITIES -->
-
-  <section>
-
-    <div class="container capabilities">
-
-      <div>
+      <section>
 
         <div class="section-label">
-          What I focus on
+          What I make
         </div>
 
         <h2>
-          More than just making things look good.
+          Digital experiences built around your goals.
         </h2>
 
-      </div>
+        <div class="cards">
 
-      <div class="capability-list">
+          <article class="card">
 
-        <div class="capability">
-          <span>Responsive design</span>
-          <span>All devices</span>
-        </div>
+            <div class="number">
+              01
+            </div>
 
-        <div class="capability">
-          <span>Modern UI</span>
-          <span>Clean & clear</span>
-        </div>
-
-        <div class="capability">
-          <span>Performance</span>
-          <span>Fast loading</span>
-        </div>
-
-        <div class="capability">
-          <span>SEO basics</span>
-          <span>Search ready</span>
-        </div>
-
-        <div class="capability">
-          <span>Contact systems</span>
-          <span>Lead focused</span>
-        </div>
-
-        <div class="capability">
-          <span>Custom functionality</span>
-          <span>Built around you</span>
-        </div>
-
-      </div>
-
-    </div>
-
-  </section>
-
-
-  <!-- PROCESS -->
-
-  <section>
-
-    <div class="container">
-
-      <div class="section-label">
-        Process
-      </div>
-
-      <h2>
-        From idea to live website.
-      </h2>
-
-      <div class="process">
-
-        <div class="process-item">
-
-          <div class="process-number">01</div>
-
-          <div>
-            <h3>Tell me what you need</h3>
+            <h3>
+              Business Websites
+            </h3>
 
             <p>
-              Send me information about your business,
-              your goals and the type of website you want.
+              Professional websites that explain your
+              business clearly and make it easy for
+              customers to contact you.
             </p>
-          </div>
 
-        </div>
+          </article>
 
 
-        <div class="process-item">
+          <article class="card">
 
-          <div class="process-number">02</div>
+            <div class="number">
+              02
+            </div>
 
-          <div>
-            <h3>I build it</h3>
+            <h3>
+              Landing Pages
+            </h3>
 
             <p>
-              I turn the idea into a polished, responsive
-              website designed around your business.
+              Focused pages designed around a product,
+              service or specific conversion goal.
             </p>
-          </div>
 
-        </div>
+          </article>
 
 
-        <div class="process-item">
+          <article class="card">
 
-          <div class="process-number">03</div>
+            <div class="number">
+              03
+            </div>
 
-          <div>
-            <h3>You review it</h3>
+            <h3>
+              Website Redesigns
+            </h3>
 
             <p>
-              You review the website and tell me what
-              needs to be changed or improved.
+              Turn an outdated website into something
+              modern, responsive and easier to use.
             </p>
-          </div>
 
-        </div>
+          </article>
 
 
-        <div class="process-item">
+          <article class="card">
 
-          <div class="process-number">04</div>
+            <div class="number">
+              04
+            </div>
 
-          <div>
-            <h3>Launch</h3>
+            <h3>
+              Creator & Portfolio Sites
+            </h3>
 
             <p>
-              Once everything is ready, your website goes
-              live and is ready for your customers.
+              Personal websites that present your work,
+              brand and identity professionally.
             </p>
+
+          </article>
+
+        </div>
+
+      </section>
+
+
+      <!-- PROCESS -->
+
+      <section class="process">
+
+        <div class="section-label">
+          Process
+        </div>
+
+        <h2>
+          From idea to launch.
+        </h2>
+
+        <div class="process-row">
+
+          <div class="process-number">
+            01
+          </div>
+
+          <div>
+
+            <h3>
+              Tell me what you need
+            </h3>
+
+            <p>
+              Send your requirements, goals and
+              information about your business.
+            </p>
+
           </div>
 
         </div>
 
-      </div>
 
-    </div>
+        <div class="process-row">
 
-  </section>
-
-
-  <!-- PRICING -->
-
-  <section id="pricing">
-
-    <div class="container">
-
-      <div class="section-label">
-        Pricing
-      </div>
-
-      <h2>
-        Simple packages. No guessing.
-      </h2>
-
-      <div class="pricing">
-
-        <article class="price-card">
-
-          <div class="badge">
-            Starter
+          <div class="process-number">
+            02
           </div>
 
-          <h3>Essential Website</h3>
+          <div>
 
-          <div class="price">
-            1,500 SEK
+            <h3>
+              I build it
+            </h3>
+
+            <p>
+              I turn the idea into a polished,
+              responsive website.
+            </p>
+
           </div>
 
-          <p>
-            For small businesses that need a professional
-            online presence.
-          </p>
-
-          <ul>
-            <li>Custom website</li>
-            <li>Mobile responsive design</li>
-            <li>Contact section</li>
-            <li>Basic SEO setup</li>
-            <li>Launch assistance</li>
-          </ul>
-
-        </article>
+        </div>
 
 
-        <article class="price-card featured">
+        <div class="process-row">
 
-          <div class="badge">
-            Most Popular
+          <div class="process-number">
+            03
           </div>
 
-          <h3>Business Website</h3>
+          <div>
 
-          <div class="price">
-            3,000 SEK
+            <h3>
+              You review it
+            </h3>
+
+            <p>
+              You give feedback and I make the
+              necessary changes.
+            </p>
+
           </div>
 
-          <p>
-            A more complete website for businesses that
-            want to make a stronger impression online.
-          </p>
-
-          <ul>
-            <li>Custom multi-section website</li>
-            <li>Advanced responsive design</li>
-            <li>Contact / inquiry system</li>
-            <li>Custom interactions</li>
-            <li>Basic SEO setup</li>
-            <li>Launch assistance</li>
-          </ul>
-
-        </article>
-
-      </div>
-
-    </div>
-
-  </section>
+        </div>
 
 
-  <!-- CONTACT -->
+        <div class="process-row">
 
-  <section id="contact">
+          <div class="process-number">
+            04
+          </div>
 
-    <div class="container">
+          <div>
 
-      <div class="contact-box">
+            <h3>
+              Launch
+            </h3>
+
+            <p>
+              Your finished website goes live and is
+              ready for your customers.
+            </p>
+
+          </div>
+
+        </div>
+
+      </section>
+
+
+      <!-- PRICING -->
+
+      <section class="pricing">
+
+        <div class="section-label">
+          Pricing
+        </div>
+
+        <h2>
+          Simple. Clear. Fixed.
+        </h2>
+
+        <div class="price-grid">
+
+          <article class="price-card">
+
+            <h3>
+              Starter
+            </h3>
+
+            <div class="price">
+              1,500 SEK
+            </div>
+
+            <p>
+              A professional online presence for
+              smaller businesses.
+            </p>
+
+            <ul>
+
+              <li>
+                Custom website
+              </li>
+
+              <li>
+                Responsive design
+              </li>
+
+              <li>
+                Contact section
+              </li>
+
+              <li>
+                Basic SEO setup
+              </li>
+
+            </ul>
+
+          </article>
+
+
+          <article class="price-card featured">
+
+            <h3>
+              Business
+            </h3>
+
+            <div class="price">
+              3,000 SEK
+            </div>
+
+            <p>
+              A complete website designed to make
+              your business look established online.
+            </p>
+
+            <ul>
+
+              <li>
+                Custom multi-section website
+              </li>
+
+              <li>
+                Advanced responsive design
+              </li>
+
+              <li>
+                Contact / inquiry system
+              </li>
+
+              <li>
+                Custom interactions
+              </li>
+
+              <li>
+                Basic SEO setup
+              </li>
+
+            </ul>
+
+          </article>
+
+        </div>
+
+      </section>
+
+
+      <!-- CONTACT -->
+
+      <section
+        class="contact"
+        id="contact"
+      >
 
         <div class="section-label">
           Start a project
         </div>
 
         <h2>
-          Have a website in mind?
+          Let's build something people remember.
         </h2>
 
         <p>
-          Tell me what you're building, what your business does
-          and what you need from your website. I'll get back to
-          you with the next steps.
+          Tell me about your business and what you want
+          your website to accomplish.
         </p>
 
-        <div class="contact-details">
+        <a
+          class="contact-link"
+          href="mailto:yayazan.mahmoud@gmail.com"
+        >
+          ✉ yayazan.mahmoud@gmail.com
+        </a>
 
-          <a href="mailto:yayazan.mahmoud@gmail.com">
-            ✉ yayazan.mahmoud@gmail.com
-          </a>
+        <a
+          class="contact-link"
+          href="tel:+46707358046"
+        >
+          ☎ +46 70 735 80 46
+        </a>
 
-          <a href="tel:+46707358046">
-            ☎ +46 70 735 80 46
-          </a>
+        <a
+          class="button"
+          href="mailto:yayazan.mahmoud@gmail.com?subject=Website%20Project"
+        >
+          Start a Project →
+        </a>
 
-        </div>
-
-        <div class="buttons">
-
-          <a
-            href="mailto:yayazan.mahmoud@gmail.com?subject=Website%20Project%20Inquiry"
-            class="btn btn-primary"
-          >
-            Email Me →
-          </a>
-
-          <a
-            href="tel:+46707358046"
-            class="btn btn-secondary"
-          >
-            Call Me
-          </a>
-
-        </div>
-
-      </div>
+      </section>
 
     </div>
 
-  </section>
-
-</main>
+  </main>
 
 
-<footer>
+  <footer>
+    © 2026 Yazonii. Websites built with purpose.
+  </footer>
 
-  <div class="container footer-inner">
 
-    <span>
-      © 2026 Yazonii.
-    </span>
+  <script>
 
-    <span>
-      Websites built with purpose.
-    </span>
+    /* =====================================================
+       SCROLL REVEAL
+    ===================================================== */
 
-  </div>
+    const revealItems =
+      document.querySelectorAll(
+        ".card, .process-row, .contact"
+      );
 
-</footer>
+    const observer =
+      new IntersectionObserver(
+        entries => {
+
+          entries.forEach(entry => {
+
+            if (entry.isIntersecting) {
+
+              entry.target.classList.add(
+                "visible"
+              );
+
+              observer.unobserve(
+                entry.target
+              );
+
+            }
+
+          });
+
+        },
+        {
+          threshold: .15
+        }
+      );
+
+    revealItems.forEach(item => {
+      observer.observe(item);
+    });
+
+
+    /* =====================================================
+       SUBTLE MOUNTAIN PARALLAX
+    ===================================================== */
+
+    const horizon =
+      document.querySelector(".horizon");
+
+    const hills =
+      document.querySelectorAll(".hill");
+
+    let ticking = false;
+
+    window.addEventListener(
+      "scroll",
+      () => {
+
+        if (!ticking) {
+
+          window.requestAnimationFrame(() => {
+
+            const scroll =
+              window.scrollY;
+
+            const heroHeight =
+              window.innerHeight;
+
+            if (scroll <= heroHeight) {
+
+              const progress =
+                scroll / heroHeight;
+
+              horizon.style.transform =
+                `translateY(${progress * 22}px)`;
+
+              hills.forEach(
+                (hill, index) => {
+
+                  const amount =
+                    progress *
+                    (index + 1) *
+                    7;
+
+                  hill.style.marginLeft =
+                    `${-5 - amount / 10}%`;
+
+                }
+              );
+
+            }
+
+            ticking = false;
+
+          });
+
+          ticking = true;
+
+        }
+
+      },
+      { passive: true }
+    );
+
+  </script>
 
 </body>
 </html>

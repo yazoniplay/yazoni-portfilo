@@ -1,11 +1,36 @@
 /* =========================================================
-   YAZONII — PORTFOLIO INTERACTIONS
+   YAZONII — SIGNATURE PORTFOLIO
+   Liquid Glass / Motion / Sparkles / Interactions
    ========================================================= */
 
 document.addEventListener("DOMContentLoaded", () => {
+  "use strict";
+
+  const reducedMotion = window.matchMedia(
+    "(prefers-reduced-motion: reduce)"
+  ).matches;
+
+  const isTouch =
+    window.matchMedia("(pointer: coarse)").matches;
+
 
   /* =======================================================
-     NAVBAR — changes when scrolling
+     HELPERS
+     ======================================================= */
+
+  const clamp = (value, min, max) =>
+    Math.min(Math.max(value, min), max);
+
+
+  /* =======================================================
+     PAGE LOADER
+     ======================================================= */
+
+  document.body.classList.add("page-ready");
+
+
+  /* =======================================================
+     NAVBAR
      ======================================================= */
 
   const navbar = document.querySelector(".navbar");
@@ -14,8 +39,8 @@ document.addEventListener("DOMContentLoaded", () => {
     if (!navbar) return;
 
     navbar.classList.toggle(
-      "scrolled",
-      window.scrollY > 40
+      "navbar-scrolled",
+      window.scrollY > 45
     );
   };
 
@@ -32,494 +57,230 @@ document.addEventListener("DOMContentLoaded", () => {
      SCROLL REVEALS
      ======================================================= */
 
-  const revealElements = document.querySelectorAll(
-    ".reveal, .reveal-left, .reveal-scale"
-  );
+  const revealElements =
+    document.querySelectorAll(".reveal");
 
-  const revealObserver = new IntersectionObserver(
-    (entries, observer) => {
+  if (!reducedMotion) {
 
-      entries.forEach(entry => {
+    const revealObserver =
+      new IntersectionObserver(
+        entries => {
 
-        if (!entry.isIntersecting) return;
+          entries.forEach(entry => {
 
-        entry.target.classList.add("visible");
+            if (!entry.isIntersecting) return;
 
-        observer.unobserve(entry.target);
+            entry.target.classList.add(
+              "is-visible"
+            );
 
-      });
+            revealObserver.unobserve(
+              entry.target
+            );
 
-    },
-    {
-      threshold: 0.12,
-      rootMargin: "0px 0px -60px 0px"
-    }
-  );
+          });
 
-  revealElements.forEach(element => {
-    revealObserver.observe(element);
-  });
+        },
+        {
+          threshold: 0.12,
+          rootMargin:
+            "0px 0px -70px 0px"
+        }
+      );
+
+    revealElements.forEach(element => {
+      revealObserver.observe(element);
+    });
+
+  } else {
+
+    revealElements.forEach(element => {
+      element.classList.add(
+        "is-visible"
+      );
+    });
+
+  }
 
 
   /* =======================================================
-     HERO TEXT ENTRANCE
+     HERO TEXT REVEAL
      ======================================================= */
 
-  const heroLines = document.querySelectorAll(
-    ".hero h1 .line"
-  );
+  const heroLines =
+    document.querySelectorAll(
+      ".hero-line"
+    );
 
   heroLines.forEach((line, index) => {
 
-    line.style.opacity = "0";
-    line.style.transform = "translateY(45px)";
+    if (reducedMotion) {
+      line.classList.add(
+        "hero-line-visible"
+      );
+      return;
+    }
 
-    line.style.transition =
-      `opacity 1s cubic-bezier(.16,1,.3,1) ${index * 100}ms,
-       transform 1s cubic-bezier(.16,1,.3,1) ${index * 100}ms`;
+    setTimeout(() => {
 
-    requestAnimationFrame(() => {
+      line.classList.add(
+        "hero-line-visible"
+      );
 
-      setTimeout(() => {
-
-        line.style.opacity = "1";
-        line.style.transform = "translateY(0)";
-
-      }, 150);
-
-    });
+    }, 350 + index * 180);
 
   });
 
 
   /* =======================================================
-     SMOOTH ANCHOR SCROLLING
+     IMPOSSIBLE UNDERLINE
      ======================================================= */
 
-  document.querySelectorAll(
-    'a[href^="#"]'
-  ).forEach(link => {
+  const impossible =
+    document.querySelector(
+      ".hero-impossible"
+    );
 
-    link.addEventListener("click", event => {
+  if (impossible && !reducedMotion) {
 
-      const targetId =
-        link.getAttribute("href");
+    setTimeout(() => {
 
-      if (
-        !targetId ||
-        targetId === "#"
-      ) {
-        return;
-      }
+      impossible.classList.add(
+        "underline-active"
+      );
 
-      const target =
-        document.querySelector(targetId);
+    }, 1050);
 
-      if (!target) return;
-
-      event.preventDefault();
-
-      target.scrollIntoView({
-        behavior: "smooth",
-        block: "start"
-      });
-
-    });
-
-  });
+  }
 
 
   /* =======================================================
-     MAGNETIC BUTTONS
+     MAGNETIC ELEMENTS
      ======================================================= */
 
   const magneticElements =
     document.querySelectorAll(
-      ".btn, .nav-contact"
+      ".magnetic"
     );
 
-  magneticElements.forEach(element => {
+  if (!isTouch && !reducedMotion) {
 
-    element.addEventListener(
-      "mousemove",
-      event => {
+    magneticElements.forEach(element => {
 
-        if (
-          window.matchMedia(
-            "(pointer: coarse)"
-          ).matches
-        ) {
-          return;
+      element.addEventListener(
+        "mousemove",
+        event => {
+
+          const rect =
+            element.getBoundingClientRect();
+
+          const x =
+            event.clientX -
+            rect.left -
+            rect.width / 2;
+
+          const y =
+            event.clientY -
+            rect.top -
+            rect.height / 2;
+
+          const strength =
+            element.classList.contains(
+              "nav-cta"
+            )
+              ? 0.18
+              : 0.12;
+
+          element.style.transform =
+            `translate(
+              ${x * strength}px,
+              ${y * strength}px
+            )`;
+
         }
+      );
 
-        const rect =
-          element.getBoundingClientRect();
 
-        const x =
-          event.clientX -
-          rect.left -
-          rect.width / 2;
+      element.addEventListener(
+        "mouseleave",
+        () => {
 
-        const y =
-          event.clientY -
-          rect.top -
-          rect.height / 2;
+          element.style.transform =
+            "";
 
-        element.style.transform =
-          `translate(${x * 0.12}px, ${y * 0.12}px)`;
+        }
+      );
 
-      }
-    );
+    });
 
-    element.addEventListener(
-      "mouseleave",
-      () => {
-
-        element.style.transform = "";
-
-      }
-    );
-
-  });
+  }
 
 
   /* =======================================================
-     CUSTOM CURSOR GLOW
+     GLOBAL MOUSE LIGHT
      ======================================================= */
 
-  const cursorGlow =
+  const mouseLight =
     document.createElement("div");
 
-  cursorGlow.className =
-    "cursor-glow";
+  mouseLight.className =
+    "global-mouse-light";
 
   document.body.appendChild(
-    cursorGlow
+    mouseLight
   );
 
-  const cursorStyle =
+
+  const mouseLightStyle =
     document.createElement("style");
 
-  cursorStyle.textContent = `
-    .cursor-glow {
+  mouseLightStyle.textContent = `
+    .global-mouse-light {
       position: fixed;
-      width: 260px;
-      height: 260px;
+      width: 420px;
+      height: 420px;
       border-radius: 50%;
       pointer-events: none;
-      z-index: 0;
-      background: radial-gradient(
-        circle,
-        rgba(255,104,26,.08),
-        transparent 68%
-      );
+      z-index: 2;
       transform: translate(-50%, -50%);
+      background:
+        radial-gradient(
+          circle,
+          rgba(255,104,26,.075) 0%,
+          rgba(255,104,26,.025) 35%,
+          transparent 70%
+        );
       opacity: 0;
-      transition: opacity .3s ease;
+      transition: opacity .5s ease;
       will-change: left, top;
     }
 
     @media (pointer: coarse) {
-      .cursor-glow {
+      .global-mouse-light {
         display: none;
       }
     }
   `;
 
   document.head.appendChild(
-    cursorStyle
-  );
-
-  window.addEventListener(
-    "mousemove",
-    event => {
-
-      cursorGlow.style.left =
-        `${event.clientX}px`;
-
-      cursorGlow.style.top =
-        `${event.clientY}px`;
-
-      cursorGlow.style.opacity = "1";
-
-    }
+    mouseLightStyle
   );
 
 
-  /* =======================================================
-     SPARKLE SYSTEM
-     ======================================================= */
+  if (!isTouch && !reducedMotion) {
 
-  const sparkleContainer =
-    document.createElement("div");
-
-  sparkleContainer.className =
-    "sparkle-container";
-
-  document.body.appendChild(
-    sparkleContainer
-  );
-
-  const sparkleStyle =
-    document.createElement("style");
-
-  sparkleStyle.textContent = `
-    .sparkle-container {
-      position: fixed;
-      inset: 0;
-      pointer-events: none;
-      z-index: 3;
-      overflow: hidden;
-    }
-
-    .sparkle {
-      position: absolute;
-      width: 2px;
-      height: 2px;
-      border-radius: 50%;
-      background: #ff8a4c;
-      box-shadow:
-        0 0 8px rgba(255,104,26,.8);
-      opacity: 0;
-      animation: sparkleFloat linear forwards;
-    }
-
-    @keyframes sparkleFloat {
-
-      0% {
-        opacity: 0;
-        transform:
-          translateY(20px)
-          scale(.4);
-      }
-
-      20% {
-        opacity: .8;
-      }
-
-      80% {
-        opacity: .5;
-      }
-
-      100% {
-        opacity: 0;
-        transform:
-          translateY(-100px)
-          scale(1);
-      }
-
-    }
-  `;
-
-  document.head.appendChild(
-    sparkleStyle
-  );
-
-
-  const createSparkle = () => {
-
-    if (
-      document.hidden ||
-      window.matchMedia(
-        "(prefers-reduced-motion: reduce)"
-      ).matches
-    ) {
-      return;
-    }
-
-    const sparkle =
-      document.createElement("span");
-
-    sparkle.className = "sparkle";
-
-    sparkle.style.left =
-      `${Math.random() * 100}%`;
-
-    sparkle.style.top =
-      `${55 + Math.random() * 45}%`;
-
-    sparkle.style.animationDuration =
-      `${3 + Math.random() * 4}s`;
-
-    sparkle.style.animationDelay =
-      `${Math.random() * 1}s`;
-
-    sparkleContainer.appendChild(
-      sparkle
-    );
-
-    setTimeout(() => {
-      sparkle.remove();
-    }, 8000);
-
-  };
-
-
-  setInterval(
-    createSparkle,
-    500
-  );
-
-
-  /* =======================================================
-     CARD TILT
-     ======================================================= */
-
-  const cards =
-    document.querySelectorAll(
-      ".why-card, .service"
-    );
-
-  cards.forEach(card => {
-
-    card.addEventListener(
+    window.addEventListener(
       "mousemove",
       event => {
 
-        if (
-          window.matchMedia(
-            "(pointer: coarse)"
-          ).matches
-        ) {
-          return;
-        }
+        mouseLight.style.left =
+          `${event.clientX}px`;
 
-        const rect =
-          card.getBoundingClientRect();
+        mouseLight.style.top =
+          `${event.clientY}px`;
 
-        const x =
-          event.clientX - rect.left;
-
-        const y =
-          event.clientY - rect.top;
-
-        const rotateX =
-          ((y / rect.height) - 0.5) * -4;
-
-        const rotateY =
-          ((x / rect.width) - 0.5) * 4;
-
-        card.style.transform =
-          `perspective(700px)
-           rotateX(${rotateX}deg)
-           rotateY(${rotateY}deg)
-           translateY(-5px)`;
-
-      }
-    );
-
-    card.addEventListener(
-      "mouseleave",
-      () => {
-
-        card.style.transform = "";
-
-      }
-    );
-
-  });
-
-
-  /* =======================================================
-     ACTIVE NAV LINK
-     ======================================================= */
-
-  const sections =
-    document.querySelectorAll(
-      "section[id]"
-    );
-
-  const navLinks =
-    document.querySelectorAll(
-      ".nav-links a"
-    );
-
-  const sectionObserver =
-    new IntersectionObserver(
-      entries => {
-
-        entries.forEach(entry => {
-
-          if (!entry.isIntersecting) {
-            return;
-          }
-
-          const id =
-            entry.target.getAttribute("id");
-
-          navLinks.forEach(link => {
-
-            link.classList.remove(
-              "active"
-            );
-
-            if (
-              link.getAttribute("href") ===
-              `#${id}`
-            ) {
-              link.classList.add(
-                "active"
-              );
-            }
-
-          });
-
-        });
-
-      },
-      {
-        threshold: 0.35
-      }
-    );
-
-  sections.forEach(section => {
-    sectionObserver.observe(section);
-  });
-
-
-  /* =======================================================
-     ACTIVE NAV STYLE
-     ======================================================= */
-
-  const activeStyle =
-    document.createElement("style");
-
-  activeStyle.textContent = `
-    .nav-links a.active {
-      color: #f5f5f5;
-    }
-
-    .nav-links a.active::after {
-      transform: scaleX(1);
-      transform-origin: left;
-    }
-  `;
-
-  document.head.appendChild(
-    activeStyle
-  );
-
-
-  /* =======================================================
-     PARALLAX HERO GRID
-     ======================================================= */
-
-  const heroGrid =
-    document.querySelector(
-      ".hero-grid"
-    );
-
-  if (heroGrid) {
-
-    window.addEventListener(
-      "scroll",
-      () => {
-
-        const offset =
-          window.scrollY * 0.12;
-
-        heroGrid.style.transform =
-          `translateY(${offset}px)`;
+        mouseLight.style.opacity =
+          "1";
 
       },
       { passive: true }
@@ -529,7 +290,142 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
   /* =======================================================
-     MOUSE PARALLAX ON HERO
+     LIQUID GLASS MOUSE REFLECTION
+     ======================================================= */
+
+  const glassElements =
+    document.querySelectorAll(
+      ".liquid-glass"
+    );
+
+  if (!isTouch && !reducedMotion) {
+
+    glassElements.forEach(card => {
+
+      card.addEventListener(
+        "mousemove",
+        event => {
+
+          const rect =
+            card.getBoundingClientRect();
+
+          const x =
+            ((event.clientX -
+              rect.left) /
+              rect.width) * 100;
+
+          const y =
+            ((event.clientY -
+              rect.top) /
+              rect.height) * 100;
+
+          card.style.setProperty(
+            "--mouse-x",
+            `${x}%`
+          );
+
+          card.style.setProperty(
+            "--mouse-y",
+            `${y}%`
+          );
+
+          card.classList.add(
+            "glass-hover"
+          );
+
+        }
+      );
+
+
+      card.addEventListener(
+        "mouseleave",
+        () => {
+
+          card.classList.remove(
+            "glass-hover"
+          );
+
+          card.style.setProperty(
+            "--mouse-x",
+            "50%"
+          );
+
+          card.style.setProperty(
+            "--mouse-y",
+            "50%"
+          );
+
+        }
+      );
+
+    });
+
+  }
+
+
+  /* =======================================================
+     GLASS CARD 3D TILT
+     ======================================================= */
+
+  const cards =
+    document.querySelectorAll(
+      ".service-card"
+    );
+
+  if (!isTouch && !reducedMotion) {
+
+    cards.forEach(card => {
+
+      card.addEventListener(
+        "mousemove",
+        event => {
+
+          const rect =
+            card.getBoundingClientRect();
+
+          const px =
+            (event.clientX -
+              rect.left) /
+            rect.width;
+
+          const py =
+            (event.clientY -
+              rect.top) /
+            rect.height;
+
+          const rotateX =
+            (0.5 - py) * 5;
+
+          const rotateY =
+            (px - 0.5) * 5;
+
+          card.style.transform =
+            `perspective(900px)
+             rotateX(${rotateX}deg)
+             rotateY(${rotateY}deg)
+             translateY(-8px)`;
+
+        }
+      );
+
+
+      card.addEventListener(
+        "mouseleave",
+        () => {
+
+          card.style.transform =
+            "";
+
+        }
+      );
+
+    });
+
+  }
+
+
+  /* =======================================================
+     HERO MOUSE PARALLAX
      ======================================================= */
 
   const hero =
@@ -537,17 +433,21 @@ document.addEventListener("DOMContentLoaded", () => {
       ".hero"
     );
 
-  const heroHighlight =
+  const heroContent =
     document.querySelector(
-      ".hero h1 .highlight"
+      ".hero-content"
     );
+
+  const heroSparkles =
+    document.querySelectorAll(
+      ".signature-sparkle"
+    );
+
 
   if (
     hero &&
-    heroHighlight &&
-    !window.matchMedia(
-      "(pointer: coarse)"
-    ).matches
+    !isTouch &&
+    !reducedMotion
   ) {
 
     hero.addEventListener(
@@ -569,21 +469,52 @@ document.addEventListener("DOMContentLoaded", () => {
             rect.height / 2) /
           rect.height;
 
-        heroHighlight.style.transform =
-          `translate(
-            ${x * 8}px,
-            ${y * 5}px
-          )`;
+
+        if (heroContent) {
+
+          heroContent.style.transform =
+            `translate(
+              ${x * 8}px,
+              ${y * 5}px
+            )`;
+
+        }
+
+
+        heroSparkles.forEach(
+          (sparkle, index) => {
+
+            const strength =
+              10 + index * 8;
+
+            sparkle.style.transform =
+              `translate(
+                ${x * strength}px,
+                ${y * strength}px
+              )`;
+
+          }
+        );
 
       }
     );
+
 
     hero.addEventListener(
       "mouseleave",
       () => {
 
-        heroHighlight.style.transform =
-          "";
+        if (heroContent) {
+          heroContent.style.transform =
+            "";
+        }
+
+        heroSparkles.forEach(
+          sparkle => {
+            sparkle.style.transform =
+              "";
+          }
+        );
 
       }
     );
@@ -592,11 +523,470 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
   /* =======================================================
-     PAGE READY
+     YAZONII SPARKLE SYSTEM
      ======================================================= */
 
-  document.body.classList.add(
-    "loaded"
+  const sparkleField =
+    document.querySelector(
+      ".sparkle-field"
+    );
+
+  const sparkleSymbols = [
+    "✦",
+    "✧",
+    "✦",
+    "·"
+  ];
+
+
+  const createSparkle = () => {
+
+    if (
+      !sparkleField ||
+      reducedMotion ||
+      document.hidden
+    ) {
+      return;
+    }
+
+
+    const sparkle =
+      document.createElement("span");
+
+    sparkle.className =
+      "generated-sparkle";
+
+    sparkle.textContent =
+      sparkleSymbols[
+        Math.floor(
+          Math.random() *
+          sparkleSymbols.length
+        )
+      ];
+
+
+    sparkle.style.left =
+      `${Math.random() * 100}%`;
+
+    sparkle.style.top =
+      `${25 + Math.random() * 70}%`;
+
+    sparkle.style.setProperty(
+      "--spark-size",
+      `${5 + Math.random() * 10}px`
+    );
+
+    sparkle.style.setProperty(
+      "--spark-duration",
+      `${3 + Math.random() * 4}s`
+    );
+
+    sparkle.style.setProperty(
+      "--spark-delay",
+      `${Math.random() * .8}s`
+    );
+
+
+    sparkleField.appendChild(
+      sparkle
+    );
+
+
+    setTimeout(
+      () => sparkle.remove(),
+      8000
+    );
+
+  };
+
+
+  if (!reducedMotion) {
+
+    setInterval(
+      createSparkle,
+      550
+    );
+
+  }
+
+
+  /* =======================================================
+     BRAND SPARKLE
+     ======================================================= */
+
+  const brand =
+    document.querySelector(
+      ".sparkle-trigger"
+    );
+
+  const brandSparkle =
+    document.querySelector(
+      ".brand-sparkle"
+    );
+
+
+  if (brand && brandSparkle) {
+
+    brand.addEventListener(
+      "mouseenter",
+      () => {
+
+        brandSparkle.classList.add(
+          "sparkle-pop"
+        );
+
+      }
+    );
+
+
+    brand.addEventListener(
+      "mouseleave",
+      () => {
+
+        brandSparkle.classList.remove(
+          "sparkle-pop"
+        );
+
+      }
+    );
+
+  }
+
+
+  /* =======================================================
+     RANDOM SIGNATURE SPARKLE BURSTS
+     ======================================================= */
+
+  const signatureSparkles =
+    document.querySelectorAll(
+      ".signature-sparkle"
+    );
+
+
+  signatureSparkles.forEach(
+    sparkle => {
+
+      if (reducedMotion) return;
+
+      const delay =
+        1500 +
+        Math.random() * 4000;
+
+      setTimeout(
+        () => {
+
+          sparkle.classList.add(
+            "sparkle-burst"
+          );
+
+          setTimeout(
+            () => {
+
+              sparkle.classList.remove(
+                "sparkle-burst"
+              );
+
+            },
+            1200
+          );
+
+        },
+        delay
+      );
+
+    }
   );
+
+
+  /* =======================================================
+     PROCESS LINE
+     ======================================================= */
+
+  const processSection =
+    document.querySelector(
+      ".process"
+    );
+
+  const processLine =
+    document.querySelector(
+      ".process-line span"
+    );
+
+
+  if (
+    processSection &&
+    processLine
+  ) {
+
+    const updateProcessLine = () => {
+
+      const rect =
+        processSection.getBoundingClientRect();
+
+      const viewportHeight =
+        window.innerHeight;
+
+      const start =
+        viewportHeight * 0.75;
+
+      const distance =
+        start - rect.top;
+
+      const total =
+        rect.height;
+
+      const progress =
+        clamp(
+          distance / total,
+          0,
+          1
+        );
+
+
+      processLine.style.height =
+        `${progress * 100}%`;
+
+    };
+
+
+    window.addEventListener(
+      "scroll",
+      updateProcessLine,
+      { passive: true }
+    );
+
+    updateProcessLine();
+
+  }
+
+
+  /* =======================================================
+     PARALLAX ORBS
+     ======================================================= */
+
+  const orbs =
+    document.querySelectorAll(
+      ".orb"
+    );
+
+
+  if (
+    !isTouch &&
+    !reducedMotion
+  ) {
+
+    window.addEventListener(
+      "mousemove",
+      event => {
+
+        const x =
+          (event.clientX /
+            window.innerWidth -
+            0.5);
+
+        const y =
+          (event.clientY /
+            window.innerHeight -
+            0.5);
+
+
+        orbs.forEach(
+          (orb, index) => {
+
+            const strength =
+              15 +
+              index * 12;
+
+            orb.style.transform =
+              `translate(
+                ${x * strength}px,
+                ${y * strength}px
+              )`;
+
+          }
+        );
+
+      },
+      { passive: true }
+    );
+
+  }
+
+
+  /* =======================================================
+     SCROLL PARALLAX FOR STATEMENT ORB
+     ======================================================= */
+
+  const statementOrb =
+    document.querySelector(
+      ".statement-orb"
+    );
+
+
+  if (
+    statementOrb &&
+    !reducedMotion
+  ) {
+
+    window.addEventListener(
+      "scroll",
+      () => {
+
+        const rect =
+          statementOrb.parentElement
+            .getBoundingClientRect();
+
+        const progress =
+          (window.innerHeight -
+            rect.top) /
+          (window.innerHeight +
+            rect.height);
+
+        const y =
+          (progress - 0.5) * 120;
+
+        statementOrb.style.transform =
+          `translateY(${y}px)`;
+
+      },
+      { passive: true }
+    );
+
+  }
+
+
+  /* =======================================================
+     CONTACT MAGNETIC GLOW
+     ======================================================= */
+
+  const contact =
+    document.querySelector(
+      ".contact"
+    );
+
+  const contactGlow =
+    document.querySelector(
+      ".contact-glow"
+    );
+
+
+  if (
+    contact &&
+    contactGlow &&
+    !isTouch &&
+    !reducedMotion
+  ) {
+
+    contact.addEventListener(
+      "mousemove",
+      event => {
+
+        const rect =
+          contact.getBoundingClientRect();
+
+        const x =
+          event.clientX -
+          rect.left;
+
+        const y =
+          event.clientY -
+          rect.top;
+
+        contactGlow.style.left =
+          `${x}px`;
+
+        contactGlow.style.top =
+          `${y}px`;
+
+      }
+    );
+
+  }
+
+
+  /* =======================================================
+     HOVER SOUNDLESS MICRO INTERACTIONS
+     ======================================================= */
+
+  const interactive =
+    document.querySelectorAll(
+      "a, button, .service-card"
+    );
+
+
+  interactive.forEach(element => {
+
+    element.addEventListener(
+      "mouseenter",
+      () => {
+
+        element.classList.add(
+          "is-hovering"
+        );
+
+      }
+    );
+
+
+    element.addEventListener(
+      "mouseleave",
+      () => {
+
+        element.classList.remove(
+          "is-hovering"
+        );
+
+      }
+    );
+
+  });
+
+
+  /* =======================================================
+     FOOTER YEAR
+     ======================================================= */
+
+  const yearElement =
+    document.querySelector(
+      ".footer-year"
+    );
+
+
+  if (yearElement) {
+
+    yearElement.textContent =
+      `© ${new Date().getFullYear()}`;
+
+  }
+
+
+  /* =======================================================
+     PAGE VISIBILITY
+     ======================================================= */
+
+  document.addEventListener(
+    "visibilitychange",
+    () => {
+
+      document.body.classList.toggle(
+        "page-hidden",
+        document.hidden
+      );
+
+    }
+  );
+
+
+  /* =======================================================
+     FINAL READY STATE
+     ======================================================= */
+
+  requestAnimationFrame(() => {
+
+    document.body.classList.add(
+      "animations-ready"
+    );
+
+  });
 
 });

@@ -1,1714 +1,791 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="theme-color" content="#060606" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Yazonii — Web Design & Development</title>
+  <meta name="description" content="Yazonii — Developer, designer and builder.">
+  <meta name="theme-color" content="#070707">
 
-  <style>
-    :root {
-      --orange: #ff6900;
-      --orange-light: #ff9b4a;
-      --black: #060606;
-      --white: #fff;
-      --muted: rgba(255,255,255,.68);
-    }
+  <title>Yazonii — Builder</title>
 
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-    html {
-      scroll-behavior: smooth;
-    }
+  <link
+    href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Inter:wght@400;500;600;700;800;900&display=swap"
+    rel="stylesheet"
+  >
 
-    body {
-      font-family: Inter, Arial, sans-serif;
-      background: #060606;
-      color: var(--white);
-      overflow-x: hidden;
-    }
-
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
-
-    /* =====================================================
-       DAY HERO
-    ===================================================== */
-
-    .day-scene {
-      position: relative;
-      height: 100svh;
-      min-height: 720px;
-      overflow: hidden;
-      color: #071116;
-
-      background:
-        linear-gradient(
-          180deg,
-          #69c9f3 0%,
-          #8fd9f7 35%,
-          #bfe9ef 63%,
-          #e8e6ca 82%,
-          #ffd28c 100%
-        );
-    }
-
-    .day-scene::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-
-      background:
-        radial-gradient(
-          circle at 50% 25%,
-          rgba(255,255,255,.42),
-          transparent 28%
-        ),
-        linear-gradient(
-          180deg,
-          transparent 55%,
-          rgba(255,215,150,.2)
-        );
-
-      pointer-events: none;
-    }
-
-    /* =====================================================
-       SUN
-    ===================================================== */
-
-    .sun {
-      position: absolute;
-
-      width: clamp(100px, 13vw, 175px);
-      aspect-ratio: 1;
-
-      left: 50%;
-      top: 24%;
-
-      transform: translate(-50%, -50%);
-
-      border-radius: 50%;
-
-      background:
-        radial-gradient(
-          circle at 35% 32%,
-          #fffef0 0%,
-          #fff6b2 34%,
-          #ffd75d 67%,
-          #ffad2d 100%
-        );
-
-      box-shadow:
-        0 0 45px rgba(255,232,125,.95),
-        0 0 115px rgba(255,194,62,.55),
-        0 0 190px rgba(255,179,40,.25);
-
-      z-index: 1;
-
-      animation:
-        sunFloat 7s ease-in-out infinite,
-        sunGlow 4s ease-in-out infinite alternate;
-    }
-
-    @keyframes sunFloat {
-      0%,100% {
-        transform: translate(-50%, -50%) translateY(0);
-      }
-
-      50% {
-        transform: translate(-50%, -50%) translateY(-10px);
-      }
-    }
-
-    @keyframes sunGlow {
-      from {
-        box-shadow:
-          0 0 45px rgba(255,232,125,.9),
-          0 0 110px rgba(255,194,62,.5),
-          0 0 180px rgba(255,179,40,.2);
-      }
-
-      to {
-        box-shadow:
-          0 0 60px rgba(255,240,150,1),
-          0 0 145px rgba(255,200,70,.65),
-          0 0 220px rgba(255,179,40,.28);
-      }
-    }
-
-    /* =====================================================
-       CLOUDS
-    ===================================================== */
-
-    .cloud {
-      position: absolute;
-
-      width: 190px;
-      height: 48px;
-
-      border-radius: 100px;
-
-      background: rgba(255,255,255,.52);
-
-      filter: blur(.25px);
-
-      box-shadow:
-        0 10px 35px rgba(255,255,255,.1);
-
-      z-index: 2;
-    }
-
-    .cloud::before,
-    .cloud::after {
-      content: "";
-
-      position: absolute;
-
-      border-radius: 50%;
-
-      background: inherit;
-    }
-
-    .cloud::before {
-      width: 75px;
-      height: 75px;
-
-      left: 28px;
-      bottom: 12px;
-    }
-
-    .cloud::after {
-      width: 95px;
-      height: 95px;
-
-      right: 22px;
-      bottom: 5px;
-    }
-
-    .cloud-1 {
-      top: 18%;
-      left: 8%;
-
-      transform: scale(.75);
-
-      animation: cloudMoveOne 35s linear infinite;
-    }
-
-    .cloud-2 {
-      top: 35%;
-      right: 7%;
-
-      transform: scale(.58);
-
-      opacity: .65;
-
-      animation: cloudMoveTwo 45s linear infinite;
-    }
-
-    .cloud-3 {
-      top: 48%;
-      left: 28%;
-
-      transform: scale(.42);
-
-      opacity: .5;
-
-      animation: cloudMoveThree 55s linear infinite;
-    }
-
-    @keyframes cloudMoveOne {
-      0% {
-        margin-left: -20px;
-      }
-
-      50% {
-        margin-left: 55px;
-      }
-
-      100% {
-        margin-left: -20px;
-      }
-    }
-
-    @keyframes cloudMoveTwo {
-      0% {
-        margin-right: 20px;
-      }
-
-      50% {
-        margin-right: -60px;
-      }
-
-      100% {
-        margin-right: 20px;
-      }
-    }
-
-    @keyframes cloudMoveThree {
-      0% {
-        margin-left: 0;
-      }
-
-      50% {
-        margin-left: -70px;
-      }
-
-      100% {
-        margin-left: 0;
-      }
-    }
-
-    /* =====================================================
-       NAV
-    ===================================================== */
-
-    .logo {
-      position: absolute;
-
-      top: 28px;
-      left: 7%;
-
-      z-index: 30;
-
-      font-size: 1.45rem;
-      font-weight: 900;
-
-      letter-spacing: -.07em;
-
-      animation: navEnter .9s cubic-bezier(.2,.8,.2,1) both;
-    }
-
-    .logo span {
-      color: var(--orange);
-    }
-
-    .nav-contact {
-      position: absolute;
-
-      top: 25px;
-      right: 7%;
-
-      z-index: 30;
-
-      padding: 11px 17px;
-
-      border-radius: 10px;
-
-      background: rgba(255,255,255,.2);
-
-      border:
-        1px solid rgba(255,255,255,.35);
-
-      backdrop-filter: blur(12px);
-
-      font-size: .75rem;
-      font-weight: 800;
-
-      transition:
-        transform .25s ease,
-        background .25s ease,
-        color .25s ease;
-    }
-
-    .nav-contact:hover {
-      transform: translateY(-3px);
-
-      background: white;
-
-      color: #111;
-    }
-
-    @keyframes navEnter {
-      from {
-        opacity: 0;
-        transform: translateY(-20px);
-      }
-
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    /* =====================================================
-       HERO CONTENT
-    ===================================================== */
-
-    .hero-content {
-      position: relative;
-
-      z-index: 10;
-
-      width: min(900px, 86%);
-
-      margin: auto;
-
-      padding-top: 22vh;
-    }
-
-    .eyebrow {
-      display: flex;
-      align-items: center;
-
-      gap: 9px;
-
-      margin-bottom: 24px;
-
-      font-size: .7rem;
-      font-weight: 900;
-
-      letter-spacing: .17em;
-
-      text-transform: uppercase;
-
-      animation:
-        heroFade .9s .15s cubic-bezier(.2,.8,.2,1) both;
-    }
-
-    .eyebrow::before {
-      content: "";
-
-      width: 7px;
-      height: 7px;
-
-      border-radius: 50%;
-
-      background: var(--orange);
-
-      animation: dotPulse 2s ease-in-out infinite;
-    }
-
-    @keyframes dotPulse {
-      0%,100% {
-        box-shadow: 0 0 0 0 rgba(255,105,0,.4);
-      }
-
-      50% {
-        box-shadow: 0 0 0 7px rgba(255,105,0,0);
-      }
-    }
-
-    h1 {
-      max-width: 900px;
-
-      font-size:
-        clamp(3.6rem, 9vw, 8rem);
-
-      line-height: .88;
-
-      letter-spacing: -.085em;
-
-      margin-bottom: 30px;
-
-      animation:
-        heroTitle 1.1s .2s cubic-bezier(.16,1,.3,1) both;
-    }
-
-    h1 span {
-      color: var(--orange);
-    }
-
-    .hero-description {
-      max-width: 590px;
-
-      font-size:
-        clamp(1rem, 2vw, 1.2rem);
-
-      line-height: 1.6;
-
-      color: rgba(7,17,22,.7);
-
-      animation:
-        heroFade 1s .45s cubic-bezier(.2,.8,.2,1) both;
-    }
-
-    @keyframes heroFade {
-      from {
-        opacity: 0;
-        transform: translateY(20px);
-      }
-
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    @keyframes heroTitle {
-      from {
-        opacity: 0;
-        transform:
-          translateY(45px)
-          scale(.97);
-      }
-
-      to {
-        opacity: 1;
-        transform:
-          translateY(0)
-          scale(1);
-      }
-    }
-
-    /* =====================================================
-       SCROLL INDICATOR
-    ===================================================== */
-
-    .scroll-hint {
-      position: absolute;
-
-      left: 7%;
-      bottom: 70px;
-
-      z-index: 20;
-
-      font-size: .68rem;
-      font-weight: 800;
-
-      letter-spacing: .16em;
-
-      text-transform: uppercase;
-
-      color: rgba(7,17,22,.65);
-
-      animation:
-        heroFade 1s 1s both;
-    }
-
-    .scroll-line {
-      width: 1px;
-      height: 55px;
-
-      margin-top: 13px;
-
-      background: rgba(7,17,22,.6);
-
-      animation:
-        scrollPulse 1.5s ease-in-out infinite;
-    }
-
-    @keyframes scrollPulse {
-      0%,100% {
-        transform: scaleY(.35);
-        transform-origin: top;
-      }
-
-      50% {
-        transform: scaleY(1);
-        transform-origin: top;
-      }
-    }
-
-    /* =====================================================
-       LAYERED MOUNTAINS
-    ===================================================== */
-
-    .horizon {
-      position: absolute;
-
-      left: 0;
-      bottom: -1px;
-
-      width: 100%;
-      height: 48vh;
-
-      min-height: 260px;
-
-      z-index: 7;
-
-      pointer-events: none;
-    }
-
-    .hill {
-      position: absolute;
-
-      left: -5%;
-      bottom: 0;
-
-      width: 110%;
-      height: 100%;
-
-      transform-origin: bottom;
-    }
-
-    .hill-back {
-      height: 90%;
-
-      background:
-        linear-gradient(
-          180deg,
-          #6a8588,
-          #49666b
-        );
-
-      opacity: .88;
-
-      clip-path: polygon(
-        0 69%,
-        7% 58%,
-        15% 65%,
-        24% 45%,
-        33% 61%,
-        43% 37%,
-        52% 57%,
-        61% 44%,
-        71% 62%,
-        80% 50%,
-        90% 63%,
-        100% 53%,
-        100% 100%,
-        0 100%
-      );
-
-      animation:
-        mountainFloat 12s ease-in-out infinite;
-    }
-
-    .hill-middle {
-      height: 77%;
-
-      background:
-        linear-gradient(
-          180deg,
-          #304b51,
-          #20383d
-        );
-
-      clip-path: polygon(
-        0 71%,
-        10% 54%,
-        19% 68%,
-        30% 41%,
-        39% 60%,
-        48% 47%,
-        57% 65%,
-        69% 42%,
-        78% 59%,
-        88% 47%,
-        100% 64%,
-        100% 100%,
-        0 100%
-      );
-
-      animation:
-        mountainFloat 15s 1s ease-in-out infinite reverse;
-    }
-
-    .hill-front {
-      height: 63%;
-
-      background:
-        linear-gradient(
-          180deg,
-          #13272b,
-          #0a1719
-        );
-
-      clip-path: polygon(
-        0 63%,
-        12% 51%,
-        21% 65%,
-        34% 44%,
-        44% 61%,
-        56% 38%,
-        67% 60%,
-        78% 46%,
-        89% 61%,
-        100% 51%,
-        100% 100%,
-        0 100%
-      );
-
-      animation:
-        mountainFloat 18s 2s ease-in-out infinite;
-    }
-
-    .hill-ground {
-      height: 38%;
-
-      background:
-        linear-gradient(
-          180deg,
-          #081113,
-          #060606
-        );
-
-      clip-path: polygon(
-        0 29%,
-        20% 19%,
-        40% 27%,
-        60% 15%,
-        80% 26%,
-        100% 16%,
-        100% 100%,
-        0 100%
-      );
-    }
-
-    @keyframes mountainFloat {
-      0%,100% {
-        transform: translateX(0);
-      }
-
-      50% {
-        transform: translateX(-1.2%);
-      }
-    }
-
-    /* Soft gradient that connects the landscape to dark portfolio */
-
-    .horizon-fade {
-      position: absolute;
-
-      left: 0;
-      right: 0;
-      bottom: 0;
-
-      height: 38%;
-
-      z-index: 9;
-
-      background:
-        linear-gradient(
-          180deg,
-          rgba(6,6,6,0) 0%,
-          rgba(6,6,6,.35) 35%,
-          rgba(6,6,6,.82) 75%,
-          #060606 100%
-        );
-    }
-
-    /* =====================================================
-       PORTFOLIO
-    ===================================================== */
-
-    .portfolio {
-      position: relative;
-
-      z-index: 10;
-
-      background:
-        radial-gradient(
-          circle at 85% 0%,
-          rgba(255,105,0,.15),
-          transparent 30%
-        ),
-        #060606;
-
-      padding:
-        140px 7% 100px;
-    }
-
-    .portfolio-inner {
-      max-width: 1150px;
-      margin: auto;
-    }
-
-    .section-label {
-      margin-bottom: 16px;
-
-      color: var(--orange);
-
-      font-size: .7rem;
-      font-weight: 900;
-
-      letter-spacing: .17em;
-
-      text-transform: uppercase;
-    }
-
-    h2 {
-      max-width: 850px;
-
-      font-size:
-        clamp(2.8rem, 6vw, 5.5rem);
-
-      line-height: .94;
-
-      letter-spacing: -.075em;
-
-      margin-bottom: 70px;
-    }
-
-    /* =====================================================
-       CARDS
-    ===================================================== */
-
-    .cards {
-      display: grid;
-
-      grid-template-columns:
-        repeat(2, 1fr);
-
-      gap: 18px;
-    }
-
-    .card {
-      min-height: 275px;
-
-      padding: 40px;
-
-      border-radius: 24px;
-
-      background:
-        linear-gradient(
-          145deg,
-          rgba(255,105,0,.08),
-          transparent 48%
-        ),
-        #111;
-
-      border:
-        1px solid rgba(255,255,255,.09);
-
-      opacity: 0;
-
-      transform:
-        translateY(50px)
-        scale(.98);
-
-      transition:
-        opacity .8s ease,
-        transform .8s cubic-bezier(.16,1,.3,1),
-        border-color .3s ease,
-        box-shadow .3s ease;
-    }
-
-    .card.visible {
-      opacity: 1;
-
-      transform:
-        translateY(0)
-        scale(1);
-    }
-
-    .card:hover {
-      border-color:
-        rgba(255,105,0,.45);
-
-      transform:
-        translateY(-8px)
-        scale(1.01);
-
-      box-shadow:
-        0 25px 70px rgba(0,0,0,.3);
-    }
-
-    .number {
-      margin-bottom: 45px;
-
-      color: var(--orange);
-
-      font-size: .75rem;
-      font-weight: 900;
-    }
-
-    .card h3 {
-      margin-bottom: 12px;
-
-      font-size: 1.5rem;
-
-      letter-spacing: -.03em;
-    }
-
-    .card p {
-      max-width: 450px;
-
-      color: var(--muted);
-
-      line-height: 1.65;
-    }
-
-    /* =====================================================
-       PROCESS
-    ===================================================== */
-
-    .process {
-      margin-top: 150px;
-    }
-
-    .process-row {
-      display: grid;
-
-      grid-template-columns:
-        70px 1fr;
-
-      gap: 20px;
-
-      padding: 32px 0;
-
-      border-top:
-        1px solid rgba(255,255,255,.1);
-
-      opacity: 0;
-
-      transform: translateX(-35px);
-
-      transition:
-        opacity .75s ease,
-        transform .75s cubic-bezier(.16,1,.3,1);
-    }
-
-    .process-row.visible {
-      opacity: 1;
-
-      transform: translateX(0);
-    }
-
-    .process-number {
-      color: var(--orange);
-
-      font-weight: 900;
-    }
-
-    .process-row h3 {
-      margin-bottom: 8px;
-    }
-
-    .process-row p {
-      color: var(--muted);
-
-      line-height: 1.6;
-    }
-
-    /* =====================================================
-       PRICING
-    ===================================================== */
-
-    .pricing {
-      margin-top: 150px;
-    }
-
-    .price-grid {
-      display: grid;
-
-      grid-template-columns:
-        repeat(2, 1fr);
-
-      gap: 18px;
-    }
-
-    .price-card {
-      padding: 40px;
-
-      border-radius: 24px;
-
-      background: #111;
-
-      border:
-        1px solid rgba(255,255,255,.09);
-
-      transition:
-        transform .35s ease,
-        border-color .35s ease,
-        box-shadow .35s ease;
-    }
-
-    .price-card:hover {
-      transform: translateY(-8px);
-
-      border-color:
-        rgba(255,105,0,.4);
-
-      box-shadow:
-        0 25px 70px rgba(0,0,0,.3);
-    }
-
-    .price-card.featured {
-      border-color:
-        rgba(255,105,0,.5);
-
-      background:
-        radial-gradient(
-          circle at 100% 0,
-          rgba(255,105,0,.15),
-          transparent 45%
-        ),
-        #111;
-    }
-
-    .price-card h3 {
-      font-size: 1.4rem;
-    }
-
-    .price {
-      margin: 14px 0;
-
-      font-size: 3rem;
-
-      font-weight: 900;
-
-      letter-spacing: -.07em;
-    }
-
-    .price-card p {
-      margin-bottom: 25px;
-
-      color: var(--muted);
-
-      line-height: 1.6;
-    }
-
-    .price-card ul {
-      list-style: none;
-    }
-
-    .price-card li {
-      margin: 11px 0;
-
-      color: #ddd;
-    }
-
-    .price-card li::before {
-      content: "✓";
-
-      margin-right: 10px;
-
-      color: var(--orange);
-
-      font-weight: 900;
-    }
-
-    /* =====================================================
-       CONTACT
-    ===================================================== */
-
-    .contact {
-      margin-top: 150px;
-
-      padding: 70px;
-
-      border-radius: 30px;
-
-      background:
-        radial-gradient(
-          circle at 90% 0,
-          rgba(255,105,0,.2),
-          transparent 35%
-        ),
-        #111;
-
-      border:
-        1px solid rgba(255,255,255,.1);
-
-      opacity: 0;
-
-      transform:
-        translateY(45px);
-
-      transition:
-        opacity 1s ease,
-        transform 1s cubic-bezier(.16,1,.3,1);
-    }
-
-    .contact.visible {
-      opacity: 1;
-
-      transform:
-        translateY(0);
-    }
-
-    .contact h2 {
-      margin-bottom: 20px;
-    }
-
-    .contact > p {
-      max-width: 600px;
-
-      margin-bottom: 30px;
-
-      color: var(--muted);
-
-      line-height: 1.65;
-    }
-
-    .contact-link {
-      display: block;
-
-      margin: 11px 0;
-
-      font-weight: 700;
-
-      transition:
-        color .2s ease,
-        transform .2s ease;
-    }
-
-    .contact-link:hover {
-      color: var(--orange-light);
-
-      transform: translateX(5px);
-    }
-
-    .button {
-      display: inline-block;
-
-      margin-top: 25px;
-
-      padding: 15px 23px;
-
-      border-radius: 11px;
-
-      background:
-        linear-gradient(
-          135deg,
-          #ff6200,
-          #ff9b4a
-        );
-
-      color: white;
-
-      font-weight: 900;
-
-      box-shadow:
-        0 15px 45px rgba(255,105,0,.22);
-
-      transition:
-        transform .25s ease,
-        box-shadow .25s ease;
-    }
-
-    .button:hover {
-      transform:
-        translateY(-4px)
-        scale(1.02);
-
-      box-shadow:
-        0 20px 60px rgba(255,105,0,.35);
-    }
-
-    /* =====================================================
-       FOOTER
-    ===================================================== */
-
-    footer {
-      padding: 40px 7%;
-
-      background: #060606;
-
-      color: #666;
-
-      font-size: .8rem;
-    }
-
-    /* =====================================================
-       MOBILE
-    ===================================================== */
-
-    @media (max-width: 700px) {
-
-      .nav-contact {
-        display: none;
-      }
-
-      .hero-content {
-        padding-top: 20vh;
-      }
-
-      h1 {
-        font-size:
-          clamp(3.2rem, 15vw, 5.2rem);
-      }
-
-      .hero-description {
-        font-size: 1rem;
-      }
-
-      .sun {
-        top: 27%;
-      }
-
-      .cloud-1 {
-        left: -30px;
-      }
-
-      .cloud-2 {
-        right: -80px;
-      }
-
-      .horizon {
-        height: 40vh;
-
-        min-height: 230px;
-      }
-
-      .cards,
-      .price-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .portfolio {
-        padding:
-          100px 7% 80px;
-      }
-
-      .process-row {
-        grid-template-columns:
-          50px 1fr;
-      }
-
-      .contact {
-        padding:
-          38px 25px;
-      }
-    }
-
-    /* =====================================================
-       REDUCED MOTION
-    ===================================================== */
-
-    @media (prefers-reduced-motion: reduce) {
-
-      *,
-      *::before,
-      *::after {
-        scroll-behavior: auto !important;
-
-        animation: none !important;
-
-        transition-duration:
-          .01ms !important;
-      }
-    }
-  </style>
+  <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-  <!-- ===================================================
-       DAY WORLD
-  ==================================================== -->
+  <!-- =====================================================
+       LOADER
+  ====================================================== -->
 
-  <section class="day-scene">
+  <div class="loader" id="loader">
+    <div class="loader-inner">
+      <span class="loader-name">Yazonii</span>
+      <span class="loader-percent" id="loaderPercent">0%</span>
+    </div>
+  </div>
 
-    <a href="#" class="logo">
+
+  <!-- =====================================================
+       CURSOR
+  ====================================================== -->
+
+  <div class="cursor-dot"></div>
+  <div class="cursor-ring"></div>
+
+
+  <!-- =====================================================
+       BACKGROUND
+  ====================================================== -->
+
+  <div class="ambient">
+    <div class="ambient-orb orb-one"></div>
+    <div class="ambient-orb orb-two"></div>
+    <div class="ambient-orb orb-three"></div>
+  </div>
+
+  <div class="grain"></div>
+
+
+  <!-- =====================================================
+       NAVIGATION
+  ====================================================== -->
+
+  <header class="nav">
+
+    <a href="#top" class="nav-logo magnetic">
       Yazonii<span>.</span>
     </a>
 
-    <a
-      href="#contact"
-      class="nav-contact"
-    >
-      Start a Project →
+    <nav class="nav-links">
+      <a href="#work">Work</a>
+      <a href="#about">About</a>
+      <a href="#skills">Skills</a>
+      <a href="#contact">Contact</a>
+    </nav>
+
+    <a href="#contact" class="nav-cta magnetic">
+      Let's talk <span>↗</span>
     </a>
 
-    <div class="sun"></div>
+  </header>
 
-    <div class="cloud cloud-1"></div>
-    <div class="cloud cloud-2"></div>
-    <div class="cloud cloud-3"></div>
 
-    <div class="hero-content">
+  <main id="top">
 
-      <div class="eyebrow">
-        Web Design & Development
+
+    <!-- ===================================================
+         HERO
+    ==================================================== -->
+
+    <section class="hero">
+
+      <div class="hero-grid"></div>
+
+      <div class="hero-content">
+
+        <div class="eyebrow reveal">
+          <span class="status-dot"></span>
+          Developer · Designer · Builder
+        </div>
+
+        <h1 class="hero-title">
+          <span class="line reveal-text">I build things</span>
+          <span class="line reveal-text accent-line">
+            <span>people remember.</span>
+          </span>
+        </h1>
+
+        <p class="hero-description reveal">
+          I'm Yazonii — a developer who enjoys turning ideas into
+          polished digital experiences, useful products and things
+          that actually feel good to use.
+        </p>
+
+        <div class="hero-actions reveal">
+
+          <a href="#work" class="button button-primary magnetic">
+            Explore my work
+            <span>↓</span>
+          </a>
+
+          <a href="#about" class="button button-ghost magnetic">
+            More about me
+          </a>
+
+        </div>
+
       </div>
 
-      <h1>
-        Websites that make your business
-        <span>stand out.</span>
-      </h1>
 
-      <p class="hero-description">
-        Modern, responsive websites for businesses,
-        creators and entrepreneurs who want a stronger
-        presence online.
-      </p>
-
-    </div>
-
-    <div class="scroll-hint">
-
-      Scroll to explore
-
-      <div class="scroll-line"></div>
-
-    </div>
-
-    <!-- Layered landscape -->
-
-    <div class="horizon">
-
-      <div class="hill hill-back"></div>
-
-      <div class="hill hill-middle"></div>
-
-      <div class="hill hill-front"></div>
-
-      <div class="hill hill-ground"></div>
-
-      <div class="horizon-fade"></div>
-
-    </div>
-
-  </section>
+      <div class="hero-side-note">
+        <span>Scroll to explore</span>
+        <div class="scroll-line"></div>
+      </div>
 
 
-  <!-- ===================================================
-       PORTFOLIO
-  ==================================================== -->
+      <div class="hero-bottom">
+        <span>Based in Sweden</span>
+        <span>Available for projects</span>
+      </div>
 
-  <main class="portfolio">
+    </section>
 
-    <div class="portfolio-inner">
 
-      <!-- SERVICES -->
 
-      <section>
+    <!-- ===================================================
+         STATEMENT
+    ==================================================== -->
 
-        <div class="section-label">
-          What I make
-        </div>
+    <section class="statement section">
 
-        <h2>
-          Digital experiences built around your goals.
+      <div class="statement-inner">
+
+        <span class="section-number">01 /</span>
+
+        <p class="statement-text reveal">
+          Curious mind.
+          <span>Builder mentality.</span>
+          Always learning, experimenting and creating.
+        </p>
+
+      </div>
+
+    </section>
+
+
+
+    <!-- ===================================================
+         ABOUT
+    ==================================================== -->
+
+    <section class="about section" id="about">
+
+      <div class="section-heading">
+
+        <span class="section-number">02 / About</span>
+
+        <h2 class="reveal">
+          More than just
+          <span>code.</span>
         </h2>
 
-        <div class="cards">
-
-          <article class="card">
-
-            <div class="number">
-              01
-            </div>
-
-            <h3>
-              Business Websites
-            </h3>
-
-            <p>
-              Professional websites that explain your
-              business clearly and make it easy for
-              customers to contact you.
-            </p>
-
-          </article>
+      </div>
 
 
-          <article class="card">
+      <div class="about-grid">
 
-            <div class="number">
-              02
-            </div>
+        <div class="about-main reveal">
 
-            <h3>
-              Landing Pages
-            </h3>
+          <p class="large-copy">
+            I like building things from scratch.
+          </p>
 
-            <p>
-              Focused pages designed around a product,
-              service or specific conversion goal.
-            </p>
+          <p>
+            Whether it's a website, an app, a game system or
+            something completely new, I enjoy taking an idea and
+            turning it into something real.
+          </p>
 
-          </article>
-
-
-          <article class="card">
-
-            <div class="number">
-              03
-            </div>
-
-            <h3>
-              Website Redesigns
-            </h3>
-
-            <p>
-              Turn an outdated website into something
-              modern, responsive and easier to use.
-            </p>
-
-          </article>
-
-
-          <article class="card">
-
-            <div class="number">
-              04
-            </div>
-
-            <h3>
-              Creator & Portfolio Sites
-            </h3>
-
-            <p>
-              Personal websites that present your work,
-              brand and identity professionally.
-            </p>
-
-          </article>
+          <p>
+            I'm constantly experimenting with technology, design
+            and new ways to make digital experiences better.
+          </p>
 
         </div>
 
-      </section>
 
+        <div class="about-side">
 
-      <!-- PROCESS -->
+          <div class="about-fact reveal">
+            <span>01</span>
+            <strong>Always learning</strong>
+            <p>
+              New technologies, frameworks and ideas never stop.
+            </p>
+          </div>
 
-      <section class="process">
+          <div class="about-fact reveal">
+            <span>02</span>
+            <strong>Design matters</strong>
+            <p>
+              Functionality is important. How something feels is too.
+            </p>
+          </div>
 
-        <div class="section-label">
-          Process
+          <div class="about-fact reveal">
+            <span>03</span>
+            <strong>Ship it</strong>
+            <p>
+              Ideas are useless until you actually build them.
+            </p>
+          </div>
+
         </div>
 
-        <h2>
-          From idea to launch.
+      </div>
+
+    </section>
+
+
+
+    <!-- ===================================================
+         WORK
+    ==================================================== -->
+
+    <section class="work section" id="work">
+
+      <div class="section-heading">
+
+        <span class="section-number">03 / Selected Work</span>
+
+        <h2 class="reveal">
+          Things I've
+          <span>built.</span>
         </h2>
 
-        <div class="process-row">
-
-          <div class="process-number">
-            01
-          </div>
-
-          <div>
-
-            <h3>
-              Tell me what you need
-            </h3>
-
-            <p>
-              Send your requirements, goals and
-              information about your business.
-            </p>
-
-          </div>
-
-        </div>
+      </div>
 
 
-        <div class="process-row">
-
-          <div class="process-number">
-            02
-          </div>
-
-          <div>
-
-            <h3>
-              I build it
-            </h3>
-
-            <p>
-              I turn the idea into a polished,
-              responsive website.
-            </p>
-
-          </div>
-
-        </div>
+      <div class="projects">
 
 
-        <div class="process-row">
+        <!-- PROJECT 01 -->
 
-          <div class="process-number">
-            03
-          </div>
+        <article class="project project-large reveal">
 
-          <div>
+          <div class="project-visual project-yazonii">
 
-            <h3>
-              You review it
-            </h3>
+            <div class="project-browser">
 
-            <p>
-              You give feedback and I make the
-              necessary changes.
-            </p>
+              <div class="browser-top">
+                <div class="browser-dots">
+                  <i></i>
+                  <i></i>
+                  <i></i>
+                </div>
 
-          </div>
+                <span>yazonii.dev</span>
+              </div>
 
-        </div>
+              <div class="browser-screen">
 
+                <div class="fake-nav">
+                  <strong>Yazonii.</strong>
+                  <span>Work</span>
+                  <span>About</span>
+                </div>
 
-        <div class="process-row">
+                <div class="fake-hero">
+                  <small>WEB DESIGN & DEVELOPMENT</small>
 
-          <div class="process-number">
-            04
-          </div>
+                  <h3>
+                    Building digital
+                    <em>experiences.</em>
+                  </h3>
 
-          <div>
+                  <div class="fake-button">
+                    Explore →
+                  </div>
+                </div>
 
-            <h3>
-              Launch
-            </h3>
+                <div class="fake-gradient"></div>
 
-            <p>
-              Your finished website goes live and is
-              ready for your customers.
-            </p>
+              </div>
 
-          </div>
-
-        </div>
-
-      </section>
-
-
-      <!-- PRICING -->
-
-      <section class="pricing">
-
-        <div class="section-label">
-          Pricing
-        </div>
-
-        <h2>
-          Simple. Clear. Fixed.
-        </h2>
-
-        <div class="price-grid">
-
-          <article class="price-card">
-
-            <h3>
-              Starter
-            </h3>
-
-            <div class="price">
-              1,500 SEK
             </div>
 
-            <p>
-              A professional online presence for
-              smaller businesses.
-            </p>
-
-            <ul>
-
-              <li>
-                Custom website
-              </li>
-
-              <li>
-                Responsive design
-              </li>
-
-              <li>
-                Contact section
-              </li>
-
-              <li>
-                Basic SEO setup
-              </li>
-
-            </ul>
-
-          </article>
+          </div>
 
 
-          <article class="price-card featured">
+          <div class="project-info">
 
-            <h3>
-              Business
-            </h3>
+            <div>
+              <span class="project-number">01</span>
 
-            <div class="price">
-              3,000 SEK
+              <h3>Yazonii</h3>
+
+              <p>
+                My personal web development and design portfolio,
+                built around motion, typography and visual storytelling.
+              </p>
             </div>
 
-            <p>
-              A complete website designed to make
-              your business look established online.
-            </p>
+            <div class="project-meta">
+              <span>HTML</span>
+              <span>CSS</span>
+              <span>JavaScript</span>
+            </div>
 
-            <ul>
+          </div>
 
-              <li>
-                Custom multi-section website
-              </li>
-
-              <li>
-                Advanced responsive design
-              </li>
-
-              <li>
-                Contact / inquiry system
-              </li>
-
-              <li>
-                Custom interactions
-              </li>
-
-              <li>
-                Basic SEO setup
-              </li>
-
-            </ul>
-
-          </article>
-
-        </div>
-
-      </section>
+        </article>
 
 
-      <!-- CONTACT -->
 
-      <section
-        class="contact"
-        id="contact"
-      >
+        <!-- PROJECT 02 -->
 
-        <div class="section-label">
-          Start a project
-        </div>
+        <article class="project project-split reveal">
 
-        <h2>
-          Let's build something people remember.
+          <div class="project-visual project-prayer">
+
+            <div class="phone-mockup">
+
+              <div class="phone-screen">
+
+                <div class="phone-time">12:48</div>
+
+                <div class="prayer-icon">◉</div>
+
+                <h4>PrayerLock</h4>
+
+                <p>
+                  Stay consistent.
+                  Never miss a prayer.
+                </p>
+
+                <div class="prayer-progress">
+                  <span></span>
+                </div>
+
+                <small>Next prayer · 42 min</small>
+
+              </div>
+
+            </div>
+
+          </div>
+
+
+          <div class="project-info">
+
+            <div>
+              <span class="project-number">02</span>
+
+              <h3>PrayerLock</h3>
+
+              <p>
+                A mobile app concept designed around prayer,
+                consistency and intentional daily habits.
+              </p>
+            </div>
+
+            <div class="project-meta">
+              <span>React Native</span>
+              <span>Expo</span>
+              <span>TypeScript</span>
+            </div>
+
+          </div>
+
+        </article>
+
+
+
+        <!-- PROJECT 03 -->
+
+        <article class="project project-split reveal">
+
+          <div class="project-visual project-minecraft">
+
+            <div class="minecraft-ui">
+
+              <div class="mc-title">
+                RANKED
+              </div>
+
+              <div class="mc-rank">
+                <span>LEVEL</span>
+                <strong>42</strong>
+              </div>
+
+              <div class="mc-bar">
+                <span></span>
+              </div>
+
+              <div class="mc-stats">
+                <div>
+                  <small>WINS</small>
+                  <strong>128</strong>
+                </div>
+
+                <div>
+                  <small>RATING</small>
+                  <strong>1840</strong>
+                </div>
+
+              </div>
+
+            </div>
+
+          </div>
+
+
+          <div class="project-info">
+
+            <div>
+              <span class="project-number">03</span>
+
+              <h3>Minecraft Projects</h3>
+
+              <p>
+                Servers, PvP systems, addons, plugins and custom
+                gameplay experiences.
+              </p>
+            </div>
+
+            <div class="project-meta">
+              <span>Minecraft</span>
+              <span>Java</span>
+              <span>Bedrock</span>
+            </div>
+
+          </div>
+
+        </article>
+
+
+      </div>
+
+    </section>
+
+
+
+    <!-- ===================================================
+         SNEAK PEEK
+    ==================================================== -->
+
+    <section class="sneak section">
+
+      <div class="sneak-header">
+
+        <span class="section-number">04 / Sneak Peek</span>
+
+        <h2 class="reveal">
+          Not everything
+          is <span>finished.</span>
         </h2>
 
         <p>
-          Tell me about your business and what you want
-          your website to accomplish.
+          Some ideas are still being built behind the scenes.
         </p>
 
-        <a
-          class="contact-link"
-          href="mailto:yayazan.mahmoud@gmail.com"
-        >
-          ✉ yayazan.mahmoud@gmail.com
-        </a>
+      </div>
 
-        <a
-          class="contact-link"
-          href="tel:+46707358046"
-        >
-          ☎ +46 70 735 80 46
-        </a>
 
-        <a
-          class="button"
-          href="mailto:yayazan.mahmoud@gmail.com?subject=Website%20Project"
-        >
-          Start a Project →
-        </a>
+      <div class="peek-grid">
 
-      </section>
+        <div class="peek-card reveal">
 
-    </div>
+          <div class="peek-blur"></div>
+
+          <div class="peek-content">
+            <span>IN PROGRESS</span>
+            <h3>Something new</h3>
+            <p>Currently experimenting.</p>
+          </div>
+
+          <div class="peek-corner">↗</div>
+
+        </div>
+
+
+        <div class="peek-card reveal">
+
+          <div class="peek-blur peek-two"></div>
+
+          <div class="peek-content">
+            <span>EXPERIMENT</span>
+            <h3>Next idea</h3>
+            <p>Coming together slowly.</p>
+          </div>
+
+          <div class="peek-corner">↗</div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+
+    <!-- ===================================================
+         SKILLS
+    ==================================================== -->
+
+    <section class="skills section" id="skills">
+
+      <div class="section-heading">
+
+        <span class="section-number">05 / Skills</span>
+
+        <h2 class="reveal">
+          Tools I use to
+          <span>build.</span>
+        </h2>
+
+      </div>
+
+
+      <div class="skills-grid">
+
+        <div class="skill reveal">
+          <span class="skill-index">01</span>
+          <h3>HTML</h3>
+          <p>Structure & semantic web.</p>
+        </div>
+
+        <div class="skill reveal">
+          <span class="skill-index">02</span>
+          <h3>CSS</h3>
+          <p>Interfaces, layouts & motion.</p>
+        </div>
+
+        <div class="skill reveal">
+          <span class="skill-index">03</span>
+          <h3>JavaScript</h3>
+          <p>Interaction & functionality.</p>
+        </div>
+
+        <div class="skill reveal">
+          <span class="skill-index">04</span>
+          <h3>React</h3>
+          <p>Modern component-based apps.</p>
+        </div>
+
+        <div class="skill reveal">
+          <span class="skill-index">05</span>
+          <h3>React Native</h3>
+          <p>Cross-platform mobile apps.</p>
+        </div>
+
+        <div class="skill reveal">
+          <span class="skill-index">06</span>
+          <h3>Minecraft</h3>
+          <p>Servers, addons & gameplay systems.</p>
+        </div>
+
+      </div>
+
+    </section>
+
+
+
+    <!-- ===================================================
+         PROCESS
+    ==================================================== -->
+
+    <section class="process section">
+
+      <div class="section-heading">
+
+        <span class="section-number">06 / Process</span>
+
+        <h2 class="reveal">
+          From idea to
+          <span>reality.</span>
+        </h2>
+
+      </div>
+
+
+      <div class="process-list">
+
+        <div class="process-item reveal">
+          <span>01</span>
+
+          <div>
+            <h3>Think</h3>
+            <p>
+              Figure out the idea, the problem and what we're
+              actually trying to build.
+            </p>
+          </div>
+        </div>
+
+
+        <div class="process-item reveal">
+          <span>02</span>
+
+          <div>
+            <h3>Design</h3>
+            <p>
+              Shape the experience, layout and visual direction.
+            </p>
+          </div>
+        </div>
+
+
+        <div class="process-item reveal">
+          <span>03</span>
+
+          <div>
+            <h3>Build</h3>
+            <p>
+              Turn the concept into working code.
+            </p>
+          </div>
+        </div>
+
+
+        <div class="process-item reveal">
+          <span>04</span>
+
+          <div>
+            <h3>Polish</h3>
+            <p>
+              Refine the tiny details that make the difference.
+            </p>
+          </div>
+        </div>
+
+
+        <div class="process-item reveal">
+          <span>05</span>
+
+          <div>
+            <h3>Ship</h3>
+            <p>
+              Put it in the real world.
+            </p>
+          </div>
+        </div>
+
+      </div>
+
+    </section>
+
+
+
+    <!-- ===================================================
+         OUTSIDE THE CODE
+    ==================================================== -->
+
+    <section class="outside section">
+
+      <div class="outside-inner">
+
+        <span class="section-number">07 / Outside the Code</span>
+
+        <h2 class="reveal">
+          There's more to me
+          than <span>code.</span>
+        </h2>
+
+
+        <div class="outside-grid">
+
+          <div class="outside-card reveal">
+            <span>🎮</span>
+            <h3>Gaming</h3>
+            <p>
+              Minecraft has been one of my favorite places
+              to experiment and build.
+            </p>
+          </div>
+
+          <div class="outside-card reveal">
+            <span>📱</span>
+            <h3>Technology</h3>
+            <p>
+              Phones, software and new technology constantly
+              catch my attention.
+            </p>
+          </div>
+
+          <div class="outside-card reveal">
+            <span>💡</span>
+            <h3>Ideas</h3>
+            <p>
+              I'm always thinking about the next thing I could build.
+            </p>
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+
+    <!-- ===================================================
+         CONTACT
+    ==================================================== -->
+
+    <section class="contact section" id="contact">
+
+      <div class="contact-glow"></div>
+
+      <span class="section-number">08 / Contact</span>
+
+      <h2 class="contact-title reveal">
+        Have an idea?
+        <br>
+        <span>Let's build it.</span>
+      </h2>
+
+      <p class="contact-description reveal">
+        Have a project, idea or just want to talk about something
+        you're building? I'm always interested.
+      </p>
+
+      <a
+        href="mailto:YOUR_EMAIL@example.com"
+        class="contact-button magnetic reveal"
+      >
+        Start a conversation
+        <span>↗</span>
+      </a>
+
+    </section>
 
   </main>
 
 
+
+  <!-- =====================================================
+       FOOTER
+  ====================================================== -->
+
   <footer>
-    © 2026 Yazonii. Websites built with purpose.
+
+    <div class="footer-top">
+
+      <a href="#top" class="footer-logo">
+        Yazonii<span>.</span>
+      </a>
+
+      <span>Built with curiosity.</span>
+
+    </div>
+
+    <div class="footer-bottom">
+
+      <span>© 2026 Yazonii</span>
+
+      <div>
+        <a href="#work">Work</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+      </div>
+
+    </div>
+
   </footer>
 
 
-  <script>
 
-    /* =====================================================
-       SCROLL REVEAL
-    ===================================================== */
-
-    const revealItems =
-      document.querySelectorAll(
-        ".card, .process-row, .contact"
-      );
-
-    const observer =
-      new IntersectionObserver(
-        entries => {
-
-          entries.forEach(entry => {
-
-            if (entry.isIntersecting) {
-
-              entry.target.classList.add(
-                "visible"
-              );
-
-              observer.unobserve(
-                entry.target
-              );
-
-            }
-
-          });
-
-        },
-        {
-          threshold: .15
-        }
-      );
-
-    revealItems.forEach(item => {
-      observer.observe(item);
-    });
-
-
-    /* =====================================================
-       SUBTLE MOUNTAIN PARALLAX
-    ===================================================== */
-
-    const horizon =
-      document.querySelector(".horizon");
-
-    const hills =
-      document.querySelectorAll(".hill");
-
-    let ticking = false;
-
-    window.addEventListener(
-      "scroll",
-      () => {
-
-        if (!ticking) {
-
-          window.requestAnimationFrame(() => {
-
-            const scroll =
-              window.scrollY;
-
-            const heroHeight =
-              window.innerHeight;
-
-            if (scroll <= heroHeight) {
-
-              const progress =
-                scroll / heroHeight;
-
-              horizon.style.transform =
-                `translateY(${progress * 22}px)`;
-
-              hills.forEach(
-                (hill, index) => {
-
-                  const amount =
-                    progress *
-                    (index + 1) *
-                    7;
-
-                  hill.style.marginLeft =
-                    `${-5 - amount / 10}%`;
-
-                }
-              );
-
-            }
-
-            ticking = false;
-
-          });
-
-          ticking = true;
-
-        }
-
-      },
-      { passive: true }
-    );
-
-  </script>
+  <script src="script.js"></script>
 
 </body>
 </html>

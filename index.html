@@ -2,81 +2,110 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <meta name="description" content="Yazonii — Developer, designer and builder.">
-  <meta name="theme-color" content="#070707">
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
 
-  <title>Yazonii — Builder</title>
+  <meta
+    name="description"
+    content="Yazonii — modern websites, landing pages and digital experiences built to make businesses stand out."
+  >
 
+  <title>Yazonii — Web Developer</title>
+
+  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
   <link
-    href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Inter:wght@400;500;600;700;800;900&display=swap"
+    href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Inter:wght@400;500;600;700;800&display=swap"
     rel="stylesheet"
   >
 
+  <!-- Styles -->
   <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
   <!-- =====================================================
-       LOADER
-  ====================================================== -->
-
-  <div class="loader" id="loader">
-    <div class="loader-inner">
-      <span class="loader-name">Yazonii</span>
-      <span class="loader-percent" id="loaderPercent">0%</span>
-    </div>
-  </div>
-
-
-  <!-- =====================================================
        CURSOR
-  ====================================================== -->
+       ===================================================== -->
 
   <div class="cursor-dot"></div>
   <div class="cursor-ring"></div>
 
 
   <!-- =====================================================
-       BACKGROUND
-  ====================================================== -->
+       AMBIENT BACKGROUND
+       ===================================================== -->
 
   <div class="ambient">
+
     <div class="ambient-orb orb-one"></div>
     <div class="ambient-orb orb-two"></div>
     <div class="ambient-orb orb-three"></div>
+
   </div>
 
   <div class="grain"></div>
 
 
   <!-- =====================================================
+       LOADER
+       ===================================================== -->
+
+  <div class="loader">
+
+    <div class="loader-inner">
+
+      <div class="loader-name">
+        Yazonii<span>.</span>
+      </div>
+
+      <div class="loader-percent">
+        0%
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <!-- =====================================================
        NAVIGATION
-  ====================================================== -->
+       ===================================================== -->
 
-  <header class="nav">
+  <nav class="nav">
 
-    <a href="#top" class="nav-logo magnetic">
+    <a
+      href="#top"
+      class="nav-logo magnetic"
+      data-scramble
+    >
       Yazonii<span>.</span>
     </a>
 
-    <nav class="nav-links">
-      <a href="#work">Work</a>
-      <a href="#about">About</a>
-      <a href="#skills">Skills</a>
-      <a href="#contact">Contact</a>
-    </nav>
+    <div class="nav-links">
 
-    <a href="#contact" class="nav-cta magnetic">
-      Let's talk <span>↗</span>
+      <a href="#work">Work</a>
+      <a href="#services">Services</a>
+      <a href="#process">Process</a>
+      <a href="#contact">Contact</a>
+
+    </div>
+
+    <a
+      href="#contact"
+      class="nav-cta magnetic"
+    >
+      Start a project
+      <span>↗</span>
     </a>
 
-  </header>
+  </nav>
 
 
   <main id="top">
@@ -84,7 +113,7 @@
 
     <!-- ===================================================
          HERO
-    ==================================================== -->
+         =================================================== -->
 
     <section class="hero">
 
@@ -93,32 +122,51 @@
       <div class="hero-content">
 
         <div class="eyebrow reveal">
+
           <span class="status-dot"></span>
-          Developer · Designer · Builder
+
+          Available for new projects
+
         </div>
 
+
         <h1 class="hero-title">
-          <span class="line reveal-text">I build things</span>
-          <span class="line reveal-text accent-line">
-            <span>people remember.</span>
+
+          <span class="line reveal-text">
+            Websites
           </span>
+
+          <span class="line reveal-text">
+            that <span class="accent-line">move.</span>
+          </span>
+
         </h1>
 
+
         <p class="hero-description reveal">
-          I'm Yazonii — a developer who enjoys turning ideas into
-          polished digital experiences, useful products and things
-          that actually feel good to use.
+
+          I design and build modern websites for businesses
+          that want to look better, stand out online and turn
+          visitors into customers.
+
         </p>
+
 
         <div class="hero-actions reveal">
 
-          <a href="#work" class="button button-primary magnetic">
-            Explore my work
-            <span>↓</span>
+          <a
+            href="#work"
+            class="button button-primary magnetic"
+          >
+            See my work
+            <span>↗</span>
           </a>
 
-          <a href="#about" class="button button-ghost magnetic">
-            More about me
+          <a
+            href="#contact"
+            class="button button-ghost magnetic"
+          >
+            Let's talk
           </a>
 
         </div>
@@ -127,34 +175,47 @@
 
 
       <div class="hero-side-note">
+
         <span>Scroll to explore</span>
+
         <div class="scroll-line"></div>
+
       </div>
 
 
       <div class="hero-bottom">
-        <span>Based in Sweden</span>
-        <span>Available for projects</span>
+
+        <span>Web development</span>
+
+        <span>Design × Code × Motion</span>
+
+        <span>2026</span>
+
       </div>
 
     </section>
 
 
-
     <!-- ===================================================
          STATEMENT
-    ==================================================== -->
+         =================================================== -->
 
-    <section class="statement section">
+    <section class="section statement">
 
       <div class="statement-inner">
 
-        <span class="section-number">01 /</span>
+        <span class="section-number reveal">
+          01 — Philosophy
+        </span>
 
         <p class="statement-text reveal">
-          Curious mind.
-          <span>Builder mentality.</span>
-          Always learning, experimenting and creating.
+
+          Your website shouldn't just
+          <span>exist.</span>
+
+          It should make people
+          <span>remember</span> your business.
+
         </p>
 
       </div>
@@ -162,20 +223,23 @@
     </section>
 
 
-
     <!-- ===================================================
          ABOUT
-    ==================================================== -->
+         =================================================== -->
 
-    <section class="about section" id="about">
+    <section class="section" id="about">
 
       <div class="section-heading">
 
-        <span class="section-number">02 / About</span>
+        <span class="section-number reveal">
+          02 — About
+        </span>
 
         <h2 class="reveal">
-          More than just
-          <span>code.</span>
+
+          Building digital
+          <span>experiences.</span>
+
         </h2>
 
       </div>
@@ -186,18 +250,28 @@
         <div class="about-main reveal">
 
           <p class="large-copy">
-            I like building things from scratch.
+
+            I build websites that combine
+            clean design, smooth interaction
+            and modern technology.
+
           </p>
 
           <p>
-            Whether it's a website, an app, a game system or
-            something completely new, I enjoy taking an idea and
-            turning it into something real.
+
+            I focus on creating websites that don't
+            feel like generic templates. Every section,
+            animation and interaction has a purpose.
+
           </p>
 
           <p>
-            I'm constantly experimenting with technology, design
-            and new ways to make digital experiences better.
+
+            Whether you're launching a business,
+            redesigning an outdated website or trying
+            to turn more visitors into customers,
+            I build around the goal — not just the design.
+
           </p>
 
         </div>
@@ -206,27 +280,44 @@
         <div class="about-side">
 
           <div class="about-fact reveal">
+
             <span>01</span>
-            <strong>Always learning</strong>
+
+            <strong>Design first</strong>
+
             <p>
-              New technologies, frameworks and ideas never stop.
+              Clean layouts, strong typography
+              and intentional visual hierarchy.
             </p>
+
           </div>
 
+
           <div class="about-fact reveal">
+
             <span>02</span>
-            <strong>Design matters</strong>
+
+            <strong>Built for the web</strong>
+
             <p>
-              Functionality is important. How something feels is too.
+              Responsive experiences that work
+              across phones, tablets and desktops.
             </p>
+
           </div>
 
+
           <div class="about-fact reveal">
+
             <span>03</span>
-            <strong>Ship it</strong>
+
+            <strong>Made to convert</strong>
+
             <p>
-              Ideas are useless until you actually build them.
+              Clear calls-to-action and experiences
+              designed around your customers.
             </p>
+
           </div>
 
         </div>
@@ -236,20 +327,23 @@
     </section>
 
 
-
     <!-- ===================================================
          WORK
-    ==================================================== -->
+         =================================================== -->
 
-    <section class="work section" id="work">
+    <section class="section" id="work">
 
       <div class="section-heading">
 
-        <span class="section-number">03 / Selected Work</span>
+        <span class="section-number reveal">
+          03 — Selected work
+        </span>
 
         <h2 class="reveal">
-          Things I've
-          <span>built.</span>
+
+          A few things
+          I've <span>built.</span>
+
         </h2>
 
       </div>
@@ -267,35 +361,52 @@
             <div class="project-browser">
 
               <div class="browser-top">
+
                 <div class="browser-dots">
+
                   <i></i>
                   <i></i>
                   <i></i>
+
                 </div>
 
-                <span>yazonii.dev</span>
+                yazonii.dev
+
               </div>
+
 
               <div class="browser-screen">
 
                 <div class="fake-nav">
-                  <strong>Yazonii.</strong>
+
+                  <strong>YAZONII.</strong>
+
                   <span>Work</span>
                   <span>About</span>
+                  <span>Contact</span>
+
                 </div>
+
 
                 <div class="fake-hero">
-                  <small>WEB DESIGN & DEVELOPMENT</small>
+
+                  <small>
+                    WEB DEVELOPMENT
+                  </small>
 
                   <h3>
-                    Building digital
-                    <em>experiences.</em>
+
+                    Digital experiences
+                    <em>without the boring.</em>
+
                   </h3>
 
-                  <div class="fake-button">
-                    Explore →
-                  </div>
+                  <span class="fake-button">
+                    Explore work ↗
+                  </span>
+
                 </div>
+
 
                 <div class="fake-gradient"></div>
 
@@ -309,26 +420,36 @@
           <div class="project-info">
 
             <div>
-              <span class="project-number">01</span>
 
-              <h3>Yazonii</h3>
+              <span class="project-number">
+                01 / Portfolio
+              </span>
+
+              <h3>
+                Yazonii
+              </h3>
 
               <p>
-                My personal web development and design portfolio,
-                built around motion, typography and visual storytelling.
+                A premium personal web-development
+                portfolio focused on interaction,
+                motion and visual storytelling.
               </p>
+
             </div>
 
+
             <div class="project-meta">
+
               <span>HTML</span>
               <span>CSS</span>
               <span>JavaScript</span>
+              <span>UI/UX</span>
+
             </div>
 
           </div>
 
         </article>
-
 
 
         <!-- PROJECT 02 -->
@@ -341,22 +462,31 @@
 
               <div class="phone-screen">
 
-                <div class="phone-time">12:48</div>
+                <span class="phone-time">
+                  18:42
+                </span>
 
-                <div class="prayer-icon">◉</div>
+                <div class="prayer-icon">
+                  ✦
+                </div>
 
-                <h4>PrayerLock</h4>
+                <h4>
+                  PrayerLock
+                </h4>
 
                 <p>
-                  Stay consistent.
-                  Never miss a prayer.
+                  Time to pray.
                 </p>
 
                 <div class="prayer-progress">
+
                   <span></span>
+
                 </div>
 
-                <small>Next prayer · 42 min</small>
+                <small>
+                  Daily progress
+                </small>
 
               </div>
 
@@ -368,26 +498,34 @@
           <div class="project-info">
 
             <div>
-              <span class="project-number">02</span>
 
-              <h3>PrayerLock</h3>
+              <span class="project-number">
+                02 / Mobile
+              </span>
+
+              <h3>
+                PrayerLock
+              </h3>
 
               <p>
-                A mobile app concept designed around prayer,
-                consistency and intentional daily habits.
+                A mobile concept focused on helping
+                users build consistency around prayer
+                through smart interactions and reminders.
               </p>
-            </div>
 
-            <div class="project-meta">
-              <span>React Native</span>
-              <span>Expo</span>
-              <span>TypeScript</span>
+              <div class="project-meta">
+
+                <span>React Native</span>
+                <span>Expo</span>
+                <span>UX</span>
+
+              </div>
+
             </div>
 
           </div>
 
         </article>
-
 
 
         <!-- PROJECT 03 -->
@@ -398,28 +536,60 @@
 
             <div class="minecraft-ui">
 
-              <div class="mc-title">
-                RANKED
-              </div>
+              <span class="mc-title">
+                RANKED PVP
+              </span>
 
               <div class="mc-rank">
-                <span>LEVEL</span>
-                <strong>42</strong>
+
+                <div>
+
+                  <span>
+                    Current rank
+                  </span>
+
+                  <strong>
+                    27
+                  </strong>
+
+                </div>
+
+                <span>
+                  LEVEL
+                </span>
+
               </div>
+
 
               <div class="mc-bar">
                 <span></span>
               </div>
 
+
               <div class="mc-stats">
+
                 <div>
-                  <small>WINS</small>
-                  <strong>128</strong>
+
+                  <small>
+                    WINS
+                  </small>
+
+                  <strong>
+                    184
+                  </strong>
+
                 </div>
 
                 <div>
-                  <small>RATING</small>
-                  <strong>1840</strong>
+
+                  <small>
+                    WIN RATE
+                  </small>
+
+                  <strong>
+                    71%
+                  </strong>
+
                 </div>
 
               </div>
@@ -432,20 +602,30 @@
           <div class="project-info">
 
             <div>
-              <span class="project-number">03</span>
 
-              <h3>Minecraft Projects</h3>
+              <span class="project-number">
+                03 / Game development
+              </span>
+
+              <h3>
+                Minecraft Projects
+              </h3>
 
               <p>
-                Servers, PvP systems, addons, plugins and custom
-                gameplay experiences.
+                Custom Minecraft server systems,
+                PvP progression, menus, gameplay
+                mechanics and interactive experiences.
               </p>
-            </div>
 
-            <div class="project-meta">
-              <span>Minecraft</span>
-              <span>Java</span>
-              <span>Bedrock</span>
+              <div class="project-meta">
+
+                <span>Java</span>
+                <span>Skript</span>
+                <span>Bedrock</span>
+                <span>UI</span>
+
+              </div>
+
             </div>
 
           </div>
@@ -458,24 +638,30 @@
     </section>
 
 
-
     <!-- ===================================================
          SNEAK PEEK
-    ==================================================== -->
+         =================================================== -->
 
     <section class="sneak section">
 
       <div class="sneak-header">
 
-        <span class="section-number">04 / Sneak Peek</span>
+        <span class="section-number reveal">
+          04 — Sneak peek
+        </span>
 
         <h2 class="reveal">
-          Not everything
-          is <span>finished.</span>
+
+          Imagine your
+          website <span>like this.</span>
+
         </h2>
 
-        <p>
-          Some ideas are still being built behind the scenes.
+        <p class="reveal">
+
+          These concepts show the kind of visual
+          direction I can create for businesses.
+
         </p>
 
       </div>
@@ -483,17 +669,31 @@
 
       <div class="peek-grid">
 
+
         <div class="peek-card reveal">
 
           <div class="peek-blur"></div>
 
-          <div class="peek-content">
-            <span>IN PROGRESS</span>
-            <h3>Something new</h3>
-            <p>Currently experimenting.</p>
+          <div class="peek-corner">
+            ↗
           </div>
 
-          <div class="peek-corner">↗</div>
+          <div class="peek-content">
+
+            <span>
+              BUSINESS / 01
+            </span>
+
+            <h3>
+              Barber Studio
+            </h3>
+
+            <p>
+              Premium booking experience
+              for a modern barbershop.
+            </p>
+
+          </div>
 
         </div>
 
@@ -502,35 +702,52 @@
 
           <div class="peek-blur peek-two"></div>
 
-          <div class="peek-content">
-            <span>EXPERIMENT</span>
-            <h3>Next idea</h3>
-            <p>Coming together slowly.</p>
+          <div class="peek-corner">
+            ↗
           </div>
 
-          <div class="peek-corner">↗</div>
+          <div class="peek-content">
+
+            <span>
+              BUSINESS / 02
+            </span>
+
+            <h3>
+              Construction
+            </h3>
+
+            <p>
+              Strong digital presence built
+              to generate new enquiries.
+            </p>
+
+          </div>
 
         </div>
+
 
       </div>
 
     </section>
 
 
-
     <!-- ===================================================
-         SKILLS
-    ==================================================== -->
+         SERVICES
+         =================================================== -->
 
-    <section class="skills section" id="skills">
+    <section class="section" id="services">
 
       <div class="section-heading">
 
-        <span class="section-number">05 / Skills</span>
+        <span class="section-number reveal">
+          05 — Services
+        </span>
 
         <h2 class="reveal">
-          Tools I use to
-          <span>build.</span>
+
+          More than
+          <span>just websites.</span>
+
         </h2>
 
       </div>
@@ -538,40 +755,111 @@
 
       <div class="skills-grid">
 
-        <div class="skill reveal">
-          <span class="skill-index">01</span>
-          <h3>HTML</h3>
-          <p>Structure & semantic web.</p>
+        <div class="skill">
+
+          <span class="skill-index">
+            01
+          </span>
+
+          <h3>
+            Business Websites
+          </h3>
+
+          <p>
+            Professional websites designed
+            around your business.
+          </p>
+
         </div>
 
-        <div class="skill reveal">
-          <span class="skill-index">02</span>
-          <h3>CSS</h3>
-          <p>Interfaces, layouts & motion.</p>
+
+        <div class="skill">
+
+          <span class="skill-index">
+            02
+          </span>
+
+          <h3>
+            Landing Pages
+          </h3>
+
+          <p>
+            Focused pages designed to turn
+            visitors into leads.
+          </p>
+
         </div>
 
-        <div class="skill reveal">
-          <span class="skill-index">03</span>
-          <h3>JavaScript</h3>
-          <p>Interaction & functionality.</p>
+
+        <div class="skill">
+
+          <span class="skill-index">
+            03
+          </span>
+
+          <h3>
+            Website Redesign
+          </h3>
+
+          <p>
+            Transform an outdated website
+            into something modern.
+          </p>
+
         </div>
 
-        <div class="skill reveal">
-          <span class="skill-index">04</span>
-          <h3>React</h3>
-          <p>Modern component-based apps.</p>
+
+        <div class="skill">
+
+          <span class="skill-index">
+            04
+          </span>
+
+          <h3>
+            UI / UX
+          </h3>
+
+          <p>
+            Clear interfaces and experiences
+            people actually enjoy using.
+          </p>
+
         </div>
 
-        <div class="skill reveal">
-          <span class="skill-index">05</span>
-          <h3>React Native</h3>
-          <p>Cross-platform mobile apps.</p>
+
+        <div class="skill">
+
+          <span class="skill-index">
+            05
+          </span>
+
+          <h3>
+            Animations
+          </h3>
+
+          <p>
+            Motion and micro-interactions
+            that make a website feel alive.
+          </p>
+
         </div>
 
-        <div class="skill reveal">
-          <span class="skill-index">06</span>
-          <h3>Minecraft</h3>
-          <p>Servers, addons & gameplay systems.</p>
+
+        <div class="skill">
+
+          <span class="skill-index">
+            06
+          </span>
+
+          <h3>
+            Mobile Responsive
+          </h3>
+
+          <p>
+            Beautiful experiences on every
+            screen size.
+          </p>
+
         </div>
 
       </div>
@@ -579,20 +867,23 @@
     </section>
 
 
-
     <!-- ===================================================
          PROCESS
-    ==================================================== -->
+         =================================================== -->
 
-    <section class="process section">
+    <section class="section" id="process">
 
       <div class="section-heading">
 
-        <span class="section-number">06 / Process</span>
+        <span class="section-number reveal">
+          06 — Process
+        </span>
 
         <h2 class="reveal">
+
           From idea to
-          <span>reality.</span>
+          <span>launch.</span>
+
         </h2>
 
       </div>
@@ -600,115 +891,172 @@
 
       <div class="process-list">
 
-        <div class="process-item reveal">
-          <span>01</span>
+
+        <div class="process-item">
+
+          <span>
+            01
+          </span>
 
           <div>
-            <h3>Think</h3>
+
+            <h3>
+              Discover
+            </h3>
+
             <p>
-              Figure out the idea, the problem and what we're
-              actually trying to build.
+              We figure out what your business
+              actually needs and what your website
+              needs to achieve.
             </p>
+
           </div>
+
         </div>
 
 
-        <div class="process-item reveal">
-          <span>02</span>
+        <div class="process-item">
+
+          <span>
+            02
+          </span>
 
           <div>
-            <h3>Design</h3>
+
+            <h3>
+              Design
+            </h3>
+
             <p>
-              Shape the experience, layout and visual direction.
+              I create the visual direction,
+              structure and user experience.
             </p>
+
           </div>
+
         </div>
 
 
-        <div class="process-item reveal">
-          <span>03</span>
+        <div class="process-item">
+
+          <span>
+            03
+          </span>
 
           <div>
-            <h3>Build</h3>
+
+            <h3>
+              Build
+            </h3>
+
             <p>
-              Turn the concept into working code.
+              The design becomes a fast,
+              responsive and interactive website.
             </p>
+
           </div>
+
         </div>
 
 
-        <div class="process-item reveal">
-          <span>04</span>
+        <div class="process-item">
+
+          <span>
+            04
+          </span>
 
           <div>
-            <h3>Polish</h3>
+
+            <h3>
+              Launch
+            </h3>
+
             <p>
-              Refine the tiny details that make the difference.
+              Everything is tested, polished
+              and prepared to go live.
             </p>
+
           </div>
+
         </div>
 
-
-        <div class="process-item reveal">
-          <span>05</span>
-
-          <div>
-            <h3>Ship</h3>
-            <p>
-              Put it in the real world.
-            </p>
-          </div>
-        </div>
 
       </div>
 
     </section>
 
 
-
     <!-- ===================================================
          OUTSIDE THE CODE
-    ==================================================== -->
+         =================================================== -->
 
-    <section class="outside section">
+    <section class="outside">
 
       <div class="outside-inner">
 
-        <span class="section-number">07 / Outside the Code</span>
+        <span class="section-number reveal">
+          07 — Beyond code
+        </span>
 
         <h2 class="reveal">
-          There's more to me
-          than <span>code.</span>
+
+          Curious mind.
+          <span>Builder mentality.</span>
+
         </h2>
 
 
         <div class="outside-grid">
 
-          <div class="outside-card reveal">
-            <span>🎮</span>
-            <h3>Gaming</h3>
-            <p>
-              Minecraft has been one of my favorite places
-              to experiment and build.
-            </p>
-          </div>
 
           <div class="outside-card reveal">
-            <span>📱</span>
-            <h3>Technology</h3>
+
+            <span>⚡</span>
+
+            <h3>
+              Experiment
+            </h3>
+
             <p>
-              Phones, software and new technology constantly
-              catch my attention.
+              I constantly experiment with
+              new technologies, designs and
+              ways of making the web better.
             </p>
+
           </div>
 
+
           <div class="outside-card reveal">
-            <span>💡</span>
-            <h3>Ideas</h3>
+
+            <span>◈</span>
+
+            <h3>
+              Build
+            </h3>
+
             <p>
-              I'm always thinking about the next thing I could build.
+              Ideas are more interesting when
+              you actually turn them into something.
             </p>
+
           </div>
+
+
+          <div class="outside-card reveal">
+
+            <span>↗</span>
+
+            <h3>
+              Improve
+            </h3>
+
+            <p>
+              Every project is another opportunity
+              to learn and make the next one better.
+            </p>
+
+          </div>
+
 
         </div>
 
@@ -717,75 +1065,131 @@
     </section>
 
 
-
     <!-- ===================================================
          CONTACT
-    ==================================================== -->
+         =================================================== -->
 
-    <section class="contact section" id="contact">
+    <section
+      class="section contact"
+      id="contact"
+    >
 
       <div class="contact-glow"></div>
 
-      <span class="section-number">08 / Contact</span>
+
+      <span class="section-number reveal">
+        08 — Let's work together
+      </span>
+
 
       <h2 class="contact-title reveal">
+
         Have an idea?
+
         <br>
+
         <span>Let's build it.</span>
+
       </h2>
 
+
       <p class="contact-description reveal">
-        Have a project, idea or just want to talk about something
-        you're building? I'm always interested.
+
+        Need a new website, a redesign or a
+        completely custom digital experience?
+        Let's talk about what you're building.
+
       </p>
 
-      <a
-        href="mailto:YOUR_EMAIL@example.com"
-        class="contact-button magnetic reveal"
-      >
-        Start a conversation
-        <span>↗</span>
-      </a>
 
-    </section>
+      <div class="hero-actions reveal">
 
-  </main>
+        <a
+          href="mailto:yayazan.mahmoud@gmail.com?subject=Website%20Project"
+          class="contact-button magnetic"
+        >
 
+          Email me
 
+          <span>↗</span>
 
-  <!-- =====================================================
-       FOOTER
-  ====================================================== -->
-
-  <footer>
-
-    <div class="footer-top">
-
-      <a href="#top" class="footer-logo">
-        Yazonii<span>.</span>
-      </a>
-
-      <span>Built with curiosity.</span>
-
-    </div>
-
-    <div class="footer-bottom">
-
-      <span>© 2026 Yazonii</span>
-
-      <div>
-        <a href="#work">Work</a>
-        <a href="#about">About</a>
-        <a href="#contact">Contact</a>
-      </div>
-
-    </div>
-
-  </footer>
+        </a>
 
 
+        <a
+          href="tel:+46707358046"
+          class="button button-ghost magnetic"
+    >
+        Call me
+    </a>
+</div>
 
-  <script src="script.js"></script>
+<p 
+    class="contact-description"
+    style="margin-top: 22px;"
+>
+
+    yayazan.mahmoud@gmail.com
+    <br>
+    +46 70 735 80 46
+
+</p>
+
+</section>
+
+</main>
+
+<!--
+========================================================================
+    FOOTER
+======================================================================== -->
+
+<footer>
+
+<div class="footer-top">
+
+<div class="footer-logo">
+    Yazonii<span>.</span><span>
+</div>
+
+<span>
+    Websites that move.
+</span>
+
+</div>
+
+<div class="footer-bottom">
+
+<span>
+    &copy; <span data-year></span> Yazonii
+</span>
+
+<div>
+
+    <a
+        href="mailto:yayazan.mahmoud@gmail.com"
+    >
+        Email
+    </a>
+
+    <a
+        href="tel:+46707358046"
+    >
+        Phone
+    </a>
+
+</div>
+
+</div>
+
+</footer>
+
+<!--
+========================================================================
+    JAVASCRIPT
+======================================================================== -->
+
+<script src="script.js"></script>
 
 </body>
 </html>

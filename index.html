@@ -10,7 +10,7 @@
 
   <meta
     name="description"
-    content="Yazonii — modern web development, design and digital experiences."
+    content="Yazonii — Web development and digital experiences."
   >
 
   <meta
@@ -20,225 +20,357 @@
 
   <title>Yazonii — Web Development</title>
 
-  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
   <link
-    href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Inter:wght@400;500;600;700;800&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
     rel="stylesheet"
   >
 
-  <!-- Styles -->
   <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
   <!-- =====================================================
-       NAVIGATION
+       AMBIENT BACKGROUND
        ===================================================== -->
 
-  <header class="navbar">
+  <div class="ambient">
 
-    <a href="#top" class="logo">
-      Yazonii<span>.</span>
-    </a>
+    <div class="orb orb-one"></div>
+    <div class="orb orb-two"></div>
+    <div class="orb orb-three"></div>
 
-    <nav class="nav-links">
-      <a href="#about">About</a>
-      <a href="#services">What I do</a>
-      <a href="#process">Process</a>
-      <a href="#why">Why me</a>
-      <a href="#contact">Contact</a>
-    </nav>
+    <div class="background-grid"></div>
+
+  </div>
+
+
+  <!-- =====================================================
+       SPARKLE LAYER
+       ===================================================== -->
+
+  <div
+    class="sparkle-field"
+    aria-hidden="true"
+  ></div>
+
+
+  <!-- =====================================================
+       NAVBAR
+       ===================================================== -->
+
+  <header class="navbar liquid-glass">
 
     <a
-      href="mailto:yayazan.mahmoud@gmail.com"
-      class="nav-contact"
+      href="#home"
+      class="brand sparkle-trigger"
+      aria-label="Yazonii home"
     >
-      Let's talk <span>↗</span>
+      <span>Yazonii</span><b>.</b>
+
+      <span
+        class="brand-sparkle"
+        aria-hidden="true"
+      >
+        ✦
+      </span>
+    </a>
+
+
+    <nav class="nav-links">
+
+      <a href="#about">
+        About
+      </a>
+
+      <a href="#services">
+        What I do
+      </a>
+
+      <a href="#process">
+        Process
+      </a>
+
+      <a href="#contact">
+        Contact
+      </a>
+
+    </nav>
+
+
+    <a
+      href="#contact"
+      class="nav-cta magnetic"
+    >
+      Let's talk
+
+      <span>↗</span>
     </a>
 
   </header>
 
 
   <!-- =====================================================
-       HERO
+       MAIN
        ===================================================== -->
 
-  <main id="top">
+  <main>
 
-    <section class="hero">
 
-      <div class="hero-grid"></div>
+    <!-- ===================================================
+         HERO
+         =================================================== -->
 
-      <div class="hero-inner">
+    <section
+      id="home"
+      class="hero"
+    >
 
-        <div class="hero-label reveal">
-          Building on the web
+      <div class="hero-noise"></div>
+
+
+      <!-- floating signature sparkle -->
+
+      <div
+        class="signature-sparkle sparkle-one"
+        aria-hidden="true"
+      >
+        ✦
+      </div>
+
+      <div
+        class="signature-sparkle sparkle-two"
+        aria-hidden="true"
+      >
+        ✧
+      </div>
+
+      <div
+        class="signature-sparkle sparkle-three"
+        aria-hidden="true"
+      >
+        ✦
+      </div>
+
+
+      <div class="hero-content">
+
+
+        <div class="availability reveal">
+
+          <span class="availability-dot"></span>
+
+          <span>
+            Available for new projects
+          </span>
+
         </div>
 
-        <h1 class="reveal-text">
 
-          <span class="line">
-            Let's make
+        <h1 class="hero-title">
+
+          <span
+            class="hero-line"
+            data-text="Let's make websites"
+          >
+            Let's make websites
           </span>
 
-          <span class="line">
-            websites
+
+          <span
+            class="hero-line hero-impossible"
+            data-text="IMPOSSIBLE"
+          >
+
+            <span class="impossible-text">
+              IMPOSSIBLE
+            </span>
+
+            <span
+              class="impossible-line"
+              aria-hidden="true"
+            ></span>
+
           </span>
 
-          <span class="line highlight">
-            IMPOSSIBLE
-          </span>
 
-          <span class="line">
+          <span
+            class="hero-line hero-last"
+            data-text="to ignore."
+          >
             to ignore.
           </span>
 
         </h1>
 
-        <p class="hero-description reveal">
-          I design and build modern websites that look sharp,
-          feel fast and give businesses a stronger presence online.
-        </p>
 
-        <div class="hero-buttons reveal">
+        <div class="hero-bottom">
 
-          <a
-            href="#contact"
-            class="btn btn-primary"
-          >
-            Start a project
-            <span>↗</span>
-          </a>
+          <p class="hero-description reveal">
 
-          <a
-            href="#services"
-            class="btn btn-secondary"
-          >
-            What I do
-            <span>↓</span>
-          </a>
+            Modern websites, thoughtful design and
+            interactive experiences built with attention
+            to every detail.
+
+          </p>
+
+
+          <div class="hero-actions reveal">
+
+            <a
+              href="#contact"
+              class="button button-primary magnetic"
+            >
+
+              <span>
+                Start a project
+              </span>
+
+              <span class="button-arrow">
+                ↗
+              </span>
+
+            </a>
+
+
+            <a
+              href="#about"
+              class="button button-glass magnetic"
+            >
+
+              <span>
+                Get to know me
+              </span>
+
+              <span>
+                ↓
+              </span>
+
+            </a>
+
+          </div>
 
         </div>
 
       </div>
 
 
-      <div class="hero-bottom">
+      <!-- scroll indicator -->
+
+      <div class="scroll-indicator">
 
         <span>
-          Web development · Design · Digital
+          Scroll
         </span>
 
-        <span class="scroll-indicator">
-          Scroll to explore
-        </span>
+        <div class="scroll-line">
+          <span></span>
+        </div>
 
+      </div>
+
+
+      <div class="hero-side-text">
+        WEB · DESIGN · DEVELOPMENT
       </div>
 
     </section>
 
 
-    <!-- =====================================================
+    <!-- ===================================================
          ABOUT
-         ===================================================== -->
+         =================================================== -->
 
     <section
       id="about"
-      class="about reveal"
+      class="section about"
     >
 
-      <span class="section-label">
-        01 — About
-      </span>
+      <div class="section-top reveal">
 
-      <h2 class="section-title">
-        Building something
-        <span>of my own.</span>
-      </h2>
+        <span class="eyebrow">
+          01 — About
+        </span>
+
+        <span class="section-number">
+          01
+        </span>
+
+      </div>
 
 
-      <div class="about-layout">
+      <div class="about-content">
 
-        <div class="about-text">
+        <h2 class="section-heading reveal">
 
-          <p class="large">
-            I'm Yazonii. I'm building a web development
-            business focused on creating websites that
-            businesses are proud to put their name on.
+          I'm building something
+          <span>of my own.</span>
+
+        </h2>
+
+
+        <div class="about-copy reveal">
+
+          <p class="large-copy">
+
+            I'm Yazonii — a web developer focused on
+            creating modern websites that feel carefully
+            designed rather than thrown together.
+
           </p>
 
-          <p>
-            I care about the details that make a website
-            feel different — clean layouts, strong typography,
-            smooth interactions, responsive design and a
-            genuinely good experience on every screen.
-          </p>
 
           <p>
-            I'm not trying to make websites that simply
-            exist. I want to make websites that people
-            remember.
+
+            I'm building my business around good design,
+            clean development and experiences that people
+            actually enjoy using.
+
           </p>
 
         </div>
 
-
-        <div class="about-card">
-
-          <div class="about-item">
-
-            <small>
-              Focus
-            </small>
-
-            <strong>
-              Modern web experiences
-            </strong>
-
-            <p>
-              Clean design with personality.
-            </p>
-
-          </div>
+      </div>
 
 
-          <div class="about-item">
+      <!-- glass identity card -->
 
-            <small>
-              Approach
-            </small>
+      <div class="identity-card liquid-glass reveal">
 
-            <strong>
-              Detail over shortcuts
-            </strong>
+        <div class="identity-left">
 
-            <p>
-              Every section has a reason to exist.
-            </p>
+          <span class="identity-label">
+            Yazonii
+          </span>
 
-          </div>
+          <h3>
+            Web Developer
+          </h3>
+
+        </div>
 
 
-          <div class="about-item">
+        <div class="identity-right">
 
-            <small>
-              Goal
-            </small>
+          <span>
+            Based in Sweden
+          </span>
 
-            <strong>
-              Build something great
-            </strong>
+          <span>
+            Working globally
+          </span>
 
-            <p>
-              One project at a time.
-            </p>
+        </div>
 
-          </div>
 
+        <div
+          class="identity-spark"
+          aria-hidden="true"
+        >
+          ✦
         </div>
 
       </div>
@@ -246,131 +378,172 @@
     </section>
 
 
-    <!-- =====================================================
+    <!-- ===================================================
          SERVICES
-         ===================================================== -->
+         =================================================== -->
 
     <section
       id="services"
-      class="services reveal"
+      class="section services"
     >
 
-      <span class="section-label">
-        02 — What I do
-      </span>
+      <div class="section-top reveal">
 
-      <h2 class="section-title">
-        Everything a modern
-        <span>website needs.</span>
+        <span class="eyebrow">
+          02 — What I do
+        </span>
+
+        <span class="section-number">
+          02
+        </span>
+
+      </div>
+
+
+      <h2 class="section-heading reveal">
+
+        I build the things
+        <span>that make a website work.</span>
+
       </h2>
 
 
-      <div class="services-grid stagger">
-
-        <article class="service reveal">
-
-          <span class="service-number">
-            01
-          </span>
-
-          <h3>
-            Web Development
-          </h3>
-
-          <p>
-            Clean, responsive websites built to work
-            smoothly across desktop, tablet and mobile.
-          </p>
-
-        </article>
+      <div class="service-grid">
 
 
-        <article class="service reveal">
+        <article
+          class="service-card liquid-glass reveal"
+        >
 
-          <span class="service-number">
-            02
-          </span>
+          <div class="service-top">
 
-          <h3>
-            Web Design
-          </h3>
+            <span class="service-number">
+              01
+            </span>
 
-          <p>
-            Strong visual hierarchy, typography, spacing
-            and layouts that make a website feel polished.
-          </p>
+            <span class="service-icon">
+              ↗
+            </span>
 
-        </article>
+          </div>
 
+          <div>
 
-        <article class="service reveal">
+            <h3>
+              Web Design
+            </h3>
 
-          <span class="service-number">
-            03
-          </span>
+            <p>
+              Clean layouts, strong typography and
+              visual systems designed around the experience.
+            </p>
 
-          <h3>
-            Landing Pages
-          </h3>
+          </div>
 
-          <p>
-            Focused pages designed to communicate clearly
-            and guide visitors toward taking action.
-          </p>
+          <div class="card-glow"></div>
 
         </article>
 
 
-        <article class="service reveal">
+        <article
+          class="service-card liquid-glass reveal"
+        >
 
-          <span class="service-number">
-            04
-          </span>
+          <div class="service-top">
 
-          <h3>
-            Animations & Interactions
-          </h3>
+            <span class="service-number">
+              02
+            </span>
 
-          <p>
-            Subtle motion, transitions and interactions
-            that make the experience feel alive.
-          </p>
+            <span class="service-icon">
+              ◇
+            </span>
 
-        </article>
+          </div>
 
+          <div>
 
-        <article class="service reveal">
+            <h3>
+              Development
+            </h3>
 
-          <span class="service-number">
-            05
-          </span>
+            <p>
+              Responsive and functional websites built
+              to feel smooth across every screen.
+            </p>
 
-          <h3>
-            Responsive Design
-          </h3>
+          </div>
 
-          <p>
-            Websites that adapt naturally to different
-            screen sizes instead of feeling like an afterthought.
-          </p>
+          <div class="card-glow"></div>
 
         </article>
 
 
-        <article class="service reveal">
+        <article
+          class="service-card liquid-glass reveal"
+        >
 
-          <span class="service-number">
-            06
-          </span>
+          <div class="service-top">
 
-          <h3>
-            Website Improvements
-          </h3>
+            <span class="service-number">
+              03
+            </span>
 
-          <p>
-            Refining existing websites with better structure,
-            design, performance and user experience.
-          </p>
+            <span class="service-icon">
+              ✦
+            </span>
+
+          </div>
+
+          <div>
+
+            <h3>
+              Interactions
+            </h3>
+
+            <p>
+              Motion, transitions and details that give
+              a website personality without getting in
+              the way.
+            </p>
+
+          </div>
+
+          <div class="card-glow"></div>
+
+        </article>
+
+
+        <article
+          class="service-card liquid-glass reveal"
+        >
+
+          <div class="service-top">
+
+            <span class="service-number">
+              04
+            </span>
+
+            <span class="service-icon">
+              ∞
+            </span>
+
+          </div>
+
+          <div>
+
+            <h3>
+              Responsive Design
+            </h3>
+
+            <p>
+              Experiences that adapt naturally from
+              large displays all the way down to phones.
+            </p>
+
+          </div>
+
+          <div class="card-glow"></div>
 
         </article>
 
@@ -379,32 +552,63 @@
     </section>
 
 
-    <!-- =====================================================
+    <!-- ===================================================
          PROCESS
-         ===================================================== -->
+         =================================================== -->
 
     <section
       id="process"
-      class="process-section reveal"
+      class="section process"
     >
 
-      <span class="section-label">
-        03 — Process
-      </span>
+      <div class="section-top reveal">
 
-      <h2 class="section-title">
-        Simple process.
-        <span>Serious results.</span>
-      </h2>
+        <span class="eyebrow">
+          03 — Process
+        </span>
+
+        <span class="section-number">
+          03
+        </span>
+
+      </div>
 
 
-      <div class="process-list">
+      <div class="process-intro">
 
-        <div class="process reveal">
+        <h2 class="section-heading reveal">
 
-          <span class="process-number">
+          From idea
+          <span>to something real.</span>
+
+        </h2>
+
+        <p class="reveal">
+
+          No unnecessary complexity. Just a clear process
+          focused on making the final result as good as
+          possible.
+
+        </p>
+
+      </div>
+
+
+      <div class="process-track">
+
+
+        <div class="process-line">
+
+          <span></span>
+
+        </div>
+
+
+        <div class="process-item reveal">
+
+          <div class="process-dot">
             01
-          </span>
+          </div>
 
           <div>
 
@@ -413,50 +617,19 @@
             </h3>
 
             <p>
-              Understand what you need, what you're trying
-              to achieve and what your website should do.
+              Understand the idea and what you actually need.
             </p>
 
           </div>
 
-          <span class="process-arrow">
-            ↗
-          </span>
-
         </div>
 
 
-        <div class="process reveal">
+        <div class="process-item reveal">
 
-          <span class="process-number">
+          <div class="process-dot">
             02
-          </span>
-
-          <div>
-
-            <h3>
-              Plan
-            </h3>
-
-            <p>
-              Turn the idea into a clear structure before
-              jumping straight into development.
-            </p>
-
           </div>
-
-          <span class="process-arrow">
-            ↗
-          </span>
-
-        </div>
-
-
-        <div class="process reveal">
-
-          <span class="process-number">
-            03
-          </span>
 
           <div>
 
@@ -465,24 +638,19 @@
             </h3>
 
             <p>
-              Shape the visual direction, layout, typography
-              and interactions.
+              Turn the idea into a clear visual direction.
             </p>
 
           </div>
 
-          <span class="process-arrow">
-            ↗
-          </span>
-
         </div>
 
 
-        <div class="process reveal">
+        <div class="process-item reveal">
 
-          <span class="process-number">
-            04
-          </span>
+          <div class="process-dot">
+            03
+          </div>
 
           <div>
 
@@ -491,41 +659,31 @@
             </h3>
 
             <p>
-              Turn the design into a fast, responsive and
-              functional website.
+              Bring everything together and make it work.
             </p>
 
           </div>
 
-          <span class="process-arrow">
-            ↗
-          </span>
-
         </div>
 
 
-        <div class="process reveal">
+        <div class="process-item reveal">
 
-          <span class="process-number">
-            05
-          </span>
+          <div class="process-dot">
+            04
+          </div>
 
           <div>
 
             <h3>
-              Launch
+              Refine
             </h3>
 
             <p>
-              Polish everything, make sure it works properly
-              and get it ready for the real world.
+              Polish every detail until it feels right.
             </p>
 
           </div>
-
-          <span class="process-arrow">
-            ↗
-          </span>
 
         </div>
 
@@ -534,224 +692,126 @@
     </section>
 
 
-    <!-- =====================================================
-         WHY WORK WITH ME
-         ===================================================== -->
+    <!-- ===================================================
+         PERSONAL STATEMENT
+         =================================================== -->
 
-    <section
-      id="why"
-      class="why reveal"
-    >
+    <section class="statement">
 
-      <span class="section-label">
-        04 — Why work with me
-      </span>
+      <div class="statement-orb"></div>
 
-      <h2 class="section-title">
-        Small business.
-        <span>Big attention to detail.</span>
-      </h2>
+      <div class="statement-content reveal">
 
-
-      <div class="why-grid">
-
-        <article class="why-card reveal">
-
-          <div class="why-icon">
-            ✦
-          </div>
-
-          <h3>
-            Personal
-          </h3>
-
-          <p>
-            You work directly with me. No complicated
-            chain of people between you and the person
-            building your website.
-          </p>
-
-        </article>
-
-
-        <article class="why-card reveal">
-
-          <div class="why-icon">
-            ↗
-          </div>
-
-          <h3>
-            Modern
-          </h3>
-
-          <p>
-            I focus on current design trends without
-            sacrificing usability or making things
-            complicated for the sake of looking cool.
-          </p>
-
-        </article>
-
-
-        <article class="why-card reveal">
-
-          <div class="why-icon">
-            ◇
-          </div>
-
-          <h3>
-            Detail-focused
-          </h3>
-
-          <p>
-            Spacing, typography, animations and responsive
-            behavior all matter. The small things add up.
-          </p>
-
-        </article>
-
-      </div>
-
-    </section>
-
-
-    <!-- =====================================================
-         SKILLS
-         ===================================================== -->
-
-    <section
-      class="skills-section reveal"
-    >
-
-      <span class="section-label">
-        05 — Capabilities
-      </span>
-
-      <h2 class="section-title">
-        Tools are important.
-        <span>Knowing how to use them is more important.</span>
-      </h2>
-
-
-      <div class="skills">
-
-        <span class="skill">HTML</span>
-
-        <span class="skill">CSS</span>
-
-        <span class="skill">JavaScript</span>
-
-        <span class="skill">Responsive Design</span>
-
-        <span class="skill">UI Design</span>
-
-        <span class="skill">Animations</span>
-
-        <span class="skill">Git</span>
-
-        <span class="skill">GitHub</span>
-
-        <span class="skill">Web Performance</span>
-
-        <span class="skill">Mobile-first Design</span>
-
-      </div>
-
-    </section>
-
-
-    <!-- =====================================================
-         CURRENTLY BUILDING
-         ===================================================== -->
-
-    <section
-      class="building reveal"
-    >
-
-      <div class="building-content">
-
-        <span class="section-label">
-          06 — Right now
+        <span class="eyebrow">
+          A little more
         </span>
 
         <h2>
-          I'm building the business
-          <span>one step at a time.</span>
+
+          I don't want to make
+          <span>forgettable websites.</span>
+
         </h2>
 
         <p>
-          I'm currently growing my web development business
-          and looking for businesses that want to improve
-          the way they present themselves online.
+
+          I want every project to have its own identity,
+          its own personality and its own reason to exist.
+
         </p>
 
-        <p>
-          This portfolio is part of that journey. It isn't
-          filled with made-up projects or inflated numbers.
-          It's here to show how I think, what I can build,
-          and where I'm going.
-        </p>
+        <div class="statement-sparkle">
+          ✦
+        </div>
 
       </div>
 
     </section>
 
 
-    <!-- =====================================================
+    <!-- ===================================================
          CONTACT
-         ===================================================== -->
+         =================================================== -->
 
     <section
       id="contact"
-      class="contact reveal"
+      class="section contact"
     >
 
-      <span class="section-label">
-        07 — Contact
-      </span>
-
-      <h2 class="contact-title">
-        Have an idea?
-        <span>Let's build it.</span>
-      </h2>
-
-      <p class="contact-text">
-        If you need a website, want to improve an existing
-        one, or simply have an idea you'd like to discuss,
-        get in touch.
-      </p>
+      <div class="contact-glow"></div>
 
 
-      <div class="contact-buttons">
+      <div class="contact-content reveal">
 
-        <a
-          href="mailto:yayazan.mahmoud@gmail.com"
-          class="btn btn-primary"
-        >
-          Email me
-          <span>↗</span>
-        </a>
-
-        <a
-          href="tel:+46707358046"
-          class="btn btn-secondary"
-        >
-          Call me
-          <span>↗</span>
-        </a>
-
-      </div>
+        <span class="eyebrow">
+          04 — Contact
+        </span>
 
 
-      <div class="contact-info">
+        <h2>
 
-        <a href="mailto:yayazan.mahmoud@gmail.com">
-          yayazan.mahmoud@gmail.com
-        </a>
+          Have an idea?
 
-        <a href="tel:+46707358046">
-          +46 70 735 80 46
-        </a>
+          <span>
+            Let's build it.
+          </span>
+
+        </h2>
+
+
+        <p>
+
+          If you're looking for someone to build or improve
+          your website, let's talk.
+
+        </p>
+
+
+        <div class="contact-buttons">
+
+          <a
+            href="mailto:yayazan.mahmoud@gmail.com"
+            class="button button-primary magnetic"
+          >
+
+            Email me
+
+            <span>
+              ↗
+            </span>
+
+          </a>
+
+
+          <a
+            href="tel:+46707358046"
+            class="button button-glass magnetic"
+          >
+
+            Call me
+
+            <span>
+              ↗
+            </span>
+
+          </a>
+
+        </div>
+
+
+        <div class="contact-details">
+
+          <a href="mailto:yayazan.mahmoud@gmail.com">
+            yayazan.mahmoud@gmail.com
+          </a>
+
+          <span>·</span>
+
+          <a href="tel:+46707358046">
+            +46 70 735 80 46
+          </a>
+
+        </div>
 
       </div>
 
@@ -768,36 +828,40 @@
 
     <div class="footer-inner">
 
-      <div class="footer-logo">
+      <a
+        href="#home"
+        class="footer-brand"
+      >
         Yazonii<span>.</span>
-      </div>
+      </a>
 
-      <div class="footer-copy">
-        © 2026 Yazonii. Built with intention.
-      </div>
 
-      <div class="footer-links">
+      <div class="footer-center">
 
-        <a href="#about">
-          About
-        </a>
+        <span>
+          Built with intention.
+        </span>
 
-        <a href="#services">
-          Services
-        </a>
-
-        <a href="#contact">
-          Contact
-        </a>
+        <span class="footer-sparkle">
+          ✦
+        </span>
 
       </div>
+
+
+      <span class="footer-year">
+        © 2026
+      </span>
 
     </div>
 
   </footer>
 
 
-  <!-- JavaScript -->
+  <!-- =====================================================
+       JAVASCRIPT
+       ===================================================== -->
+
   <script src="script.js"></script>
 
 </body>

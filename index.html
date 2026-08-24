@@ -10,24 +10,23 @@
 
   <meta
     name="description"
-    content="Yazonii — Web development and digital experiences."
+    content="Yazonii — premium websites designed and developed to be impossible to ignore."
   >
 
-  <meta
-    name="theme-color"
-    content="#050505"
-  >
+  <meta name="theme-color" content="#050505">
 
-  <title>Yazonii — Web Development</title>
+  <title>Yazonii — Websites Impossible To Ignore</title>
 
+  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
   <link
-    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+    href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Inter:wght@400;500;600;700&display=swap"
     rel="stylesheet"
   >
 
+  <!-- Main stylesheet -->
   <link rel="stylesheet" href="style.css">
 </head>
 
@@ -37,19 +36,19 @@
        AMBIENT BACKGROUND
        ===================================================== -->
 
-  <div class="ambient">
+  <div class="ambient" aria-hidden="true">
+
+    <div class="background-grid"></div>
 
     <div class="orb orb-one"></div>
     <div class="orb orb-two"></div>
     <div class="orb orb-three"></div>
 
-    <div class="background-grid"></div>
-
   </div>
 
 
   <!-- =====================================================
-       SPARKLE LAYER
+       SPARKLE FIELD
        ===================================================== -->
 
   <div
@@ -59,17 +58,17 @@
 
 
   <!-- =====================================================
-       NAVBAR
+       NAVIGATION
        ===================================================== -->
 
   <header class="navbar liquid-glass">
 
     <a
-      href="#home"
-      class="brand sparkle-trigger"
+      href="#top"
+      class="brand sparkle-trigger magnetic"
       aria-label="Yazonii home"
     >
-      <span>Yazonii</span><b>.</b>
+      Yazonii<span>.</span>
 
       <span
         class="brand-sparkle"
@@ -80,23 +79,15 @@
     </a>
 
 
-    <nav class="nav-links">
+    <nav
+      class="nav-links"
+      aria-label="Main navigation"
+    >
 
-      <a href="#about">
-        About
-      </a>
-
-      <a href="#services">
-        What I do
-      </a>
-
-      <a href="#process">
-        Process
-      </a>
-
-      <a href="#contact">
-        Contact
-      </a>
+      <a href="#about">About</a>
+      <a href="#services">Services</a>
+      <a href="#work">Work</a>
+      <a href="#process">Process</a>
 
     </nav>
 
@@ -106,149 +97,92 @@
       class="nav-cta magnetic"
     >
       Let's talk
-
-      <span>↗</span>
+      <span aria-hidden="true">↗</span>
     </a>
 
   </header>
 
 
-  <!-- =====================================================
-       MAIN
-       ===================================================== -->
-
-  <main>
+  <main id="top">
 
 
     <!-- ===================================================
          HERO
          =================================================== -->
 
-    <section
-      id="home"
-      class="hero"
-    >
-
-      <div class="hero-noise"></div>
-
-
-      <!-- floating signature sparkle -->
+    <section class="hero">
 
       <div
-        class="signature-sparkle sparkle-one"
+        class="hero-noise"
         aria-hidden="true"
-      >
-        ✦
-      </div>
-
-      <div
-        class="signature-sparkle sparkle-two"
-        aria-hidden="true"
-      >
-        ✧
-      </div>
-
-      <div
-        class="signature-sparkle sparkle-three"
-        aria-hidden="true"
-      >
-        ✦
-      </div>
+      ></div>
 
 
       <div class="hero-content">
 
 
-        <div class="availability reveal">
+        <div class="availability hero-line">
 
           <span class="availability-dot"></span>
 
-          <span>
-            Available for new projects
-          </span>
+          Available for new projects
 
         </div>
 
 
         <h1 class="hero-title">
 
-          <span
-            class="hero-line"
-            data-text="Let's make websites"
-          >
-            Let's make websites
+          <span class="hero-line">
+            Let's make
           </span>
 
+          <span class="hero-line">
+            websites
+          </span>
 
-          <span
-            class="hero-line hero-impossible"
-            data-text="IMPOSSIBLE"
-          >
-
-            <span class="impossible-text">
-              IMPOSSIBLE
+          <span class="hero-line">
+            <span class="hero-impossible">
+              impossible
+              <span
+                class="impossible-line"
+                aria-hidden="true"
+              ></span>
             </span>
-
-            <span
-              class="impossible-line"
-              aria-hidden="true"
-            ></span>
-
-          </span>
-
-
-          <span
-            class="hero-line hero-last"
-            data-text="to ignore."
-          >
-            to ignore.
+            <span class="hero-last"> to ignore.</span>
           </span>
 
         </h1>
 
 
-        <div class="hero-bottom">
+        <div class="hero-bottom hero-line">
 
-          <p class="hero-description reveal">
 
-            Modern websites, thoughtful design and
-            interactive experiences built with attention
-            to every detail.
+          <p class="hero-description">
+
+            I design and develop modern websites
+            with strong visuals, thoughtful motion,
+            and an obsession with the details that
+            make people stop scrolling.
 
           </p>
 
 
-          <div class="hero-actions reveal">
+          <div class="hero-actions">
 
             <a
-              href="#contact"
+              href="#work"
               class="button button-primary magnetic"
             >
-
-              <span>
-                Start a project
-              </span>
-
-              <span class="button-arrow">
-                ↗
-              </span>
-
+              <span>Explore my work</span>
+              <span aria-hidden="true">↗</span>
             </a>
 
 
             <a
-              href="#about"
+              href="#contact"
               class="button button-glass magnetic"
             >
-
-              <span>
-                Get to know me
-              </span>
-
-              <span>
-                ↓
-              </span>
-
+              Start a project
             </a>
 
           </div>
@@ -258,23 +192,49 @@
       </div>
 
 
-      <!-- scroll indicator -->
+      <!-- Signature details -->
 
-      <div class="scroll-indicator">
+      <span
+        class="signature-sparkle sparkle-one"
+        aria-hidden="true"
+      >
+        ✦
+      </span>
 
-        <span>
-          Scroll
+      <span
+        class="signature-sparkle sparkle-two"
+        aria-hidden="true"
+      >
+        ✧
+      </span>
+
+      <span
+        class="signature-sparkle sparkle-three"
+        aria-hidden="true"
+      >
+        ·
+      </span>
+
+
+      <div
+        class="scroll-indicator"
+        aria-hidden="true"
+      >
+
+        <span class="scroll-line">
+          <span></span>
         </span>
 
-        <div class="scroll-line">
-          <span></span>
-        </div>
+        Scroll to explore
 
       </div>
 
 
-      <div class="hero-side-text">
-        WEB · DESIGN · DEVELOPMENT
+      <div
+        class="hero-side-text"
+        aria-hidden="true"
+      >
+        DESIGN · DEVELOPMENT · MOTION
       </div>
 
     </section>
@@ -285,18 +245,18 @@
          =================================================== -->
 
     <section
-      id="about"
       class="section about"
+      id="about"
     >
 
       <div class="section-top reveal">
 
         <span class="eyebrow">
-          01 — About
+          01 / About
         </span>
 
         <span class="section-number">
-          01
+          YZN — 001
         </span>
 
       </div>
@@ -304,10 +264,11 @@
 
       <div class="about-content">
 
+
         <h2 class="section-heading reveal">
 
-          I'm building something
-          <span>of my own.</span>
+          Small studio.
+          <span>Big attention to detail.</span>
 
         </h2>
 
@@ -316,18 +277,21 @@
 
           <p class="large-copy">
 
-            I'm Yazonii — a web developer focused on
-            creating modern websites that feel carefully
-            designed rather than thrown together.
+            I'm Yazonii — a web designer and developer
+            focused on creating websites that feel
+            different from everything else.
 
           </p>
 
-
           <p>
 
-            I'm building my business around good design,
-            clean development and experiences that people
-            actually enjoy using.
+            I care about the things people notice
+            immediately and the tiny details they
+            don't consciously notice at all.
+
+            From typography and layout to interaction,
+            motion and performance, every part of a
+            website should have a reason to exist.
 
           </p>
 
@@ -336,18 +300,18 @@
       </div>
 
 
-      <!-- glass identity card -->
-
-      <div class="identity-card liquid-glass reveal">
+      <div
+        class="identity-card liquid-glass reveal"
+      >
 
         <div class="identity-left">
 
           <span class="identity-label">
-            Yazonii
+            Independent web studio
           </span>
 
           <h3>
-            Web Developer
+            Yazonii<span style="color:var(--orange)">.</span>
           </h3>
 
         </div>
@@ -355,23 +319,19 @@
 
         <div class="identity-right">
 
-          <span>
-            Based in Sweden
-          </span>
-
-          <span>
-            Working globally
-          </span>
+          <span>Design</span>
+          <span>Development</span>
+          <span>Motion</span>
 
         </div>
 
 
-        <div
+        <span
           class="identity-spark"
           aria-hidden="true"
         >
           ✦
-        </div>
+        </span>
 
       </div>
 
@@ -383,29 +343,41 @@
          =================================================== -->
 
     <section
-      id="services"
       class="section services"
+      id="services"
     >
 
       <div class="section-top reveal">
 
         <span class="eyebrow">
-          02 — What I do
+          02 / Capabilities
         </span>
 
         <span class="section-number">
-          02
+          YZN — 002
         </span>
 
       </div>
 
 
-      <h2 class="section-heading reveal">
+      <div class="process-intro">
 
-        I build the things
-        <span>that make a website work.</span>
+        <h2 class="section-heading reveal">
 
-      </h2>
+          Everything a modern
+          <span>website needs.</span>
+
+        </h2>
+
+        <p class="reveal">
+
+          Design isn't just about making something
+          look good. It's about creating an experience
+          that feels natural, memorable and useful.
+
+        </p>
+
+      </div>
 
 
       <div class="service-grid">
@@ -422,10 +394,11 @@
             </span>
 
             <span class="service-icon">
-              ↗
+              ◇
             </span>
 
           </div>
+
 
           <div>
 
@@ -434,13 +407,18 @@
             </h3>
 
             <p>
-              Clean layouts, strong typography and
-              visual systems designed around the experience.
+              Clean layouts, strong typography,
+              visual hierarchy and interfaces
+              designed around the people using them.
             </p>
 
           </div>
 
-          <div class="card-glow"></div>
+
+          <div
+            class="card-glow"
+            aria-hidden="true"
+          ></div>
 
         </article>
 
@@ -456,10 +434,11 @@
             </span>
 
             <span class="service-icon">
-              ◇
+              ↗
             </span>
 
           </div>
+
 
           <div>
 
@@ -468,13 +447,18 @@
             </h3>
 
             <p>
-              Responsive and functional websites built
-              to feel smooth across every screen.
+              Responsive, polished websites built
+              to work smoothly across phones,
+              tablets and desktops.
             </p>
 
           </div>
 
-          <div class="card-glow"></div>
+
+          <div
+            class="card-glow"
+            aria-hidden="true"
+          ></div>
 
         </article>
 
@@ -495,21 +479,26 @@
 
           </div>
 
+
           <div>
 
             <h3>
-              Interactions
+              Motion
             </h3>
 
             <p>
-              Motion, transitions and details that give
-              a website personality without getting in
-              the way.
+              Scroll animations, micro-interactions,
+              transitions and subtle movement that
+              make a website feel alive.
             </p>
 
           </div>
 
-          <div class="card-glow"></div>
+
+          <div
+            class="card-glow"
+            aria-hidden="true"
+          ></div>
 
         </article>
 
@@ -530,15 +519,204 @@
 
           </div>
 
+
           <div>
 
             <h3>
-              Responsive Design
+              Refinement
             </h3>
 
             <p>
-              Experiences that adapt naturally from
-              large displays all the way down to phones.
+              The final layer of polish — spacing,
+              responsiveness, performance and
+              the tiny details that separate good
+              from exceptional.
+            </p>
+
+          </div>
+
+
+          <div
+            class="card-glow"
+            aria-hidden="true"
+          ></div>
+
+        </article>
+
+      </div>
+
+    </section>
+
+
+    <!-- ===================================================
+         WORK
+         =================================================== -->
+
+    <section
+      class="section work"
+      id="work"
+    >
+
+      <div class="section-top reveal">
+
+        <span class="eyebrow">
+          03 / Selected work
+        </span>
+
+        <span class="section-number">
+          CONCEPTS
+        </span>
+
+      </div>
+
+
+      <h2 class="section-heading reveal">
+
+        A few things
+        <span>I've been creating.</span>
+
+      </h2>
+
+
+      <div class="service-grid">
+
+
+        <article
+          class="service-card liquid-glass reveal"
+        >
+
+          <div class="service-top">
+
+            <span class="service-number">
+              CONCEPT / 01
+            </span>
+
+            <span class="service-icon">
+              ↗
+            </span>
+
+          </div>
+
+
+          <div>
+
+            <h3>
+              Digital Studio
+            </h3>
+
+            <p>
+              A visual concept exploring bold
+              typography, oversized layouts and
+              immersive motion for a creative studio.
+            </p>
+
+          </div>
+
+          <div class="card-glow"></div>
+
+        </article>
+
+
+        <article
+          class="service-card liquid-glass reveal"
+        >
+
+          <div class="service-top">
+
+            <span class="service-number">
+              CONCEPT / 02
+            </span>
+
+            <span class="service-icon">
+              ↗
+            </span>
+
+          </div>
+
+
+          <div>
+
+            <h3>
+              Premium Brand
+            </h3>
+
+            <p>
+              A minimal, high-end brand experience
+              built around cinematic imagery,
+              editorial typography and refined
+              interactions.
+            </p>
+
+          </div>
+
+          <div class="card-glow"></div>
+
+        </article>
+
+
+        <article
+          class="service-card liquid-glass reveal"
+        >
+
+          <div class="service-top">
+
+            <span class="service-number">
+              CONCEPT / 03
+            </span>
+
+            <span class="service-icon">
+              ↗
+            </span>
+
+          </div>
+
+
+          <div>
+
+            <h3>
+              Modern Commerce
+            </h3>
+
+            <p>
+              A clean e-commerce direction focused
+              on product presentation, clarity and
+              a frictionless browsing experience.
+            </p>
+
+          </div>
+
+          <div class="card-glow"></div>
+
+        </article>
+
+
+        <article
+          class="service-card liquid-glass reveal"
+        >
+
+          <div class="service-top">
+
+            <span class="service-number">
+              CONCEPT / 04
+            </span>
+
+            <span class="service-icon">
+              ↗
+            </span>
+
+          </div>
+
+
+          <div>
+
+            <h3>
+              More coming soon.
+            </h3>
+
+            <p>
+              Real client projects will live here
+              as I continue building and working
+              with businesses.
             </p>
 
           </div>
@@ -557,18 +735,18 @@
          =================================================== -->
 
     <section
-      id="process"
       class="section process"
+      id="process"
     >
 
       <div class="section-top reveal">
 
         <span class="eyebrow">
-          03 — Process
+          04 / Process
         </span>
 
         <span class="section-number">
-          03
+          YZN — 004
         </span>
 
       </div>
@@ -578,16 +756,17 @@
 
         <h2 class="section-heading reveal">
 
-          From idea
-          <span>to something real.</span>
+          Simple process.
+          <span>Serious result.</span>
 
         </h2>
 
         <p class="reveal">
 
-          No unnecessary complexity. Just a clear process
-          focused on making the final result as good as
-          possible.
+          No unnecessary meetings.
+          No confusing process.
+          Just a clear path from an idea
+          to something people remember.
 
         </p>
 
@@ -598,94 +777,80 @@
 
 
         <div class="process-line">
-
           <span></span>
-
         </div>
 
 
-        <div class="process-item reveal">
+        <article class="process-item reveal">
 
           <div class="process-dot">
             01
           </div>
 
-          <div>
+          <h3>
+            Discover
+          </h3>
 
-            <h3>
-              Talk
-            </h3>
+          <p>
+            Understand the business,
+            audience, goals and direction.
+          </p>
 
-            <p>
-              Understand the idea and what you actually need.
-            </p>
-
-          </div>
-
-        </div>
+        </article>
 
 
-        <div class="process-item reveal">
+        <article class="process-item reveal">
 
           <div class="process-dot">
             02
           </div>
 
-          <div>
+          <h3>
+            Design
+          </h3>
 
-            <h3>
-              Design
-            </h3>
+          <p>
+            Turn the direction into a
+            visual experience worth remembering.
+          </p>
 
-            <p>
-              Turn the idea into a clear visual direction.
-            </p>
-
-          </div>
-
-        </div>
+        </article>
 
 
-        <div class="process-item reveal">
+        <article class="process-item reveal">
 
           <div class="process-dot">
             03
           </div>
 
-          <div>
+          <h3>
+            Build
+          </h3>
 
-            <h3>
-              Build
-            </h3>
+          <p>
+            Develop the design into a
+            responsive, polished website.
+          </p>
 
-            <p>
-              Bring everything together and make it work.
-            </p>
-
-          </div>
-
-        </div>
+        </article>
 
 
-        <div class="process-item reveal">
+        <article class="process-item reveal">
 
           <div class="process-dot">
             04
           </div>
 
-          <div>
+          <h3>
+            Launch
+          </h3>
 
-            <h3>
-              Refine
-            </h3>
+          <p>
+            Refine every detail, test everything
+            and put it in front of the world.
+          </p>
 
-            <p>
-              Polish every detail until it feels right.
-            </p>
-
-          </div>
-
-        </div>
+        </article>
 
       </div>
 
@@ -693,34 +858,49 @@
 
 
     <!-- ===================================================
-         PERSONAL STATEMENT
+         BIG STATEMENT
          =================================================== -->
 
     <section class="statement">
 
-      <div class="statement-orb"></div>
+      <div
+        class="statement-orb"
+        aria-hidden="true"
+      ></div>
 
-      <div class="statement-content reveal">
 
-        <span class="eyebrow">
-          A little more
+      <div class="statement-content">
+
+        <span class="eyebrow reveal">
+          The goal
         </span>
 
-        <h2>
 
-          I don't want to make
-          <span>forgettable websites.</span>
+        <h2 class="reveal">
+
+          Don't just
+          <span>have a website.</span>
+
+          Make people
+          <span>remember it.</span>
 
         </h2>
 
-        <p>
 
-          I want every project to have its own identity,
-          its own personality and its own reason to exist.
+        <p class="reveal">
+
+          Your website is often the first impression
+          someone has of your business.
+
+          It should feel like you cared.
 
         </p>
 
-        <div class="statement-sparkle">
+
+        <div
+          class="statement-sparkle"
+          aria-hidden="true"
+        >
           ✦
         </div>
 
@@ -734,52 +914,49 @@
          =================================================== -->
 
     <section
+      class="contact"
       id="contact"
-      class="section contact"
     >
 
-      <div class="contact-glow"></div>
+      <div
+        class="contact-glow"
+        aria-hidden="true"
+      ></div>
 
 
-      <div class="contact-content reveal">
+      <div class="contact-content">
 
-        <span class="eyebrow">
-          04 — Contact
+        <span class="eyebrow reveal">
+          Have a project?
         </span>
 
 
-        <h2>
+        <h2 class="reveal">
 
-          Have an idea?
-
-          <span>
-            Let's build it.
-          </span>
+          Let's make
+          <span>something great.</span>
 
         </h2>
 
 
-        <p>
+        <p class="reveal">
 
-          If you're looking for someone to build or improve
-          your website, let's talk.
+          Have an idea, a business or a website
+          that needs a serious upgrade?
+
+          Let's talk.
 
         </p>
 
 
-        <div class="contact-buttons">
+        <div class="contact-buttons reveal">
 
           <a
             href="mailto:yayazan.mahmoud@gmail.com"
             class="button button-primary magnetic"
           >
-
-            Email me
-
-            <span>
-              ↗
-            </span>
-
+            <span>Email me</span>
+            <span aria-hidden="true">↗</span>
           </a>
 
 
@@ -787,19 +964,13 @@
             href="tel:+46707358046"
             class="button button-glass magnetic"
           >
-
             Call me
-
-            <span>
-              ↗
-            </span>
-
           </a>
 
         </div>
 
 
-        <div class="contact-details">
+        <div class="contact-details reveal">
 
           <a href="mailto:yayazan.mahmoud@gmail.com">
             yayazan.mahmoud@gmail.com
@@ -828,30 +999,26 @@
 
     <div class="footer-inner">
 
-      <a
-        href="#home"
-        class="footer-brand"
-      >
+      <div class="footer-brand">
         Yazonii<span>.</span>
-      </a>
+      </div>
 
 
       <div class="footer-center">
 
-        <span>
-          Built with intention.
-        </span>
-
-        <span class="footer-sparkle">
+        <span
+          class="footer-sparkle"
+          aria-hidden="true"
+        >
           ✦
         </span>
+
+        Built with intention.
 
       </div>
 
 
-      <span class="footer-year">
-        © 2026
-      </span>
+      <div class="footer-year"></div>
 
     </div>
 

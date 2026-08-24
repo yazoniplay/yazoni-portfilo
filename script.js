@@ -1,18 +1,20 @@
 /* =========================================================
-   YAZONII — SIGNATURE PORTFOLIO
-   Liquid Glass / Motion / Sparkles / Interactions
+   YAZONII — PREMIUM PORTFOLIO MOTION SYSTEM
+   No libraries required.
    ========================================================= */
 
 document.addEventListener("DOMContentLoaded", () => {
   "use strict";
 
-  const reducedMotion = window.matchMedia(
+  const prefersReducedMotion = window.matchMedia(
     "(prefers-reduced-motion: reduce)"
   ).matches;
 
   const isTouch =
     window.matchMedia("(pointer: coarse)").matches;
 
+  const root = document.documentElement;
+  const body = document.body;
 
   /* =======================================================
      HELPERS
@@ -21,12 +23,18 @@ document.addEventListener("DOMContentLoaded", () => {
   const clamp = (value, min, max) =>
     Math.min(Math.max(value, min), max);
 
+  const lerp = (start, end, amount) =>
+    start + (end - start) * amount;
+
 
   /* =======================================================
-     PAGE LOADER
+     PAGE READY
      ======================================================= */
 
-  document.body.classList.add("page-ready");
+  requestAnimationFrame(() => {
+    body.classList.add("page-ready");
+    body.classList.add("animations-ready");
+  });
 
 
   /* =======================================================
@@ -40,7 +48,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     navbar.classList.toggle(
       "navbar-scrolled",
-      window.scrollY > 45
+      window.scrollY > 50
     );
   };
 
@@ -54,13 +62,117 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
   /* =======================================================
-     SCROLL REVEALS
+     SMOOTH ANCHOR NAVIGATION
+     ======================================================= */
+
+  document.querySelectorAll(
+    'a[href^="#"]'
+  ).forEach(link => {
+
+    link.addEventListener("click", event => {
+
+      const targetId =
+        link.getAttribute("href");
+
+      if (
+        !targetId ||
+        targetId === "#"
+      ) return;
+
+      const target =
+        document.querySelector(targetId);
+
+      if (!target) return;
+
+      event.preventDefault();
+
+      target.scrollIntoView({
+        behavior:
+          prefersReducedMotion
+            ? "auto"
+            : "smooth",
+        block: "start"
+      });
+
+    });
+
+  });
+
+
+  /* =======================================================
+     HERO LINE REVEAL
+     ======================================================= */
+
+  const heroLines =
+    document.querySelectorAll(
+      ".hero-line"
+    );
+
+  heroLines.forEach((line, index) => {
+
+    if (prefersReducedMotion) {
+
+      line.classList.add(
+        "hero-line-visible"
+      );
+
+      return;
+    }
+
+    setTimeout(() => {
+
+      line.classList.add(
+        "hero-line-visible"
+      );
+
+    }, 250 + index * 180);
+
+  });
+
+
+  /* =======================================================
+     IMPOSSIBLE UNDERLINE
+     ======================================================= */
+
+  const impossible =
+    document.querySelector(
+      ".hero-impossible"
+    );
+
+  if (impossible) {
+
+    setTimeout(() => {
+
+      impossible.classList.add(
+        "underline-active"
+      );
+
+    }, prefersReducedMotion ? 0 : 1100);
+
+  }
+
+
+  /* =======================================================
+     SCROLL REVEAL
      ======================================================= */
 
   const revealElements =
-    document.querySelectorAll(".reveal");
+    document.querySelectorAll(
+      ".reveal"
+    );
 
-  if (!reducedMotion) {
+  if (
+    prefersReducedMotion ||
+    !("IntersectionObserver" in window)
+  ) {
+
+    revealElements.forEach(element => {
+      element.classList.add(
+        "is-visible"
+      );
+    });
+
+  } else {
 
     const revealObserver =
       new IntersectionObserver(
@@ -68,7 +180,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
           entries.forEach(entry => {
 
-            if (!entry.isIntersecting) return;
+            if (!entry.isIntersecting)
+              return;
 
             entry.target.classList.add(
               "is-visible"
@@ -92,205 +205,118 @@ document.addEventListener("DOMContentLoaded", () => {
       revealObserver.observe(element);
     });
 
-  } else {
-
-    revealElements.forEach(element => {
-      element.classList.add(
-        "is-visible"
-      );
-    });
-
   }
 
 
   /* =======================================================
-     HERO TEXT REVEAL
+     GLOBAL CURSOR GLOW
      ======================================================= */
 
-  const heroLines =
-    document.querySelectorAll(
-      ".hero-line"
+  let cursorGlow = null;
+
+  if (
+    !isTouch &&
+    !prefersReducedMotion
+  ) {
+
+    cursorGlow =
+      document.createElement("div");
+
+    cursorGlow.className =
+      "cursor-glow";
+
+    document.body.appendChild(
+      cursorGlow
     );
 
-  heroLines.forEach((line, index) => {
 
-    if (reducedMotion) {
-      line.classList.add(
-        "hero-line-visible"
-      );
-      return;
-    }
+    const cursorStyle =
+      document.createElement("style");
 
-    setTimeout(() => {
-
-      line.classList.add(
-        "hero-line-visible"
-      );
-
-    }, 350 + index * 180);
-
-  });
-
-
-  /* =======================================================
-     IMPOSSIBLE UNDERLINE
-     ======================================================= */
-
-  const impossible =
-    document.querySelector(
-      ".hero-impossible"
-    );
-
-  if (impossible && !reducedMotion) {
-
-    setTimeout(() => {
-
-      impossible.classList.add(
-        "underline-active"
-      );
-
-    }, 1050);
-
-  }
-
-
-  /* =======================================================
-     MAGNETIC ELEMENTS
-     ======================================================= */
-
-  const magneticElements =
-    document.querySelectorAll(
-      ".magnetic"
-    );
-
-  if (!isTouch && !reducedMotion) {
-
-    magneticElements.forEach(element => {
-
-      element.addEventListener(
-        "mousemove",
-        event => {
-
-          const rect =
-            element.getBoundingClientRect();
-
-          const x =
-            event.clientX -
-            rect.left -
-            rect.width / 2;
-
-          const y =
-            event.clientY -
-            rect.top -
-            rect.height / 2;
-
-          const strength =
-            element.classList.contains(
-              "nav-cta"
-            )
-              ? 0.18
-              : 0.12;
-
-          element.style.transform =
-            `translate(
-              ${x * strength}px,
-              ${y * strength}px
-            )`;
-
-        }
-      );
-
-
-      element.addEventListener(
-        "mouseleave",
-        () => {
-
-          element.style.transform =
-            "";
-
-        }
-      );
-
-    });
-
-  }
-
-
-  /* =======================================================
-     GLOBAL MOUSE LIGHT
-     ======================================================= */
-
-  const mouseLight =
-    document.createElement("div");
-
-  mouseLight.className =
-    "global-mouse-light";
-
-  document.body.appendChild(
-    mouseLight
-  );
-
-
-  const mouseLightStyle =
-    document.createElement("style");
-
-  mouseLightStyle.textContent = `
-    .global-mouse-light {
-      position: fixed;
-      width: 420px;
-      height: 420px;
-      border-radius: 50%;
-      pointer-events: none;
-      z-index: 2;
-      transform: translate(-50%, -50%);
-      background:
-        radial-gradient(
-          circle,
-          rgba(255,104,26,.075) 0%,
-          rgba(255,104,26,.025) 35%,
-          transparent 70%
-        );
-      opacity: 0;
-      transition: opacity .5s ease;
-      will-change: left, top;
-    }
-
-    @media (pointer: coarse) {
-      .global-mouse-light {
-        display: none;
+    cursorStyle.textContent = `
+      .cursor-glow {
+        position: fixed;
+        width: 420px;
+        height: 420px;
+        left: 0;
+        top: 0;
+        pointer-events: none;
+        z-index: 1;
+        border-radius: 50%;
+        transform: translate3d(-50%, -50%, 0);
+        background:
+          radial-gradient(
+            circle,
+            rgba(255,104,26,.075) 0%,
+            rgba(255,104,26,.025) 32%,
+            transparent 70%
+          );
+        opacity: 0;
+        will-change: transform;
+        transition: opacity .5s ease;
       }
-    }
-  `;
+    `;
 
-  document.head.appendChild(
-    mouseLightStyle
-  );
+    document.head.appendChild(
+      cursorStyle
+    );
 
 
-  if (!isTouch && !reducedMotion) {
+    let cursorX = -500;
+    let cursorY = -500;
+
+    let glowX = cursorX;
+    let glowY = cursorY;
+
 
     window.addEventListener(
       "mousemove",
       event => {
 
-        mouseLight.style.left =
-          `${event.clientX}px`;
+        cursorX = event.clientX;
+        cursorY = event.clientY;
 
-        mouseLight.style.top =
-          `${event.clientY}px`;
-
-        mouseLight.style.opacity =
-          "1";
+        cursorGlow.style.opacity = "1";
 
       },
       { passive: true }
     );
 
+
+    const animateGlow = () => {
+
+      glowX = lerp(
+        glowX,
+        cursorX,
+        0.1
+      );
+
+      glowY = lerp(
+        glowY,
+        cursorY,
+        0.1
+      );
+
+      cursorGlow.style.transform =
+        `translate3d(
+          ${glowX}px,
+          ${glowY}px,
+          0
+        )`;
+
+      requestAnimationFrame(
+        animateGlow
+      );
+
+    };
+
+    animateGlow();
+
   }
 
 
   /* =======================================================
-     LIQUID GLASS MOUSE REFLECTION
+     LIQUID GLASS CURSOR REFLECTION
      ======================================================= */
 
   const glassElements =
@@ -298,7 +324,10 @@ document.addEventListener("DOMContentLoaded", () => {
       ".liquid-glass"
     );
 
-  if (!isTouch && !reducedMotion) {
+  if (
+    !isTouch &&
+    !prefersReducedMotion
+  ) {
 
     glassElements.forEach(card => {
 
@@ -341,10 +370,6 @@ document.addEventListener("DOMContentLoaded", () => {
         "mouseleave",
         () => {
 
-          card.classList.remove(
-            "glass-hover"
-          );
-
           card.style.setProperty(
             "--mouse-x",
             "50%"
@@ -353,6 +378,10 @@ document.addEventListener("DOMContentLoaded", () => {
           card.style.setProperty(
             "--mouse-y",
             "50%"
+          );
+
+          card.classList.remove(
+            "glass-hover"
           );
 
         }
@@ -364,7 +393,178 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
   /* =======================================================
-     GLASS CARD 3D TILT
+     MAGNETIC BUTTONS
+     ======================================================= */
+
+  const magneticElements =
+    document.querySelectorAll(
+      ".magnetic"
+    );
+
+  if (
+    !isTouch &&
+    !prefersReducedMotion
+  ) {
+
+    magneticElements.forEach(element => {
+
+      element.addEventListener(
+        "mousemove",
+        event => {
+
+          const rect =
+            element.getBoundingClientRect();
+
+          const x =
+            event.clientX -
+            rect.left -
+            rect.width / 2;
+
+          const y =
+            event.clientY -
+            rect.top -
+            rect.height / 2;
+
+          const strength =
+            element.classList.contains(
+              "nav-cta"
+            )
+              ? 0.18
+              : 0.12;
+
+          element.style.transform =
+            `translate3d(
+              ${x * strength}px,
+              ${y * strength}px,
+              0
+            )`;
+
+        }
+      );
+
+
+      element.addEventListener(
+        "mouseleave",
+        () => {
+
+          element.style.transform =
+            "";
+
+        }
+      );
+
+    });
+
+  }
+
+
+  /* =======================================================
+     HERO PARALLAX
+     ======================================================= */
+
+  const hero =
+    document.querySelector(
+      ".hero"
+    );
+
+  const heroContent =
+    document.querySelector(
+      ".hero-content"
+    );
+
+  const signatureSparkles =
+    document.querySelectorAll(
+      ".signature-sparkle"
+    );
+
+  if (
+    hero &&
+    !isTouch &&
+    !prefersReducedMotion
+  ) {
+
+    let heroMouseX = 0;
+    let heroMouseY = 0;
+
+    hero.addEventListener(
+      "mousemove",
+      event => {
+
+        const rect =
+          hero.getBoundingClientRect();
+
+        heroMouseX =
+          (event.clientX -
+            rect.left -
+            rect.width / 2) /
+          rect.width;
+
+        heroMouseY =
+          (event.clientY -
+            rect.top -
+            rect.height / 2) /
+          rect.height;
+
+      },
+      { passive: true }
+    );
+
+
+    hero.addEventListener(
+      "mouseleave",
+      () => {
+
+        heroMouseX = 0;
+        heroMouseY = 0;
+
+      }
+    );
+
+
+    const animateHero = () => {
+
+      if (heroContent) {
+
+        heroContent.style.transform =
+          `translate3d(
+            ${heroMouseX * 7}px,
+            ${heroMouseY * 4}px,
+            0
+          )`;
+
+      }
+
+
+      signatureSparkles.forEach(
+        (sparkle, index) => {
+
+          const strength =
+            12 + index * 10;
+
+          sparkle.style.transform =
+            `translate3d(
+              ${heroMouseX * strength}px,
+              ${heroMouseY * strength}px,
+              0
+            )`;
+
+        }
+      );
+
+
+      requestAnimationFrame(
+        animateHero
+      );
+
+    };
+
+    animateHero();
+
+  }
+
+
+  /* =======================================================
+     3D SERVICE CARD TILT
      ======================================================= */
 
   const cards =
@@ -372,7 +572,10 @@ document.addEventListener("DOMContentLoaded", () => {
       ".service-card"
     );
 
-  if (!isTouch && !reducedMotion) {
+  if (
+    !isTouch &&
+    !prefersReducedMotion
+  ) {
 
     cards.forEach(card => {
 
@@ -400,10 +603,10 @@ document.addEventListener("DOMContentLoaded", () => {
             (px - 0.5) * 5;
 
           card.style.transform =
-            `perspective(900px)
+            `perspective(1000px)
              rotateX(${rotateX}deg)
              rotateY(${rotateY}deg)
-             translateY(-8px)`;
+             translateY(-7px)`;
 
         }
       );
@@ -425,105 +628,72 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
   /* =======================================================
-     HERO MOUSE PARALLAX
+     ORB PARALLAX
      ======================================================= */
 
-  const hero =
-    document.querySelector(
-      ".hero"
-    );
-
-  const heroContent =
-    document.querySelector(
-      ".hero-content"
-    );
-
-  const heroSparkles =
+  const orbs =
     document.querySelectorAll(
-      ".signature-sparkle"
+      ".orb"
     );
-
 
   if (
-    hero &&
     !isTouch &&
-    !reducedMotion
+    !prefersReducedMotion
   ) {
 
-    hero.addEventListener(
+    let mouseX = 0;
+    let mouseY = 0;
+
+    window.addEventListener(
       "mousemove",
       event => {
 
-        const rect =
-          hero.getBoundingClientRect();
+        mouseX =
+          (event.clientX /
+            window.innerWidth -
+            0.5);
 
-        const x =
-          (event.clientX -
-            rect.left -
-            rect.width / 2) /
-          rect.width;
+        mouseY =
+          (event.clientY /
+            window.innerHeight -
+            0.5);
 
-        const y =
-          (event.clientY -
-            rect.top -
-            rect.height / 2) /
-          rect.height;
+      },
+      { passive: true }
+    );
 
 
-        if (heroContent) {
+    const animateOrbs = () => {
 
-          heroContent.style.transform =
-            `translate(
-              ${x * 8}px,
-              ${y * 5}px
+      orbs.forEach(
+        (orb, index) => {
+
+          const strength =
+            15 + index * 12;
+
+          orb.style.transform =
+            `translate3d(
+              ${mouseX * strength}px,
+              ${mouseY * strength}px,
+              0
             )`;
 
         }
+      );
 
+      requestAnimationFrame(
+        animateOrbs
+      );
 
-        heroSparkles.forEach(
-          (sparkle, index) => {
+    };
 
-            const strength =
-              10 + index * 8;
-
-            sparkle.style.transform =
-              `translate(
-                ${x * strength}px,
-                ${y * strength}px
-              )`;
-
-          }
-        );
-
-      }
-    );
-
-
-    hero.addEventListener(
-      "mouseleave",
-      () => {
-
-        if (heroContent) {
-          heroContent.style.transform =
-            "";
-        }
-
-        heroSparkles.forEach(
-          sparkle => {
-            sparkle.style.transform =
-              "";
-          }
-        );
-
-      }
-    );
+    animateOrbs();
 
   }
 
 
   /* =======================================================
-     YAZONII SPARKLE SYSTEM
+     SPARKLE SYSTEM
      ======================================================= */
 
   const sparkleField =
@@ -531,11 +701,11 @@ document.addEventListener("DOMContentLoaded", () => {
       ".sparkle-field"
     );
 
-  const sparkleSymbols = [
+  const sparkleCharacters = [
     "✦",
     "✧",
-    "✦",
-    "·"
+    "·",
+    "✦"
   ];
 
 
@@ -543,7 +713,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (
       !sparkleField ||
-      reducedMotion ||
+      prefersReducedMotion ||
       document.hidden
     ) {
       return;
@@ -557,10 +727,10 @@ document.addEventListener("DOMContentLoaded", () => {
       "generated-sparkle";
 
     sparkle.textContent =
-      sparkleSymbols[
+      sparkleCharacters[
         Math.floor(
           Math.random() *
-          sparkleSymbols.length
+          sparkleCharacters.length
         )
       ];
 
@@ -569,7 +739,7 @@ document.addEventListener("DOMContentLoaded", () => {
       `${Math.random() * 100}%`;
 
     sparkle.style.top =
-      `${25 + Math.random() * 70}%`;
+      `${15 + Math.random() * 80}%`;
 
     sparkle.style.setProperty(
       "--spark-size",
@@ -578,12 +748,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
     sparkle.style.setProperty(
       "--spark-duration",
-      `${3 + Math.random() * 4}s`
+      `${3.5 + Math.random() * 3}s`
     );
 
     sparkle.style.setProperty(
       "--spark-delay",
-      `${Math.random() * .8}s`
+      `${Math.random() * .5}s`
     );
 
 
@@ -592,19 +762,18 @@ document.addEventListener("DOMContentLoaded", () => {
     );
 
 
-    setTimeout(
-      () => sparkle.remove(),
-      8000
-    );
+    setTimeout(() => {
+      sparkle.remove();
+    }, 8000);
 
   };
 
 
-  if (!reducedMotion) {
+  if (!prefersReducedMotion) {
 
     setInterval(
       createSparkle,
-      550
+      650
     );
 
   }
@@ -654,45 +823,34 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
   /* =======================================================
-     RANDOM SIGNATURE SPARKLE BURSTS
+     SIGNATURE SPARKLE BURSTS
      ======================================================= */
-
-  const signatureSparkles =
-    document.querySelectorAll(
-      ".signature-sparkle"
-    );
-
 
   signatureSparkles.forEach(
     sparkle => {
 
-      if (reducedMotion) return;
+      if (prefersReducedMotion)
+        return;
 
-      const delay =
-        1500 +
-        Math.random() * 4000;
+      const trigger =
+        1800 +
+        Math.random() * 4500;
 
-      setTimeout(
-        () => {
+      setTimeout(() => {
 
-          sparkle.classList.add(
+        sparkle.classList.add(
+          "sparkle-burst"
+        );
+
+        setTimeout(() => {
+
+          sparkle.classList.remove(
             "sparkle-burst"
           );
 
-          setTimeout(
-            () => {
+        }, 1200);
 
-              sparkle.classList.remove(
-                "sparkle-burst"
-              );
-
-            },
-            1200
-          );
-
-        },
-        delay
-      );
+      }, trigger);
 
     }
   );
@@ -702,7 +860,7 @@ document.addEventListener("DOMContentLoaded", () => {
      PROCESS LINE
      ======================================================= */
 
-  const processSection =
+  const process =
     document.querySelector(
       ".process"
     );
@@ -713,109 +871,59 @@ document.addEventListener("DOMContentLoaded", () => {
     );
 
 
-  if (
-    processSection &&
-    processLine
-  ) {
+  if (process && processLine) {
 
-    const updateProcessLine = () => {
+    const updateProcess =
+      () => {
 
-      const rect =
-        processSection.getBoundingClientRect();
+        const rect =
+          process.getBoundingClientRect();
 
-      const viewportHeight =
-        window.innerHeight;
+        const viewport =
+          window.innerHeight;
 
-      const start =
-        viewportHeight * 0.75;
+        const start =
+          viewport * 0.75;
 
-      const distance =
-        start - rect.top;
-
-      const total =
-        rect.height;
-
-      const progress =
-        clamp(
-          distance / total,
-          0,
-          1
-        );
+        const progress =
+          clamp(
+            (start - rect.top) /
+            rect.height,
+            0,
+            1
+          );
 
 
-      processLine.style.height =
-        `${progress * 100}%`;
+        processLine.style.height =
+          `${progress * 100}%`;
 
-    };
+      };
 
 
     window.addEventListener(
       "scroll",
-      updateProcessLine,
+      updateProcess,
       { passive: true }
     );
-
-    updateProcessLine();
-
-  }
-
-
-  /* =======================================================
-     PARALLAX ORBS
-     ======================================================= */
-
-  const orbs =
-    document.querySelectorAll(
-      ".orb"
-    );
-
-
-  if (
-    !isTouch &&
-    !reducedMotion
-  ) {
 
     window.addEventListener(
-      "mousemove",
-      event => {
-
-        const x =
-          (event.clientX /
-            window.innerWidth -
-            0.5);
-
-        const y =
-          (event.clientY /
-            window.innerHeight -
-            0.5);
-
-
-        orbs.forEach(
-          (orb, index) => {
-
-            const strength =
-              15 +
-              index * 12;
-
-            orb.style.transform =
-              `translate(
-                ${x * strength}px,
-                ${y * strength}px
-              )`;
-
-          }
-        );
-
-      },
-      { passive: true }
+      "resize",
+      updateProcess
     );
+
+    updateProcess();
 
   }
 
 
   /* =======================================================
-     SCROLL PARALLAX FOR STATEMENT ORB
+     STATEMENT ORB PARALLAX
      ======================================================= */
+
+  const statement =
+    document.querySelector(
+      ".statement"
+    );
 
   const statementOrb =
     document.querySelector(
@@ -824,39 +932,53 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
   if (
+    statement &&
     statementOrb &&
-    !reducedMotion
+    !prefersReducedMotion
   ) {
 
-    window.addEventListener(
-      "scroll",
+    const updateStatement =
       () => {
 
         const rect =
-          statementOrb.parentElement
-            .getBoundingClientRect();
+          statement.getBoundingClientRect();
 
         const progress =
-          (window.innerHeight -
-            rect.top) /
-          (window.innerHeight +
-            rect.height);
+          (
+            window.innerHeight -
+            rect.top
+          ) /
+          (
+            window.innerHeight +
+            rect.height
+          );
 
         const y =
           (progress - 0.5) * 120;
 
         statementOrb.style.transform =
-          `translateY(${y}px)`;
+          `translate3d(
+            -50%,
+            calc(-50% + ${y}px),
+            0
+          )`;
 
-      },
+      };
+
+
+    window.addEventListener(
+      "scroll",
+      updateStatement,
       { passive: true }
     );
+
+    updateStatement();
 
   }
 
 
   /* =======================================================
-     CONTACT MAGNETIC GLOW
+     CONTACT GLOW
      ======================================================= */
 
   const contact =
@@ -874,7 +996,7 @@ document.addEventListener("DOMContentLoaded", () => {
     contact &&
     contactGlow &&
     !isTouch &&
-    !reducedMotion
+    !prefersReducedMotion
   ) {
 
     contact.addEventListener(
@@ -884,19 +1006,11 @@ document.addEventListener("DOMContentLoaded", () => {
         const rect =
           contact.getBoundingClientRect();
 
-        const x =
-          event.clientX -
-          rect.left;
-
-        const y =
-          event.clientY -
-          rect.top;
-
         contactGlow.style.left =
-          `${x}px`;
+          `${event.clientX - rect.left}px`;
 
         contactGlow.style.top =
-          `${y}px`;
+          `${event.clientY - rect.top}px`;
 
       }
     );
@@ -905,16 +1019,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
   /* =======================================================
-     HOVER SOUNDLESS MICRO INTERACTIONS
+     HOVER MICRO INTERACTIONS
      ======================================================= */
 
-  const interactive =
-    document.querySelectorAll(
-      "a, button, .service-card"
-    );
-
-
-  interactive.forEach(element => {
+  document.querySelectorAll(
+    "a, button, .service-card"
+  ).forEach(element => {
 
     element.addEventListener(
       "mouseenter",
@@ -946,29 +1056,28 @@ document.addEventListener("DOMContentLoaded", () => {
      FOOTER YEAR
      ======================================================= */
 
-  const yearElement =
+  const year =
     document.querySelector(
       ".footer-year"
     );
 
+  if (year) {
 
-  if (yearElement) {
-
-    yearElement.textContent =
-      `© ${new Date().getFullYear()}`;
+    year.textContent =
+      new Date().getFullYear();
 
   }
 
 
   /* =======================================================
-     PAGE VISIBILITY
+     VISIBILITY OPTIMIZATION
      ======================================================= */
 
   document.addEventListener(
     "visibilitychange",
     () => {
 
-      document.body.classList.toggle(
+      body.classList.toggle(
         "page-hidden",
         document.hidden
       );
@@ -978,13 +1087,44 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
   /* =======================================================
-     FINAL READY STATE
+     RESIZE CLEANUP
+     ======================================================= */
+
+  let resizeTimer;
+
+  window.addEventListener(
+    "resize",
+    () => {
+
+      clearTimeout(resizeTimer);
+
+      resizeTimer = setTimeout(() => {
+
+        root.style.setProperty(
+          "--viewport-height",
+          `${window.innerHeight}px`
+        );
+
+      }, 150);
+
+    }
+  );
+
+
+  root.style.setProperty(
+    "--viewport-height",
+    `${window.innerHeight}px`
+  );
+
+
+  /* =======================================================
+     FINAL INITIALIZATION
      ======================================================= */
 
   requestAnimationFrame(() => {
 
-    document.body.classList.add(
-      "animations-ready"
+    body.classList.add(
+      "portfolio-loaded"
     );
 
   });

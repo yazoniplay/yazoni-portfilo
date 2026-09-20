@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
   document.body.classList.add("intro-active");
-  setTimeout(() => document.body.classList.remove("intro-active"), 2900);
+  setTimeout(() => document.body.classList.remove("intro-active"), 3150);
   initHeader();
   initSmoothScrolling();
   initScrollReveal();

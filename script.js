@@ -4,200 +4,162 @@ document.addEventListener("DOMContentLoaded", () => {
   initScrollReveal();
   initActiveNavigation();
   initMagneticButtons();
-  initCursorGlow();
-  initProjectTilt();
+  initCursorExperience();
   initHeroParallax();
 });
 
-/* Header */
 function initHeader() {
   const header = document.querySelector(".site-header");
   if (!header) return;
-
-  const updateHeader = () => {
-    header.classList.toggle("scrolled", window.scrollY > 40);
-  };
-
-  updateHeader();
-  window.addEventListener("scroll", updateHeader, { passive: true });
+  const update = () => header.classList.toggle("scrolled", window.scrollY > 40);
+  update();
+  window.addEventListener("scroll", update, { passive: true });
 }
 
-/* Smooth scrolling */
 function initSmoothScrolling() {
   document.querySelectorAll('a[href^="#"]').forEach((link) => {
     link.addEventListener("click", (event) => {
-      const targetId = link.getAttribute("href");
-      if (!targetId || targetId === "#") return;
-
-      const target = document.querySelector(targetId);
+      const id = link.getAttribute("href");
+      if (!id || id === "#") return;
+      const target = document.querySelector(id);
       if (!target) return;
-
       event.preventDefault();
-
       const header = document.querySelector(".site-header");
       const offset = header ? header.offsetHeight : 0;
-
-      window.scrollTo({
-        top: target.getBoundingClientRect().top + window.scrollY - offset,
-        behavior: "smooth"
-      });
+      window.scrollTo({ top: target.getBoundingClientRect().top + window.scrollY - offset, behavior: "smooth" });
     });
   });
 }
 
-/* Scroll reveal */
 function initScrollReveal() {
-  const elements = document.querySelectorAll(
-    ".section-heading, .intro-content, .service-card, .process-item, .about-content, .contact-card"
-  );
-
+  const elements = document.querySelectorAll(".section-heading,.intro-content,.service-card,.process-item,.about-content,.contact-card");
   if (!elements.length) return;
-
-  elements.forEach((element) => element.classList.add("reveal"));
-
+  elements.forEach((el) => el.classList.add("reveal"));
   if (!("IntersectionObserver" in window)) {
-    elements.forEach((element) => element.classList.add("visible"));
+    elements.forEach((el) => el.classList.add("visible"));
     return;
   }
-
-  const observer = new IntersectionObserver((entries, observer) => {
+  const observer = new IntersectionObserver((entries, obs) => {
     entries.forEach((entry) => {
       if (!entry.isIntersecting) return;
       entry.target.classList.add("visible");
-      observer.unobserve(entry.target);
+      obs.unobserve(entry.target);
     });
-  }, {
-    threshold: 0.12,
-    rootMargin: "0px 0px -60px 0px"
-  });
-
-  elements.forEach((element) => observer.observe(element));
+  }, { threshold: 0.12, rootMargin: "0px 0px -60px 0px" });
+  elements.forEach((el) => observer.observe(el));
 }
 
-/* Active navigation */
 function initActiveNavigation() {
   const sections = document.querySelectorAll("main section[id]");
-  const navLinks = document.querySelectorAll('.nav-links a[href^="#"]');
-
-  if (!sections.length || !navLinks.length) return;
-
-  const linkMap = {};
-  navLinks.forEach((link) => {
-    const id = link.getAttribute("href");
-    if (id) linkMap[id] = link;
-  });
-
+  const links = document.querySelectorAll('.nav-links a[href^="#"]');
+  if (!sections.length || !links.length) return;
+  const map = {};
+  links.forEach((link) => { map[link.getAttribute("href")] = link; });
   const observer = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
       if (!entry.isIntersecting) return;
-
-      navLinks.forEach((link) => link.classList.remove("active"));
-
-      const activeLink = linkMap[`#${entry.target.id}`];
-      if (activeLink) activeLink.classList.add("active");
+      links.forEach((link) => link.classList.remove("active"));
+      const active = map[`#${entry.target.id}`];
+      if (active) active.classList.add("active");
     });
-  }, {
-    threshold: 0.3,
-    rootMargin: "-20% 0px -50% 0px"
-  });
-
+  }, { threshold: 0.3, rootMargin: "-20% 0px -50% 0px" });
   sections.forEach((section) => observer.observe(section));
 }
 
-/* Magnetic buttons */
 function initMagneticButtons() {
-  const buttons = document.querySelectorAll(".button, .nav-cta");
-  if (!buttons.length || window.matchMedia("(pointer: coarse)").matches) return;
-
-  buttons.forEach((button) => {
+  if (window.matchMedia("(pointer: coarse)").matches) return;
+  document.querySelectorAll(".button,.nav-cta").forEach((button) => {
     button.addEventListener("mousemove", (event) => {
       const rect = button.getBoundingClientRect();
       const x = event.clientX - rect.left - rect.width / 2;
       const y = event.clientY - rect.top - rect.height / 2;
-
-      button.style.transform = `translate(${x * 0.12}px, ${y * 0.12}px)`;
+      button.style.transform = `translate(${x * 0.12}px,${y * 0.12}px)`;
     });
-
-    button.addEventListener("mouseleave", () => {
-      button.style.transform = "";
-    });
+    button.addEventListener("mouseleave", () => { button.style.transform = ""; });
   });
 }
 
-/* Cursor glow */
-function initCursorGlow() {
+function initCursorExperience() {
   if (window.matchMedia("(pointer: coarse)").matches) return;
 
   const glow = document.createElement("div");
+  const ring = document.createElement("div");
+  const dot = document.createElement("div");
   glow.className = "cursor-glow";
-  document.body.appendChild(glow);
+  ring.className = "custom-cursor";
+  dot.className = "custom-cursor-dot";
+  document.body.append(glow, ring, dot);
 
-  let mouseX = -100;
-  let mouseY = -100;
-  let currentX = mouseX;
-  let currentY = mouseY;
+  let targetX = -100;
+  let targetY = -100;
+  let ringX = -100;
+  let ringY = -100;
+  let glowX = -100;
+  let glowY = -100;
+  let lastParticle = 0;
 
-  document.addEventListener("mousemove", (event) => {
-    mouseX = event.clientX;
-    mouseY = event.clientY;
+  const move = (event) => {
+    targetX = event.clientX;
+    targetY = event.clientY;
+
+    if (performance.now() - lastParticle > 28) {
+      createParticle(targetX, targetY);
+      lastParticle = performance.now();
+    }
+  };
+
+  document.addEventListener("mousemove", move);
+
+  document.querySelectorAll("a,button").forEach((element) => {
+    element.addEventListener("mouseenter", () => ring.classList.add("cursor-active"));
+    element.addEventListener("mouseleave", () => ring.classList.remove("cursor-active"));
   });
 
   const animate = () => {
-    currentX += (mouseX - currentX) * 0.12;
-    currentY += (mouseY - currentY) * 0.12;
+    ringX += (targetX - ringX) * 0.22;
+    ringY += (targetY - ringY) * 0.22;
+    glowX += (targetX - glowX) * 0.1;
+    glowY += (targetY - glowY) * 0.1;
 
-    glow.style.transform = `translate3d(${currentX}px, ${currentY}px, 0)`;
+    ring.style.left = `${ringX}px`;
+    ring.style.top = `${ringY}px`;
+    dot.style.left = `${targetX}px`;
+    dot.style.top = `${targetY}px`;
+    glow.style.left = `${glowX}px`;
+    glow.style.top = `${glowY}px`;
+
     requestAnimationFrame(animate);
   };
 
   animate();
 }
 
-/* Project tilt kept generic for future real projects */
-function initProjectTilt() {
-  const cards = document.querySelectorAll(".project-card");
-  if (!cards.length || window.matchMedia("(pointer: coarse)").matches) return;
-
-  cards.forEach((card) => {
-    card.addEventListener("mousemove", (event) => {
-      const rect = card.getBoundingClientRect();
-      const x = (event.clientX - rect.left) / rect.width;
-      const y = (event.clientY - rect.top) / rect.height;
-
-      card.style.transform =
-        `perspective(900px) rotateX(${(0.5 - y) * 5}deg) rotateY(${(x - 0.5) * 5}deg) translateY(-4px)`;
-    });
-
-    card.addEventListener("mouseleave", () => {
-      card.style.transform = "";
-    });
-  });
+function createParticle(x, y) {
+  const particle = document.createElement("span");
+  particle.className = "mouse-particle";
+  particle.style.left = `${x + (Math.random() - 0.5) * 12}px`;
+  particle.style.top = `${y + (Math.random() - 0.5) * 12}px`;
+  particle.style.setProperty("--dx", `${(Math.random() - 0.5) * 55}px`);
+  particle.style.setProperty("--dy", `${-20 - Math.random() * 55}px`);
+  particle.style.setProperty("--size", `${2 + Math.random() * 5}px`);
+  document.body.appendChild(particle);
+  setTimeout(() => particle.remove(), 650);
 }
 
-/* Hero parallax */
 function initHeroParallax() {
   const hero = document.querySelector(".hero");
-  const heroContent = document.querySelector(".hero-content");
-  const heroGlow = document.querySelector(".hero-glow");
-
-  if (!hero || !heroContent || window.matchMedia("(pointer: coarse)").matches) return;
+  const content = document.querySelector(".hero-content");
+  const glow = document.querySelector(".hero-glow");
+  if (!hero || !content || window.matchMedia("(pointer: coarse)").matches) return;
 
   window.addEventListener("scroll", () => {
-    const scrollY = window.scrollY;
-
-    if (scrollY > window.innerHeight) return;
-
-    heroContent.style.transform = `translateY(${scrollY * 0.12}px)`;
-
-    if (heroGlow) {
-      heroGlow.style.transform = `translateX(-50%) translateY(${scrollY * 0.08}px)`;
-    }
+    const y = window.scrollY;
+    if (y > window.innerHeight) return;
+    content.style.transform = `translateY(${y * 0.12}px)`;
+    if (glow) glow.style.transform = `translateX(-50%) translateY(${y * 0.08}px)`;
   }, { passive: true });
 }
 
-/* Reduced motion */
-const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
-
-if (reducedMotion.matches) {
+if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
   document.documentElement.classList.add("reduced-motion");
 }

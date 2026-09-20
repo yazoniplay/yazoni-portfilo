@@ -22,21 +22,26 @@ function initMultilingualHello() {
     "Hello", "Hej", "مرحبا", "Bonjour", "Hola", "Hallo", "Ciao", "Olá",
     "Привет", "你好", "こんにちは", "안녕하세요", "สวัสดี", "नमस्ते",
     "Γεια σου", "Merhaba", "שלום", "Salam", "Habari", "Sawubona",
-    "Jambo", "Xin chào", "Konnichiwa", "Selam", "Bună", "Ahoj",
-    "Cześć", "Olá", "Helo", "Hei", "Terve", "Halló", "Kaixo",
-    "Ahoj", "Szia", "Sveiki", "Labas", "Manao ahoana", "Halo"
+    "Jambo", "Xin chào", "Selam", "Bună", "Ahoj", "Cześć", "Helo",
+    "Hei", "Terve", "Halló", "Kaixo", "Szia", "Sveiki", "Labas",
+    "Manao ahoana", "Halo", "Shalom", "Namaskar", "Sat Sri Akal",
+    "Kia ora", "Talofa", "Bula", "Yá'át'ééh", "Aloha", "Sannu",
+    "Saluton", "Zdravo", "Dobrý den", "God dag", "Guten Tag",
+    "Buongiorno", "Buenos días", "Bom dia", "Dobro jutro"
   ];
 
   let index = 0;
-  const change = () => {
-    index = (index + 1) % hellos.length;
-    element.classList.remove("hello-language-pop");
-    void element.offsetWidth;
-    element.textContent = hellos[index];
-    element.classList.add("hello-language-pop");
-  };
+  element.textContent = hellos[index];
 
-  setInterval(change, 420);
+  setTimeout(() => {
+    setInterval(() => {
+      element.classList.remove("hello-language-pop");
+      void element.offsetWidth;
+      index = (index + 1) % hellos.length;
+      element.textContent = hellos[index];
+      element.classList.add("hello-language-pop");
+    }, 900);
+  }, 1400);
 }
 
 function initHeader() {

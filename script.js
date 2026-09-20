@@ -1,6 +1,7 @@
 document.addEventListener("DOMContentLoaded", () => {
   document.body.classList.add("intro-active");
   setTimeout(() => document.body.classList.remove("intro-active"), 2900);
+  initMultilingualHello();
   initHeader();
   initSmoothScrolling();
   initScrollReveal();
@@ -12,6 +13,31 @@ document.addEventListener("DOMContentLoaded", () => {
   initServiceSpotlight();
   initClickBursts();
 });
+
+function initMultilingualHello() {
+  const element = document.querySelector("#helloLanguage");
+  if (!element) return;
+
+  const hellos = [
+    "Hello", "Hej", "مرحبا", "Bonjour", "Hola", "Hallo", "Ciao", "Olá",
+    "Привет", "你好", "こんにちは", "안녕하세요", "สวัสดี", "नमस्ते",
+    "Γεια σου", "Merhaba", "שלום", "Salam", "Habari", "Sawubona",
+    "Jambo", "Xin chào", "Konnichiwa", "Selam", "Bună", "Ahoj",
+    "Cześć", "Olá", "Helo", "Hei", "Terve", "Halló", "Kaixo",
+    "Ahoj", "Szia", "Sveiki", "Labas", "Manao ahoana", "Halo"
+  ];
+
+  let index = 0;
+  const change = () => {
+    index = (index + 1) % hellos.length;
+    element.classList.remove("hello-language-pop");
+    void element.offsetWidth;
+    element.textContent = hellos[index];
+    element.classList.add("hello-language-pop");
+  };
+
+  setInterval(change, 420);
+}
 
 function initHeader() {
   const header = document.querySelector(".site-header");

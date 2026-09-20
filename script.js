@@ -1,4 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
+  initIntro();
   initHeader();
   initSmoothScrolling();
   initScrollReveal();

@@ -12,6 +12,25 @@ document.addEventListener("DOMContentLoaded", () => {
   initClickBursts();
 });
 
+function initIntro() {
+  const intro = document.querySelector(".intro-screen");
+  if (!intro) {
+    document.body.classList.remove("intro-active");
+    return;
+  }
+
+  const finish = () => {
+    document.body.classList.remove("intro-active");
+    intro.remove();
+  };
+
+  intro.addEventListener("animationend", (event) => {
+    if (event.animationName === "introExit") finish();
+  });
+
+  setTimeout(finish, 2600);
+}
+
 function initHeader() {
   const header = document.querySelector(".site-header");
   if (!header) return;

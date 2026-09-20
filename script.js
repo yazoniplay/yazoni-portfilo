@@ -40,7 +40,7 @@ function initMultilingualHello() {
       index = (index + 1) % hellos.length;
       element.textContent = hellos[index];
       element.classList.add("hello-language-pop");
-    }, 260);
+    }, 650);
   }, 800);
 }
 

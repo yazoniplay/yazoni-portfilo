@@ -40,8 +40,8 @@ function initMultilingualHello() {
       index = (index + 1) % hellos.length;
       element.textContent = hellos[index];
       element.classList.add("hello-language-pop");
-    }, 900);
-  }, 1400);
+    }, 260);
+  }, 800);
 }
 
 function initHeader() {

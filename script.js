@@ -31,17 +31,31 @@ function initMultilingualHello() {
   ];
 
   let index = 0;
+  let step = 0;
   element.textContent = hellos[index];
 
-  setTimeout(() => {
-    setInterval(() => {
-      element.classList.remove("hello-language-pop");
-      void element.offsetWidth;
-      index = (index + 1) % hellos.length;
-      element.textContent = hellos[index];
-      element.classList.add("hello-language-pop");
-    }, 115);
-  }, 180);
+  const tick = () => {
+    element.classList.remove("hello-language-pop");
+    void element.offsetWidth;
+    index = (index + 1) % hellos.length;
+    element.textContent = hellos[index];
+    element.classList.add("hello-language-pop");
+
+    // Slow → FAST → slow, then repeat.
+    step++;
+    let delay;
+    if (step < 7) {
+      delay = 650;
+    } else if (step < 43) {
+      delay = 82;
+    } else {
+      delay = 650;
+    }
+
+    setTimeout(tick, delay);
+  };
+
+  setTimeout(tick, 700);
 }
 
 function initHeader() {

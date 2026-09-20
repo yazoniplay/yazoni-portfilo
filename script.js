@@ -1,7 +1,4 @@
 document.addEventListener("DOMContentLoaded", () => {
-  document.body.classList.add("intro-active");
-  setTimeout(() => document.body.classList.remove("intro-active"), 9000);
-  initMultilingualHello();
   initHeader();
   initSmoothScrolling();
   initScrollReveal();
@@ -13,50 +10,6 @@ document.addEventListener("DOMContentLoaded", () => {
   initServiceSpotlight();
   initClickBursts();
 });
-
-function initMultilingualHello() {
-  const element = document.querySelector("#helloLanguage");
-  if (!element) return;
-
-  const hellos = [
-    "Hello", "Hej", "مرحبا", "Bonjour", "Hola", "Hallo", "Ciao", "Olá",
-    "Привет", "你好", "こんにちは", "안녕하세요", "สวัสดี", "नमस्ते",
-    "Γεια σου", "Merhaba", "שלום", "Salam", "Habari", "Sawubona",
-    "Jambo", "Xin chào", "Selam", "Bună", "Ahoj", "Cześć", "Helo",
-    "Hei", "Terve", "Halló", "Kaixo", "Szia", "Sveiki", "Labas",
-    "Manao ahoana", "Halo", "Shalom", "Namaskar", "Sat Sri Akal",
-    "Kia ora", "Talofa", "Bula", "Yá'át'ééh", "Aloha", "Sannu",
-    "Saluton", "Zdravo", "Dobrý den", "God dag", "Guten Tag",
-    "Buongiorno", "Buenos días", "Bom dia", "Dobro jutro"
-  ];
-
-  let index = 0;
-  let step = 0;
-  element.textContent = hellos[index];
-
-  const tick = () => {
-    element.classList.remove("hello-language-pop");
-    void element.offsetWidth;
-    index = (index + 1) % hellos.length;
-    element.textContent = hellos[index];
-    element.classList.add("hello-language-pop");
-
-    // Slow → FAST → slow, then repeat.
-    step++;
-    let delay;
-    if (step < 7) {
-      delay = 650;
-    } else if (step < 43) {
-      delay = 82;
-    } else {
-      delay = 650;
-    }
-
-    setTimeout(tick, delay);
-  };
-
-  setTimeout(tick, 700);
-}
 
 function initHeader() {
   const header = document.querySelector(".site-header");

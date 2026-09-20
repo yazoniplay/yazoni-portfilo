@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
   document.body.classList.add("intro-active");
-  setTimeout(() => document.body.classList.remove("intro-active"), 2900);
+  setTimeout(() => document.body.classList.remove("intro-active"), 9000);
   initMultilingualHello();
   initHeader();
   initSmoothScrolling();
@@ -40,8 +40,8 @@ function initMultilingualHello() {
       index = (index + 1) % hellos.length;
       element.textContent = hellos[index];
       element.classList.add("hello-language-pop");
-    }, 650);
-  }, 800);
+    }, 115);
+  }, 180);
 }
 
 function initHeader() {

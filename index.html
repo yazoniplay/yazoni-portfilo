@@ -1,240 +1,126 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Yazonii — Websites that feel premium</title>
-  <meta name="description" content="Yazonii creates modern, responsive websites for businesses, creators, and online brands." />
-  <meta name="theme-color" content="#fffaf3" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="style.css" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="theme-color" content="#070707">
+<meta name="description" content="Yazonii — personal portfolio, projects, experiments and things I've built.">
+<title>Yazonii — Personal Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
 </head>
-<body class="intro-active">
-  <div class="intro-screen" aria-hidden="true">
-    <div class="intro-content">
-      <div class="intro-badges" aria-hidden="true">
-        <span class="intro-badge" title="Code">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m8.5 7-5 5 5 5M15.5 7l5 5-5 5M14 4l-4 16"/></svg>
-        </span>
-        <span class="intro-badge" title="Web">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><path d="M3.5 12h17M12 3.5c2.3 2.4 3.5 5.2 3.5 8.5s-1.2 6.1-3.5 8.5c-2.3-2.4-3.5-5.2-3.5-8.5S9.7 5.9 12 3.5Z"/></svg>
-        </span>
-        <span class="intro-badge" title="Design">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 3 2.4 6.1L20.5 12l-6.1 2.4L12 20.5l-2.4-6.1L3.5 12l6.1-2.9L12 3Z"/></svg>
-        </span>
+<body>
+<div class="noise" aria-hidden="true"></div>
+<div class="cursor-glow" aria-hidden="true"></div>
+<div class="cursor-ring" aria-hidden="true"></div>
+<div class="cursor-dot" aria-hidden="true"></div>
+<div class="progress" aria-hidden="true"></div>
+
+<div class="loader" aria-hidden="true">
+  <div class="loader-inner">
+    <span class="loader-name">YAZONII</span>
+    <div class="loader-bar"><i></i></div>
+    <span class="loader-status">LOADING PORTFOLIO</span>
+  </div>
+</div>
+
+<header class="header">
+  <a class="logo magnetic" href="#home">YAZONII<span>.</span></a>
+  <nav class="nav">
+    <a href="#home">Home</a><a href="#projects">Projects</a><a href="#about">About</a><a href="#contact">Contact</a>
+  </nav>
+  <a class="header-button magnetic" href="#contact">Let's talk <span>↗</span></a>
+</header>
+
+<main>
+<section id="home" class="hero">
+  <div class="hero-bg">
+    <div class="grid"></div><div class="orb orb-a"></div><div class="orb orb-b"></div><div class="orb orb-c"></div>
+    <div class="beam beam-a"></div><div class="beam beam-b"></div>
+  </div>
+  <div class="hero-content">
+    <div class="eyebrow reveal"><span class="pulse"></span> DEVELOPER · CREATOR · BUILDER</div>
+    <h1 class="hero-title">
+      <span class="line"><span>Hey, I'm</span></span>
+      <span class="line accent-line"><span>Yazonii.</span></span>
+    </h1>
+    <p class="hero-copy reveal">I build websites, apps, Minecraft projects and whatever else I get an idea for.</p>
+    <div class="hero-actions reveal">
+      <a class="button primary magnetic" href="#projects">See what I've built <span>↓</span></a>
+      <a class="button ghost magnetic" href="#about">A little about me</a>
+    </div>
+    <div class="scroll-hint reveal"><span></span> scroll to explore</div>
+  </div>
+  <div class="hero-side"><span>SWEDEN</span><span>2026</span></div>
+</section>
+
+<section id="projects" class="projects section">
+  <div class="section-top reveal"><span class="number">01</span><span>PROJECTS</span></div>
+  <div class="section-heading">
+    <h2 class="reveal">Things I've <em>built.</em></h2>
+    <p class="reveal">A mix of finished projects, experiments and ideas I'm messing with.</p>
+  </div>
+  <div class="project-grid">
+    <a class="project-card project-large reveal magnetic-card" href="https://github.com/yazoniplay/yazoni-portfilo" target="_blank" rel="noreferrer">
+      <div class="project-art art-portfolio"><div class="art-window"><b>YAZONII.</b><span>personal portfolio</span><i></i></div></div>
+      <div class="project-meta"><span>01 / THIS SITE</span><strong>Personal Portfolio ↗</strong><small>HTML · CSS · JavaScript</small></div>
+    </a>
+    <article class="project-card reveal magnetic-card">
+      <div class="project-art art-minecraft"><div class="mc-cube">✦</div><span>MINECRAFT</span></div>
+      <div class="project-meta"><span>02 / GAMING</span><strong>Minecraft Projects</strong><small>Servers · Addons · Ideas</small></div>
+    </article>
+    <article class="project-card reveal magnetic-card">
+      <div class="project-art art-app"><div class="app-ui"><i></i><i></i><i></i><b>BUILD</b></div></div>
+      <div class="project-meta"><span>03 / SOFTWARE</span><strong>Apps & Experiments</strong><small>React · Mobile · Prototypes</small></div>
+    </article>
+  </div>
+  <div class="project-note reveal"><span>MORE COMING</span><i></i><span>I build a lot. Not everything survives.</span></div>
+</section>
+
+<section id="about" class="about section">
+  <div class="section-top reveal"><span class="number">02</span><span>ABOUT ME</span></div>
+  <div class="about-grid">
+    <div class="about-title"><h2 class="reveal">I like making<br><em>ideas real.</em></h2></div>
+    <div class="about-copy">
+      <p class="big reveal">Hey, I’m Yazonii.</p>
+      <p class="reveal">I’m into coding, technology, Minecraft, and building things of my own. I like trying out new ideas and seeing what I can turn them into.</p>
+      <p class="reveal">This website is where I keep some of the projects I’ve worked on and things I’m currently building.</p>
+      <div class="facts reveal">
+        <div><span>01</span><b>Currently learning</b><small>Web · Software · Design</small></div>
+        <div><span>02</span><b>Based in</b><small>Sweden 🇸🇪</small></div>
+        <div><span>03</span><b>Usually building</b><small>Something random</small></div>
       </div>
-      <p class="intro-kicker">YAZONII</p>
-      <h2>WELCOME TO MY<br><span>PORTFOLIO WEBSITE</span></h2>
-      <div class="intro-domain"><span class="intro-domain-dot"></span>yazoniplay.is-a.dev</div>
-      <div class="intro-line" aria-hidden="true"></div>
     </div>
   </div>
-  <div class="scroll-progress" aria-hidden="true"></div>
-  <nav class="glass-dock" aria-label="Quick navigation">
-    <a href="#services"><span>01</span>Services</a>
-    <a href="#pricing"><span>02</span>Pricing</a>
-    <a href="#about"><span>03</span>About</a>
-    <a href="#contact"><span>04</span>Contact</a>
-  </nav>
+</section>
 
+<section class="now section">
+  <div class="section-top reveal"><span class="number">03</span><span>RIGHT NOW</span></div>
+  <div class="now-card reveal">
+    <div><span class="live-dot"></span><b>Currently building</b></div>
+    <h2>Always got <em>something</em> open.</h2>
+    <p>Sometimes it's a website. Sometimes it's an app. Sometimes it's a Minecraft project that started from a completely random idea.</p>
+    <div class="ticker"><span>CODE</span><i>✦</i><span>DESIGN</span><i>✦</i><span>MINECRAFT</span><i>✦</i><span>EXPERIMENTS</span><i>✦</i><span>REPEAT</span></div>
+  </div>
+</section>
 
-  <header class="site-header">
-    <nav class="navbar container">
-      <a href="#home" class="logo" aria-label="Yazonii home">YAZONI<span>.</span></a>
-      <div class="nav-links">
-        <a href="#services">Services</a>
-        <a href="#pricing">Pricing</a>
-        <a href="#about">About</a>
-        <a href="#contact">Contact</a>
-      </div>
-      <a href="#contact" class="nav-cta">Let's Talk</a>
-    </nav>
-  </header>
+<section id="contact" class="contact section">
+  <div class="contact-wrap">
+    <div class="section-top reveal"><span class="number">04</span><span>CONTACT</span></div>
+    <h2 class="reveal">Got an idea?<br><em>Let's make it.</em></h2>
+    <p class="reveal">If you want to talk about a project, collaborate, or just say hi, send me a message.</p>
+    <a class="contact-mail magnetic reveal" href="mailto:yayazan.mahmoud@gmail.com">yayazan.mahmoud@gmail.com <span>↗</span></a>
+  </div>
+</section>
+</main>
 
-  <main>
-    <section id="home" class="hero">
-      <div class="hero-background" aria-hidden="true">
-        <div class="hero-glow"></div>
-        <div class="hero-grid"></div>
-        <div class="floating-orb orb-one"></div>
-        <div class="floating-orb orb-two"></div>
-        <div class="floating-orb orb-three"></div>
-      </div>
-
-      <div class="hero-content container">
-        <p class="eyebrow">WEBSITES · CODE · RANDOM IDEAS</p>
-        <h1>Websites that look <span class="gradient-text">as good as your idea.</span></h1>
-        <p class="hero-description">I build websites that feel like they belong to the person behind them — not like they came from the same template as everyone else.</p>
-        <div class="hero-actions">
-          <a href="#services" class="button button-primary">Explore Services</a>
-          <a href="#contact" class="button button-secondary">Start a Project</a>
-        </div>
-        <div class="hero-scroll"><span></span>Scroll to explore</div>
-      </div>
-    </section>
-
-    <section class="intro section">
-      <div class="container intro-grid">
-        <div class="section-label"><span>01</span>What I Do</div>
-        <div class="intro-content">
-          <h2>Good design should make an idea <span class="gradient-text">feel like itself.</span></h2>
-          <p>I care about the small things: spacing, movement, weird little details, and whether the whole thing actually feels good to use.</p>
-        </div>
-      </div>
-    </section>
-
-    <section id="services" class="services section">
-      <div class="container">
-        <div class="section-heading">
-          <div class="section-label"><span>02</span>Services</div>
-          <h2>Stuff I Can Build <span class="gradient-text">With You.</span></h2>
-          <p>No giant agency process. Just the thing you actually need.</p>
-        </div>
-        <div class="services-grid">
-          <article class="service-card"><span class="service-number">01</span><div class="service-icon">↗</div><h3>Business Websites</h3><p>A proper home for your business that makes the important stuff easy to find.</p><div class="service-tags"><span>Responsive</span><span>Modern UI</span><span>SEO basics</span></div></article>
-          <article class="service-card"><span class="service-number">02</span><div class="service-icon">◇</div><h3>Landing Pages</h3><p>A page built around one thing instead of throwing everything at the visitor.</p><div class="service-tags"><span>Conversion-focused</span><span>Fast layouts</span></div></article>
-          <article class="service-card"><span class="service-number">03</span><div class="service-icon">✦</div><h3>Website Redesigns</h3><p>Take something that feels old, messy, or just boring and give it a new direction.</p><div class="service-tags"><span>UI improvement</span><span>Mobile-friendly</span></div></article>
-          <article class="service-card"><span class="service-number">04</span><div class="service-icon">▣</div><h3>Creator Websites</h3><p>A site for your projects, content, community, or whatever you are building next.</p><div class="service-tags"><span>Portfolios</span><span>Communities</span></div></article>
-        </div>
-      </div>
-    </section>
-
-    <section id="pricing" class="pricing section">
-      <div class="container">
-        <div class="section-heading">
-          <div class="section-label"><span>03</span>Pricing</div>
-          <h2>Simple pricing. <span class="gradient-text">No weird packages.</span></h2>
-          <p>Every project is a little different. These give you a starting point, but the goal is simple: clear pricing, a custom site, and no unnecessary agency nonsense.</p>
-        </div>
-        <div class="pricing-grid">
-          <article class="pricing-card">
-            <span class="pricing-number">01</span>
-            <div class="pricing-icon">↗</div>
-            <p class="pricing-tier">Simple</p>
-            <div class="pricing-price">1,500 <small>kr</small></div>
-            <p class="pricing-description">A clean, custom website for a simple idea, personal brand, or small project.</p>
-            <div class="pricing-divider"></div>
-            <p class="pricing-includes">Includes</p>
-            <ul>
-              <li>Custom design</li>
-              <li>Responsive layout</li>
-              <li>Essential pages</li>
-              <li>Clean animations</li>
-            </ul>
-            <a href="#contact" class="button button-secondary">Start a Project</a>
-          </article>
-
-          <article class="pricing-card pricing-card-featured">
-            <span class="pricing-number">02</span>
-            <div class="pricing-icon">✦</div>
-            <p class="pricing-tier">Business</p>
-            <div class="pricing-price">3,000 <small>kr</small></div>
-            <p class="pricing-description">A more complete website for a business, creator, or brand that needs more room to grow.</p>
-            <div class="pricing-divider"></div>
-            <p class="pricing-includes">Includes</p>
-            <ul>
-              <li>Custom design & layout</li>
-              <li>Multiple pages</li>
-              <li>Responsive across devices</li>
-              <li>Animations & interactions</li>
-              <li>Contact section</li>
-            </ul>
-            <a href="#contact" class="button button-primary">Start a Project</a>
-          </article>
-
-          <article class="pricing-card">
-            <span class="pricing-number">03</span>
-            <div class="pricing-icon">◇</div>
-            <p class="pricing-tier">Custom</p>
-            <div class="pricing-price">From <small>5,000 kr</small></div>
-            <p class="pricing-description">For larger websites, custom functionality, or ideas that don't fit neatly into a package.</p>
-            <div class="pricing-divider"></div>
-            <p class="pricing-includes">Includes</p>
-            <ul>
-              <li>Custom functionality</li>
-              <li>Larger websites</li>
-              <li>Advanced interactions</li>
-              <li>Special requests</li>
-            </ul>
-            <a href="#contact" class="button button-secondary">Let's Talk</a>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section class="process section">
-      <div class="container">
-        <div class="process-layout">
-          <div class="section-heading"><div class="section-label"><span>04</span>Process</div><h2>No mystery. <span class="gradient-text">Just build it.</span></h2></div>
-          <div class="process-list">
-            <article class="process-item"><span>01</span><div><h3>Understand</h3><p>Figure out what the idea actually needs — and what it definitely does not.</p></div></article>
-            <article class="process-item"><span>02</span><div><h3>Plan</h3><p>Work out the pages, layout, and the bits that actually matter.</p></div></article>
-            <article class="process-item"><span>03</span><div><h3>Build</h3><p>Build it, break it, fix it, and make it work properly on different screens.</p></div></article>
-            <article class="process-item"><span>04</span><div><h3>Refine</h3><p>Try it like a real person would, find the annoying bits, and keep tweaking.</p></div></article>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="about" class="about section">
-      <div class="container about-grid">
-        <div class="section-label"><span>05</span>About Me</div>
-        <div class="about-content">
-          <h2>I'm Yazonii. <span>I like making ideas real.</span></h2>
-          <p>I'm a young developer and creator who likes building things instead of just talking about them. My main world is the web, but I also mess around with apps, software, Minecraft projects, branding, and whatever new idea catches my attention.</p>
-          <p>I care a lot about how something <em>feels</em>. A website can work perfectly and still feel boring, generic, or like it came from the same template as everyone else. I want my work to have a point of view — clean when it needs to be clean, animated when animation actually adds something, and always recognisably mine.</p>
-          <p>I'm still learning. Some projects work, some get rebuilt three times, and some never make it past the idea stage. That's part of it. I like experimenting, breaking things, fixing them, and getting better with every version.</p>
-
-          <div class="about-spoilers">
-            <details>
-              <summary>What I'm building right now <span>+</span></summary>
-              <p>I'm putting most of my energy into Yazonii: improving my web design skills, building a stronger portfolio, experimenting with products, and figuring out what kind of digital work I want to be known for.</p>
-            </details>
-            <details>
-              <summary>What I'm into outside websites <span>+</span></summary>
-              <p>Minecraft, content creation, software ideas, aviation, design, and anything where I can build or learn something. I like projects that start as a random thought and turn into something people can actually use.</p>
-            </details>
-            <details>
-              <summary>How I actually work <span>+</span></summary>
-              <p>I usually start by messing with the idea until I understand what feels right. Then I simplify it, build the important parts, test it, notice what looks bad, and keep refining. I'm not interested in making something look impressive for five seconds if the actual experience is weak.</p>
-            </details>
-            <details>
-              <summary>A little more about me <span>+</span></summary>
-              <p>I'm based in Sweden, I work mainly from whatever setup I have available, and I'm constantly teaching myself new things. Yazonii is meant to grow with me — not pretend I'm already some huge studio.</p>
-            </details>
-          </div>
-
-          <p class="about-highlight">I care about clear design, useful features, personality, and <strong>building from scratch.</strong></p>
-        </div>
-      </div>
-    </section>
-
-    <section id="contact" class="contact section">
-      <div class="container">
-        <div class="contact-card">
-          <div class="section-label"><span>06</span>Get In Touch</div>
-          <h2>Got an idea? <span class="gradient-text">Let's make it real.</span></h2>
-          <p>Send me the idea, even if it is still messy. We can figure out the rest.</p>
-          <div class="contact-details">
-            <a href="mailto:yayazan.mahmoud@gmail.com">yayazan.mahmoud@gmail.com</a>
-            <a href="tel:+46707358046">+46 707 358 046</a>
-          </div>
-          <a href="mailto:yayazan.mahmoud@gmail.com" class="button button-primary contact-button">Let's Talk →</a>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <footer class="site-footer">
-    <div class="container footer-inner">
-      <div class="footer-brand"><a href="#home" class="logo">YAZONI<span>.</span></a><p>WEB · CODE · YAZONII</p></div>
-      <div class="footer-links"><a href="#services">Services</a><a href="#about">About</a><a href="#contact">Contact</a></div>
-      <p class="copyright">© 2026 Yazonii. Built from scratch.</p>
-    </div>
-  </footer>
-
-  <script src="script.js"></script>
+<footer>
+  <span>YAZONII<span class="accent">.</span></span>
+  <span>BUILT FROM SCRATCH · 2026</span>
+  <a href="#home">BACK TO TOP ↑</a>
+</footer>
+<script src="script.js"></script>
 </body>
 </html>

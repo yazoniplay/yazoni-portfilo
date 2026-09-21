@@ -8,9 +8,9 @@
 *{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth;background:var(--bg)}
 body{min-height:100vh;background:radial-gradient(circle at 15% 15%,rgba(239,195,143,.28),transparent 25%),radial-gradient(circle at 85% 5%,rgba(197,139,82,.22),transparent 28%),linear-gradient(180deg,#fffaf3,#fff7ee 48%,#fffaf5);color:var(--text);font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;line-height:1.6;overflow-x:hidden;-webkit-font-smoothing:antialiased}
-body.intro-active{overflow:hidden;touch-action:none}
-html.intro-active{overflow:hidden;touch-action:none}
-body.intro-complete,html.intro-complete{overflow-x:hidden;overflow-y:auto;touch-action:auto}
+body.intro-active{overflow:hidden}
+html.intro-active{overflow:hidden}
+body.intro-complete,html.intro-complete{overflow-x:hidden;overflow-y:auto}
 a{color:inherit;text-decoration:none}button,a{-webkit-tap-highlight-color:transparent}button{font:inherit}::selection{background:var(--accent);color:#fffaf3}
 .container{width:min(calc(100% - 48px),var(--container));margin-inline:auto}.section{position:relative;padding:112px 0}
 .section-label{display:flex;align-items:center;gap:12px;margin-bottom:28px;color:var(--text-muted);font-size:11px;font-weight:800;letter-spacing:.18em;text-transform:uppercase}.section-label span{color:var(--accent-dark)}
@@ -141,9 +141,14 @@ a{color:inherit;text-decoration:none}button,a{-webkit-tap-highlight-color:transp
 .intro-domain-dot{width:6px;height:6px;border-radius:50%;background:var(--accent);box-shadow:0 0 12px rgba(197,139,82,.55);animation:introPulse 1.4s ease-in-out infinite}
 .intro-line{width:100px;height:1px;margin-top:38px;background:linear-gradient(90deg,transparent,var(--accent),transparent);animation:introLine 1.2s .65s cubic-bezier(.16,1,.3,1) both}
 body.intro-active .hero-content{opacity:0;transform:translateY(42px) scale(.965)}
-body.intro-complete .hero-content{animation:none;opacity:1;transform:none}
-body.intro-complete .hero{animation:heroEntry 1.05s cubic-bezier(.16,1,.3,1) both}
-body.intro-complete .site-header{animation:headerEntry .9s cubic-bezier(.16,1,.3,1) both}
+body.intro-active .site-header{opacity:0;transform:translateY(-28px)}
+body.intro-complete .hero-content{animation:heroEntry 1.05s cubic-bezier(.16,1,.3,1) .05s both}
+body.intro-complete .site-header{animation:headerEntry .85s cubic-bezier(.16,1,.3,1) .12s both}
+body.intro-complete .hero .eyebrow{animation:fadeUp .7s .32s both}
+body.intro-complete .hero h1{animation:fadeUp .85s .42s both}
+body.intro-complete .hero-description{animation:fadeUp .85s .54s both}
+body.intro-complete .hero-actions{animation:fadeUp .85s .66s both}
+body.intro-complete .hero-scroll{animation:fadeUp .75s .78s both}
 @keyframes headerEntry{from{opacity:0;transform:translateY(-18px)}to{opacity:1;transform:none}}
 @keyframes introBadges{from{opacity:0;transform:translateY(16px) scale(.9)}to{opacity:1;transform:none}}
 @keyframes introFadeUp{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
@@ -158,7 +163,8 @@ body.intro-complete .site-header{animation:headerEntry .9s cubic-bezier(.16,1,.3
   .intro-screen{animation:introExit .3s ease .4s forwards}
   body.intro-active .hero-content{opacity:1;transform:none}
   body.intro-complete .hero-content{animation:none}
-  body.intro-complete .hero,body.intro-complete .site-header{animation:none}
+  body.intro-complete .site-header{animation:none;opacity:1;transform:none}
+  body.intro-complete .hero .eyebrow,body.intro-complete .hero h1,body.intro-complete .hero-description,body.intro-complete .hero-actions,body.intro-complete .hero-scroll{animation:none;opacity:1;transform:none}
 }
 
 /* Yazonii typing reveal */

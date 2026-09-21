@@ -25,8 +25,8 @@ function initIntro() {
   const finish = () => {
     if (finished) return;
     finished = true;
-    document.body.classList.remove("intro-active", "intro-complete");
-    document.documentElement.classList.remove("intro-active", "intro-complete");
+    document.body.classList.remove("intro-active", "intro-entered");
+    document.documentElement.classList.remove("intro-active", "intro-entered");
 
     // Hard-reset every scroll-lock state before handing control back to the page.
     document.body.style.removeProperty("overflow");
@@ -38,7 +38,7 @@ function initIntro() {
     document.documentElement.style.setProperty("overflow-x", "hidden", "important");
 
     // Explicitly trigger the real post-intro animation on the page itself.
-    document.body.classList.add("intro-entered");
+    document.body.classList.add("intro-complete");
 
     intro.remove();
   };

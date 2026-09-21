@@ -154,3 +154,41 @@ body.intro-complete .hero-content{animation:heroEntry 1.05s cubic-bezier(.16,1,.
   body.intro-active .hero-content{opacity:1;transform:none}
   body.intro-complete .hero-content{animation:none}
 }
+
+/* Yazonii typing reveal */
+.typing-reveal{
+  display:inline-block;
+  width:0;
+  max-width:max-content;
+  overflow:hidden;
+  white-space:nowrap;
+  vertical-align:bottom;
+  border-right:2px solid var(--accent);
+  animation:typingReveal 1.25s steps(34,end) forwards,typingCaret .72s step-end infinite;
+}
+.typing-reveal.typing-slow{animation-duration:1.8s, .72s}
+.typing-reveal.typing-fast{animation-duration:.9s,.72s}
+.typing-reveal.done{border-right-color:transparent;animation:none;width:auto}
+@keyframes typingReveal{from{width:0}to{width:100%}}
+@keyframes typingCaret{50%{border-right-color:transparent}}
+.text-reveal{
+  opacity:0;
+  transform:translateY(18px);
+  transition:opacity .7s cubic-bezier(.16,1,.3,1),transform .7s cubic-bezier(.16,1,.3,1);
+}
+.text-reveal.visible{opacity:1;transform:none}
+.section-heading .text-reveal,.intro-content .text-reveal,.about-content .text-reveal,.contact-card .text-reveal{will-change:opacity,transform}
+.reveal-line{
+  display:block;
+  width:0;
+  height:1px;
+  margin-top:18px;
+  background:linear-gradient(90deg,var(--accent-dark),var(--accent-light),transparent);
+  transition:width 1s cubic-bezier(.16,1,.3,1);
+}
+.reveal-line.visible{width:min(180px,100%)}
+@media(prefers-reduced-motion:reduce){
+  .typing-reveal{width:auto;border-right:0;animation:none}
+  .text-reveal{opacity:1;transform:none;transition:none}
+  .reveal-line{width:min(180px,100%);transition:none}
+}

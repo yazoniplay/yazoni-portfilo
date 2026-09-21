@@ -29,8 +29,10 @@ function initIntro() {
     document.documentElement.classList.remove("intro-active");
     document.body.classList.add("intro-complete");
     document.documentElement.classList.add("intro-complete");
-    document.body.style.overflowY = "auto";
-    document.documentElement.style.overflowY = "auto";
+    document.body.style.overflow = "";
+    document.documentElement.style.overflow = "";
+    document.body.style.touchAction = "";
+    document.documentElement.style.touchAction = "";
     intro.remove();
   };
 

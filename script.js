@@ -17,6 +17,8 @@ function initIntro() {
   const intro = document.querySelector(".intro-screen");
   if (!intro) {
     document.body.classList.remove("intro-active");
+    document.documentElement.classList.remove("intro-active");
+    document.body.classList.add("intro-complete");
     return;
   }
 
@@ -25,24 +27,19 @@ function initIntro() {
   const finish = () => {
     if (finished) return;
     finished = true;
+
+    // The intro is only a fixed overlay. Never lock the document's scroll.
     document.body.classList.remove("intro-active", "intro-entered");
     document.documentElement.classList.remove("intro-active", "intro-entered");
+    document.body.classList.add("intro-complete");
 
-    // Hard-reset every scroll-lock state before handing control back to the page.
     document.body.style.removeProperty("overflow");
+    document.body.style.removeProperty("overflow-y");
     document.body.style.removeProperty("touch-action");
     document.documentElement.style.removeProperty("overflow");
+    document.documentElement.style.removeProperty("overflow-y");
+    document.documentElement.style.removeProperty("overflow-x");
     document.documentElement.style.removeProperty("touch-action");
-    document.body.style.setProperty("overflow", "visible", "important");
-    document.body.style.setProperty("overflow-y", "auto", "important");
-    document.documentElement.style.setProperty("overflow", "visible", "important");
-    document.documentElement.style.setProperty("overflow-y", "auto", "important");
-    document.documentElement.style.setProperty("overflow-x", "hidden", "important");
-    document.body.style.setProperty("touch-action", "pan-y", "important");
-    document.documentElement.style.setProperty("touch-action", "pan-y", "important");
-
-    // Explicitly trigger the real post-intro animation on the page itself.
-    document.body.classList.add("intro-complete");
 
     intro.remove();
   };
@@ -51,7 +48,7 @@ function initIntro() {
     if (event.animationName === "introExit") finish();
   });
 
-  // Safety fallback in case the CSS animation event is interrupted.
+  // Safety fallback if the animation event is interrupted.
   setTimeout(finish, 3600);
 }
 

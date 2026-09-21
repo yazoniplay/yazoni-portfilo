@@ -227,3 +227,17 @@ body.intro-entered .hero-content{--hero-parallax-y:0px}
 @keyframes yazoniiHeaderEntry{from{opacity:0;transform:translateY(-30px)}to{opacity:1;transform:translateY(0)}}
 @keyframes yazoniiFadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
 @media(max-width:520px){body.intro-entered .hero-content{animation-duration:1.05s !important}}
+
+
+/* HERO VISIBILITY SAFETY — the intro must never leave hero text hidden */
+body.intro-entered .hero-content,
+body.intro-entered .hero .eyebrow,
+body.intro-entered .hero h1,
+body.intro-entered .hero-description,
+body.intro-entered .hero-actions,
+body.intro-entered .hero-scroll{
+  visibility:visible;
+}
+body.intro-entered .hero h1{
+  opacity:1;
+}

@@ -10,6 +10,7 @@ document.addEventListener("DOMContentLoaded", () => {
   initScrollProgress();
   initServiceSpotlight();
   initClickBursts();
+  initTextTyping();
 });
 
 function initIntro() {
@@ -226,4 +227,94 @@ function createBurstParticle(x, y) {
 
 if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
   document.documentElement.classList.add("reduced-motion");
+}
+
+function initTextTyping() {
+  const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  // Intro title gets a real typewriter treatment.
+  const introTitle = document.querySelector(".intro-content h2");
+  if (introTitle && !prefersReduced) {
+    const original = introTitle.innerHTML;
+    const match = original.match(/^(.*?)(<span>[\\s\\S]*?<\\/span>)$/);
+    if (match) {
+      introTitle.innerHTML = "";
+      typeHTML(introTitle, match[1], 55, () => {
+        const span = document.createElement("span");
+        introTitle.appendChild(span);
+        typeHTML(span, match[2].replace(/<\\/?span>/g, ""), 42);
+      });
+    }
+  }
+
+  // Main portfolio headings reveal as if being typed when they enter view.
+  const targets = document.querySelectorAll(
+    ".hero h1,.section-heading h2,.intro-content h2,.about-content h2,.contact-card h2"
+  );
+
+  targets.forEach((el, index) => {
+    if (el.closest(".intro-screen")) return;
+    el.classList.add("text-reveal");
+    el.dataset.revealIndex = index;
+  });
+
+  if (prefersReduced) {
+    targets.forEach((el) => el.classList.add("visible"));
+    return;
+  }
+
+  if (!("IntersectionObserver" in window)) {
+    targets.forEach((el) => el.classList.add("visible"));
+    return;
+  }
+
+  const observer = new IntersectionObserver((entries, obs) => {
+    entries.forEach((entry) => {
+      if (!entry.isIntersecting) return;
+      const el = entry.target;
+      el.classList.add("visible");
+      addRevealLine(el);
+      obs.unobserve(el);
+    });
+  }, { threshold: 0.25, rootMargin: "0px 0px -80px 0px" });
+
+  targets.forEach((el) => observer.observe(el));
+
+  // Add the same subtle line under important section headings.
+  document.querySelectorAll(".section-heading,.contact-card > .section-label").forEach((el) => {
+    if (el.classList.contains("section-heading")) {
+      const heading = el.querySelector("h2");
+      if (heading && !heading.querySelector(".reveal-line")) addRevealLine(heading);
+    }
+  });
+}
+
+function addRevealLine(element) {
+  if (element.querySelector(".reveal-line")) return;
+  const line = document.createElement("span");
+  line.className = "reveal-line";
+  line.setAttribute("aria-hidden", "true");
+  element.appendChild(line);
+  requestAnimationFrame(() => line.classList.add("visible"));
+}
+
+function typeHTML(element, html, speed, done) {
+  const text = html;
+  let i = 0;
+  const holder = document.createElement("span");
+  holder.className = "typing-reveal";
+  element.appendChild(holder);
+
+  const tick = () => {
+    if (i >= text.length) {
+      holder.innerHTML = text;
+      holder.classList.add("done");
+      if (done) done();
+      return;
+    }
+    holder.innerHTML = text.slice(0, i + 1);
+    i++;
+    setTimeout(tick, speed);
+  };
+  tick();
 }

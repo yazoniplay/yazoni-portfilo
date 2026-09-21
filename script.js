@@ -25,14 +25,21 @@ function initIntro() {
   const finish = () => {
     if (finished) return;
     finished = true;
-    document.body.classList.remove("intro-active");
-    document.documentElement.classList.remove("intro-active");
-    document.body.classList.add("intro-complete");
-    document.documentElement.classList.add("intro-complete");
-    document.body.style.overflow = "";
-    document.documentElement.style.overflow = "";
-    document.body.style.touchAction = "";
-    document.documentElement.style.touchAction = "";
+    document.body.classList.remove("intro-active", "intro-complete");
+    document.documentElement.classList.remove("intro-active", "intro-complete");
+
+    // Hard-reset every scroll-lock state before handing control back to the page.
+    document.body.style.removeProperty("overflow");
+    document.body.style.removeProperty("touch-action");
+    document.documentElement.style.removeProperty("overflow");
+    document.documentElement.style.removeProperty("touch-action");
+    document.body.style.setProperty("overflow-y", "auto", "important");
+    document.documentElement.style.setProperty("overflow-y", "auto", "important");
+    document.documentElement.style.setProperty("overflow-x", "hidden", "important");
+
+    // Explicitly trigger the real post-intro animation on the page itself.
+    document.body.classList.add("intro-entered");
+
     intro.remove();
   };
 
@@ -182,7 +189,7 @@ function initHeroParallax() {
   window.addEventListener("scroll", () => {
     const y = window.scrollY;
     if (y > window.innerHeight) return;
-    content.style.transform = `translateY(${y * 0.12}px)`;
+    content.style.setProperty("--hero-parallax-y", `${y * 0.12}px`);
     if (glow) glow.style.transform = `translateX(-50%) translateY(${y * 0.08}px)`;
   }, { passive: true });
 }

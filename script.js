@@ -26,7 +26,11 @@ function initIntro() {
     if (finished) return;
     finished = true;
     document.body.classList.remove("intro-active");
+    document.documentElement.classList.remove("intro-active");
     document.body.classList.add("intro-complete");
+    document.documentElement.classList.add("intro-complete");
+    document.body.style.overflowY = "auto";
+    document.documentElement.style.overflowY = "auto";
     intro.remove();
   };
 
@@ -230,6 +234,8 @@ if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
 }
 
 function initTextTyping() {
+  // Keep the intro clean: only the main title gets the typewriter effect.
+
   const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
   // Intro title gets a real typewriter treatment.

@@ -140,16 +140,117 @@ a{color:inherit;text-decoration:none}button,a{-webkit-tap-highlight-color:transp
 }
 .intro-domain-dot{width:6px;height:6px;border-radius:50%;background:var(--accent);box-shadow:0 0 12px rgba(197,139,82,.55);animation:introPulse 1.4s ease-in-out infinite}
 .intro-line{width:100px;height:1px;margin-top:38px;background:linear-gradient(90deg,transparent,var(--accent),transparent);animation:introLine 1.2s .65s cubic-bezier(.16,1,.3,1) both}
-body.intro-active .hero-content{opacity:0;transform:translateY(42px) scale(.965)}
-body.intro-active .site-header{opacity:0;transform:translateY(-28px)}
-body.intro-complete .hero-content{animation:heroEntry 1.05s cubic-bezier(.16,1,.3,1) .05s both}
-body.intro-complete .site-header{animation:headerEntry .85s cubic-bezier(.16,1,.3,1) .12s both}
-body.intro-complete .hero .eyebrow{animation:fadeUp .7s .32s both}
-body.intro-complete .hero h1{animation:fadeUp .85s .42s both}
-body.intro-complete .hero-description{animation:fadeUp .85s .54s both}
-body.intro-complete .hero-actions{animation:fadeUp .85s .66s both}
-body.intro-complete .hero-scroll{animation:fadeUp .75s .78s both}
-@keyframes headerEntry{from{opacity:0;transform:translateY(-18px)}to{opacity:1;transform:none}}
+/* Premium intro -> hero reveal
+   The intro remains the visual focus. The portfolio underneath stays renderable.
+   Once the intro exits, the hero gets a cinematic, staggered entrance. */
+body.intro-active .site-header,
+body.intro-active .hero-content,
+body.intro-active .hero-content > *{
+  animation:none !important;
+  opacity:1 !important;
+  visibility:visible !important;
+}
+body.intro-active .hero-content{transform:none !important}
+
+body.intro-complete .site-header{
+  animation:yazHeaderReveal 1.05s cubic-bezier(.16,1,.3,1) both !important;
+  will-change:transform,opacity,filter;
+}
+body.intro-complete .hero-content{
+  animation:yazHeroReveal 1.2s cubic-bezier(.16,1,.3,1) .04s both !important;
+  will-change:transform,opacity,filter;
+}
+body.intro-complete .hero .eyebrow{
+  animation:yazEyebrowReveal .8s cubic-bezier(.16,1,.3,1) .28s both !important;
+}
+body.intro-complete .hero h1{
+  animation:yazHeadlineReveal 1.05s cubic-bezier(.16,1,.3,1) .39s both !important;
+}
+body.intro-complete .hero h1 .gradient-text{
+  animation:yazGradientSweep 2.2s cubic-bezier(.16,1,.3,1) .75s both, textShimmer 6s ease-in-out 2.95s infinite !important;
+}
+body.intro-complete .hero-description{
+  animation:yazDescriptionReveal .9s cubic-bezier(.16,1,.3,1) .61s both !important;
+}
+body.intro-complete .hero-actions{
+  animation:yazActionsReveal .95s cubic-bezier(.16,1,.3,1) .76s both !important;
+}
+body.intro-complete .hero-actions .button:first-child{
+  animation:yazButtonReveal .8s cubic-bezier(.16,1,.3,1) .86s both !important;
+}
+body.intro-complete .hero-actions .button:last-child{
+  animation:yazButtonReveal .8s cubic-bezier(.16,1,.3,1) 1s both !important;
+}
+body.intro-complete .hero-scroll{
+  animation:yazScrollReveal .9s cubic-bezier(.16,1,.3,1) 1.03s both !important;
+}
+body.intro-complete .hero-glow{
+  animation:yazGlowWake 1.8s cubic-bezier(.16,1,.3,1) .05s both, heroGlow 7s ease-in-out 1.85s infinite alternate !important;
+}
+body.intro-complete .hero-grid{
+  animation:yazGridWake 1.5s cubic-bezier(.16,1,.3,1) .1s both, gridDrift 13s linear 1.6s infinite !important;
+}
+body.intro-complete .floating-orb{
+  animation:yazOrbWake 1.4s cubic-bezier(.16,1,.3,1) both, float 6s ease-in-out 1.4s infinite !important;
+}
+body.intro-complete .orb-two{animation-delay:.16s,1.56s !important}
+body.intro-complete .orb-three{animation-delay:.25s,1.65s !important}
+
+@keyframes yazHeaderReveal{
+  0%{opacity:0;transform:translate3d(0,-34px,0) scale(.985);filter:blur(10px)}
+  55%{opacity:1;filter:blur(0)}
+  100%{opacity:1;transform:none;filter:none}
+}
+@keyframes yazHeroReveal{
+  0%{opacity:0;transform:translate3d(0,52px,0) scale(.965);filter:blur(10px)}
+  48%{opacity:1}
+  100%{opacity:1;transform:none;filter:none}
+}
+@keyframes yazEyebrowReveal{
+  0%{opacity:0;transform:translate3d(0,24px,0);filter:blur(7px);letter-spacing:.34em}
+  100%{opacity:1;transform:none;filter:none;letter-spacing:.2em}
+}
+@keyframes yazHeadlineReveal{
+  0%{opacity:0;transform:translate3d(0,34px,0) scale(.975);filter:blur(11px);clip-path:inset(0 0 100% 0)}
+  52%{opacity:1;filter:blur(0);clip-path:inset(0 0 0 0)}
+  100%{opacity:1;transform:none;filter:none;clip-path:inset(0 0 0 0)}
+}
+@keyframes yazGradientSweep{
+  0%{filter:brightness(.8);background-position:-120% center}
+  55%{filter:brightness(1.16);background-position:70% center}
+  100%{filter:brightness(1);background-position:180% center}
+}
+@keyframes yazDescriptionReveal{
+  0%{opacity:0;transform:translate3d(0,25px,0);filter:blur(7px)}
+  100%{opacity:1;transform:none;filter:none}
+}
+@keyframes yazActionsReveal{
+  0%{opacity:0;transform:translate3d(0,22px,0);filter:blur(5px)}
+  100%{opacity:1;transform:none;filter:none}
+}
+@keyframes yazButtonReveal{
+  0%{opacity:0;transform:translate3d(0,18px,0) scale(.92);filter:blur(4px)}
+  65%{opacity:1;transform:translate3d(0,-2px,0) scale(1.015);filter:blur(0)}
+  100%{opacity:1;transform:none}
+}
+@keyframes yazScrollReveal{
+  0%{opacity:0;transform:translate3d(0,18px,0);filter:blur(5px)}
+  100%{opacity:1;transform:none;filter:none}
+}
+@keyframes yazGlowWake{
+  0%{opacity:0;transform:translateX(-50%) scale(.65)}
+  55%{opacity:1;transform:translateX(-50%) scale(1.12)}
+  100%{opacity:1;transform:translateX(-50%) scale(1)}
+}
+@keyframes yazGridWake{
+  0%{opacity:0;transform:scale(1.04);filter:blur(3px)}
+  100%{opacity:.38;transform:none;filter:none}
+}
+@keyframes yazOrbWake{
+  0%{opacity:0;transform:translate3d(0,30px,0) scale(.7)}
+  70%{opacity:1;transform:translate3d(0,-5px,0) scale(1.04)}
+  100%{opacity:1;transform:translate3d(0,0,0) scale(1)}
+}
 @keyframes introBadges{from{opacity:0;transform:translateY(16px) scale(.9)}to{opacity:1;transform:none}}
 @keyframes introFadeUp{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
 @keyframes introTitle{from{opacity:0;transform:translateY(24px) scale(.96);filter:blur(6px)}to{opacity:1;transform:none;filter:blur(0)}}
@@ -157,7 +258,14 @@ body.intro-complete .hero-scroll{animation:fadeUp .75s .78s both}
 @keyframes introPulse{0%,100%{opacity:.5;transform:scale(.8)}50%{opacity:1;transform:scale(1.15)}}
 @keyframes introLine{from{opacity:0;transform:scaleX(0)}to{opacity:1;transform:scaleX(1)}}
 @keyframes introExit{0%{opacity:1;transform:translateY(0)}72%{opacity:1;transform:translateY(-12px)}100%{opacity:0;visibility:hidden;pointer-events:none;transform:translateY(-100%)}}
-@keyframes heroEntry{from{opacity:0;transform:translateY(42px) scale(.965)}to{opacity:1;transform:translateY(0) scale(1)}}
+@media(max-width:520px){
+  body.intro-complete .hero-content{animation-duration:1.08s !important}
+  body.intro-complete .hero h1{animation-duration:.95s !important}
+}
+@media(prefers-reduced-motion:reduce){
+  body.intro-active .site-header,body.intro-active .hero-content,body.intro-active .hero-content > *{animation:none !important;opacity:1 !important;transform:none !important;filter:none !important}
+  body.intro-complete .site-header,body.intro-complete .hero-content,body.intro-complete .hero .eyebrow,body.intro-complete .hero h1,body.intro-complete .hero-description,body.intro-complete .hero-actions,body.intro-complete .hero-scroll{animation:none !important;opacity:1 !important;transform:none !important;filter:none !important}
+}
 @media(max-width:520px){.intro-badge{width:38px;height:38px}.intro-content h2{font-size:clamp(2.15rem,11vw,3.8rem)}.intro-domain{font-size:10px}}
 @media(prefers-reduced-motion:reduce){
   .intro-screen{animation:introExit .3s ease .4s forwards}
@@ -203,41 +311,4 @@ body.intro-complete .hero-scroll{animation:fadeUp .75s .78s both}
   .typing-reveal{width:auto;border-right:0;animation:none}
   .text-reveal{opacity:1;transform:none;transition:none}
   .reveal-line{width:min(180px,100%);transition:none}
-}
-
-
-/* FINAL INTRO -> HERO HANDOFF */
-body.intro-active .hero-content,
-body.intro-active .site-header{animation:none !important}
-body.intro-active .hero-content{opacity:0 !important;transform:translateY(42px) scale(.965) !important}
-body.intro-active .site-header{opacity:0 !important;transform:translateY(-24px) !important}
-body.intro-entered .hero-content{animation:yazoniiHeroEntry 1.15s cubic-bezier(.16,1,.3,1) both !important}
-body.intro-entered .site-header{animation:yazoniiHeaderEntry .9s cubic-bezier(.16,1,.3,1) .08s both !important}
-body.intro-entered .hero .eyebrow{animation:yazoniiFadeUp .7s cubic-bezier(.16,1,.3,1) .34s both !important}
-body.intro-entered .hero h1{animation:yazoniiFadeUp .85s cubic-bezier(.16,1,.3,1) .46s both !important}
-body.intro-entered .hero-description{animation:yazoniiFadeUp .85s cubic-bezier(.16,1,.3,1) .58s both !important}
-body.intro-entered .hero-actions{animation:yazoniiFadeUp .85s cubic-bezier(.16,1,.3,1) .70s both !important}
-body.intro-entered .hero-scroll{animation:yazoniiFadeUp .75s cubic-bezier(.16,1,.3,1) .84s both !important}
-body.intro-entered .hero-content{--hero-parallax-y:0px}
-@keyframes yazoniiHeroEntry{
- from{opacity:0;transform:translateY(52px) scale(.955)}
- 60%{opacity:1}
- to{opacity:1;transform:translateY(var(--hero-parallax-y,0px)) scale(1)}
-}
-@keyframes yazoniiHeaderEntry{from{opacity:0;transform:translateY(-30px)}to{opacity:1;transform:translateY(0)}}
-@keyframes yazoniiFadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
-@media(max-width:520px){body.intro-entered .hero-content{animation-duration:1.05s !important}}
-
-
-/* HERO VISIBILITY SAFETY — the intro must never leave hero text hidden */
-body.intro-entered .hero-content,
-body.intro-entered .hero .eyebrow,
-body.intro-entered .hero h1,
-body.intro-entered .hero-description,
-body.intro-entered .hero-actions,
-body.intro-entered .hero-scroll{
-  visibility:visible;
-}
-body.intro-entered .hero h1{
-  opacity:1;
 }

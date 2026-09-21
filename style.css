@@ -353,7 +353,7 @@ body.intro-complete .orb-three{animation-delay:.25s,1.65s !important}
   .reveal-line{width:min(180px,100%);transition:none}
 }
 
-/* Scroll lock fail-safe */
-html,body{min-height:100%;}
-html.intro-complete,body.intro-complete{overflow-x:hidden !important;overflow-y:auto !important;touch-action:pan-y !important;}
-@media(max-width:850px){html,body{overflow-x:hidden;}html.intro-complete,body.intro-complete{overflow-y:auto !important;touch-action:pan-y !important;}}
+/* Scroll behavior — the intro is a fixed overlay, never lock the document itself. */
+html,body{min-height:100%;overflow-x:hidden !important;overflow-y:auto !important;}
+html.intro-active,body.intro-active{overflow-x:hidden !important;overflow-y:auto !important;touch-action:pan-y !important;}
+@media(max-width:850px){html,body{overflow-x:hidden !important;overflow-y:auto !important;}html.intro-active,body.intro-active{overflow-y:auto !important;touch-action:pan-y !important;}}

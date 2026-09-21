@@ -264,7 +264,7 @@ function initTextTyping() {
 
   // Main portfolio headings reveal as if being typed when they enter view.
   const targets = document.querySelectorAll(
-    ".hero h1,.section-heading h2,.intro-content h2,.about-content h2,.contact-card h2"
+    ".section-heading h2,.intro-content h2,.about-content h2,.contact-card h2"
   );
 
   targets.forEach((el, index) => {

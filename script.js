@@ -19,8 +19,13 @@ function initIntro() {
     return;
   }
 
+  let finished = false;
+
   const finish = () => {
+    if (finished) return;
+    finished = true;
     document.body.classList.remove("intro-active");
+    document.body.classList.add("intro-complete");
     intro.remove();
   };
 
@@ -28,7 +33,8 @@ function initIntro() {
     if (event.animationName === "introExit") finish();
   });
 
-  setTimeout(finish, 2600);
+  // Safety fallback in case the CSS animation event is interrupted.
+  setTimeout(finish, 3600);
 }
 
 function initHeader() {

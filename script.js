@@ -33,9 +33,13 @@ function initIntro() {
     document.body.style.removeProperty("touch-action");
     document.documentElement.style.removeProperty("overflow");
     document.documentElement.style.removeProperty("touch-action");
+    document.body.style.setProperty("overflow", "visible", "important");
     document.body.style.setProperty("overflow-y", "auto", "important");
+    document.documentElement.style.setProperty("overflow", "visible", "important");
     document.documentElement.style.setProperty("overflow-y", "auto", "important");
     document.documentElement.style.setProperty("overflow-x", "hidden", "important");
+    document.body.style.setProperty("touch-action", "pan-y", "important");
+    document.documentElement.style.setProperty("touch-action", "pan-y", "important");
 
     // Explicitly trigger the real post-intro animation on the page itself.
     document.body.classList.add("intro-complete");

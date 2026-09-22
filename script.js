@@ -6,6 +6,12 @@ function scroll(){header.classList.toggle("scrolled",scrollY>35);const max=docum
 
 const reveals=$$(".reveal");if("IntersectionObserver"in window&&!reduce){const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add("visible");io.unobserve(e.target)}}),{threshold:.12,rootMargin:"0px 0px -60px"});reveals.forEach((el,i)=>{el.style.transitionDelay=Math.min(i*35,280)+"ms";io.observe(el)})}else reveals.forEach(e=>e.classList.add("visible"));
 
+/* Typing text: cycles through short identity lines without needing extra HTML. */
+if(!reduce){const targets=$$(".typing,.hero-copy");targets.forEach((el,index)=>{if(index>0||el.dataset.typed)return;const original=el.textContent.trim();if(!original)return;const lines=[original,"I turn ideas into websites, apps and Minecraft projects.","Always building. Always experimenting."];let line=0,pos=0,deleting=false;el.dataset.typed="true";el.classList.add("typing-active");function type(){const text=lines[line%lines.length];el.textContent=deleting?text.slice(0,pos):text.slice(0,pos);if(!deleting&&pos<text.length){pos++;setTimeout(type,28)}else if(!deleting){deleting=true;setTimeout(type,1700)}else if(pos>0){pos--;setTimeout(type,14)}else{deleting=false;line++;setTimeout(type,350)}}el.textContent="";type()})}
+
+/* Animated underline streaks for headings and interactive text. */
+if(!reduce){$$('h2,.hero-title,.section-top').forEach(el=>{el.classList.add("motion-target");const streak=document.createElement("span");streak.className="motion-streak";el.appendChild(streak)});$$('a,.button,.project-card').forEach(el=>{el.addEventListener("mouseenter",()=>el.classList.add("motion-hover"));el.addEventListener("mouseleave",()=>el.classList.remove("motion-hover"))})}
+
 if(!reduce&&!matchMedia("(pointer:coarse)").matches){
  const glow=$(".cursor-glow"),ring=$(".cursor-ring"),dot=$(".cursor-dot");let tx=-100,ty=-100,rx=-100,ry=-100,gx=-100,gy=-100;
  addEventListener("mousemove",e=>{tx=e.clientX;ty=e.clientY});

@@ -296,3 +296,30 @@ footer { width: min(1100px, calc(100% - 42px)); margin: 0 auto; padding: 25px 0 
   0%,100% { transform: translateY(0) rotate(-2deg); }
   50% { transform: translateY(-9px) rotate(2deg); }
 }
+
+/* liquid glass + interaction upgrade */
+body::before{content:"";position:fixed;inset:-20%;z-index:-3;pointer-events:none;background:radial-gradient(circle at 30% 20%,rgba(255,255,255,.72),transparent 25%),radial-gradient(circle at 75% 55%,rgba(225,192,145,.25),transparent 30%);filter:blur(45px)}
+.glass,.glass-panel{background:linear-gradient(135deg,rgba(255,255,255,.55),rgba(255,250,242,.28));border:1px solid rgba(255,255,255,.72);box-shadow:inset 0 1px rgba(255,255,255,.85),0 25px 70px rgba(76,56,31,.10);backdrop-filter:blur(26px) saturate(145%);-webkit-backdrop-filter:blur(26px) saturate(145%)}
+.topbar{background:linear-gradient(135deg,rgba(255,255,255,.62),rgba(255,250,243,.38));backdrop-filter:blur(28px) saturate(160%);-webkit-backdrop-filter:blur(28px) saturate(160%);box-shadow:inset 0 1px rgba(255,255,255,.9),0 18px 55px rgba(75,55,28,.10);transition:box-shadow .3s ease}
+.topbar::after{content:"";position:absolute;inset:1px;border-radius:inherit;pointer-events:none;background:linear-gradient(110deg,rgba(255,255,255,.35),transparent 40%,rgba(255,255,255,.18));opacity:.8}
+.topbar>*{position:relative;z-index:1}
+.hero-art{perspective:1000px}
+.orb-wrap{position:relative;width:min(430px,75%);aspect-ratio:1;transform-style:preserve-3d}
+.orb{width:100%;height:100%;position:absolute;inset:0;animation:float 7s ease-in-out infinite;will-change:transform;background:radial-gradient(circle at var(--orb-x,35%) var(--orb-y,28%),#fffdf3 0 5%,#f2dcae 15%,#d7aa61 43%,#b77f3a 72%,#98672e 100%);box-shadow:inset -38px -38px 80px rgba(91,55,17,.18),inset 18px 12px 35px rgba(255,255,255,.35),0 38px 90px rgba(125,86,39,.20);transition:transform .16s ease-out}
+.orb-shine{position:absolute;inset:7%;border-radius:50%;pointer-events:none;background:radial-gradient(circle at 30% 24%,rgba(255,255,255,.7),transparent 14%,rgba(255,255,255,.12) 30%,transparent 45%);mix-blend-mode:screen;transform:translateZ(35px)}
+.hero-art .hero-letter{pointer-events:none}
+.cursor-glow{width:320px;height:320px;background:radial-gradient(circle,rgba(218,181,117,.19),rgba(255,255,255,.06) 28%,transparent 68%);filter:blur(2px);z-index:1}
+.cursor-trail{position:fixed;inset:0;pointer-events:none;z-index:25}
+.trail-dot{position:fixed;width:8px;height:8px;border-radius:50%;background:rgba(199,154,80,.55);box-shadow:0 0 16px rgba(199,154,80,.28);transform:translate(-50%,-50%);pointer-events:none;will-change:transform,opacity}
+.trail-dot:nth-child(3n){width:5px;height:5px}.trail-dot:nth-child(4n){width:11px;height:11px;opacity:.25}
+.project-visual,.about-card,.contact-card{transition:transform .5s cubic-bezier(.2,.8,.2,1),box-shadow .5s ease}
+.project-visual:hover{box-shadow:0 35px 95px rgba(82,60,31,.17)}
+.about-card{position:relative;overflow:hidden}
+.about-card::before{content:"";position:absolute;width:340px;height:340px;border-radius:50%;right:-120px;top:-160px;background:rgba(255,255,255,.28);filter:blur(30px);pointer-events:none}
+.button{position:relative;overflow:hidden}
+.button::before{content:"";position:absolute;inset:-50%;background:linear-gradient(110deg,transparent 35%,rgba(255,255,255,.28) 50%,transparent 65%);transform:translateX(-70%) rotate(8deg);transition:transform .7s ease}
+.button:hover::before{transform:translateX(70%) rotate(8deg)}
+.magnetic{will-change:transform}
+.page-progress{height:2px}
+@media (max-width:800px){.orb-wrap{width:300px}.cursor-trail{display:none}}
+@media (prefers-reduced-motion:reduce){.trail-dot{display:none}.orb{animation:none}}

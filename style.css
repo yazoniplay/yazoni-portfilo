@@ -254,3 +254,45 @@ footer { width: min(1100px, calc(100% - 42px)); margin: 0 auto; padding: 25px 0 
   *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; scroll-behavior: auto !important; }
   .cursor-glow { display:none; }
 }
+
+
+.visual-prayerlock {
+  background: radial-gradient(circle at 50% 45%, #f7ead6 0 7%, transparent 28%), #ded0bd;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+}
+.prayerlock-ring {
+  position: absolute;
+  width: 210px;
+  height: 210px;
+  border: 1px solid rgba(119,85,43,.2);
+  border-radius: 50%;
+  box-shadow: 0 0 0 30px rgba(255,250,243,.16), 0 0 0 60px rgba(199,154,80,.07);
+  animation: prayerPulse 4s ease-in-out infinite;
+}
+.prayerlock-lock {
+  position: relative;
+  z-index: 2;
+  width: 92px;
+  height: 92px;
+  display: grid;
+  place-items: center;
+  border-radius: 28px;
+  background: rgba(255,250,243,.78);
+  border: 1px solid rgba(255,255,255,.8);
+  backdrop-filter: blur(16px);
+  box-shadow: 0 25px 60px rgba(82,60,31,.14);
+  color: var(--honey-dark);
+  font: 600 45px/1 "Playfair Display", Georgia, serif;
+  animation: prayerFloat 5s ease-in-out infinite;
+}
+.muted-link { color: var(--muted); border-bottom-color: var(--line); }
+@keyframes prayerPulse {
+  0%,100% { transform: scale(.92); opacity: .55; }
+  50% { transform: scale(1.08); opacity: 1; }
+}
+@keyframes prayerFloat {
+  0%,100% { transform: translateY(0) rotate(-2deg); }
+  50% { transform: translateY(-9px) rotate(2deg); }
+}

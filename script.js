@@ -23,3 +23,17 @@ if(fine&&!reduce){
 document.querySelectorAll(".project-visual").forEach(card=>card.addEventListener("pointermove",e=>{const r=card.getBoundingClientRect(),x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;card.style.setProperty("--mx",(x*100+50)+"%");card.style.setProperty("--my",(y*100+50)+"%")}));
 document.querySelectorAll(".pill-row span").forEach(pill=>{pill.addEventListener("pointermove",e=>{const r=pill.getBoundingClientRect(),x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;pill.style.transform="translate("+x*5+"px,"+y*5+"px) translateY(-4px) rotate("+x*1.5+"deg)"});pill.addEventListener("pointerleave",()=>pill.style.transform="")});
 }
+
+/* staggered scroll reveals + deeper pointer depth */
+document.querySelectorAll(".project").forEach((el,i)=>el.classList.add(i%2?"reveal-right":"reveal-left"));
+document.querySelectorAll(".section-heading,.about-card,.contact-card").forEach(el=>el.classList.add("reveal-scale"));
+document.querySelectorAll(".project-info").forEach((el,i)=>{el.classList.add("reveal");el.style.transitionDelay=(.08+(i%4)*.08)+"s"});
+if(fine&&!reduce){
+ document.querySelectorAll(".project-visual").forEach(card=>{
+  card.addEventListener("pointermove",e=>{
+   const r=card.getBoundingClientRect(),x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;
+   card.style.setProperty("--mx",(x*100+50)+"%");card.style.setProperty("--my",(y*100+50)+"%");
+   card.style.setProperty("--depth-x",(x*14)+"px");card.style.setProperty("--depth-y",(y*14)+"px");
+  });
+ });
+}

@@ -6,8 +6,8 @@ const fine=window.matchMedia("(pointer:fine)").matches;
 const revealObserver=new IntersectionObserver(entries=>{entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add("visible");revealObserver.unobserve(entry.target)}})},{threshold:.08});
 document.querySelectorAll(".reveal").forEach(el=>revealObserver.observe(el));
 
-const topbar=document.querySelector(".topbar"),progress=document.querySelector(".page-progress");let lastScroll=0;
-addEventListener("scroll",()=>{const current=scrollY,max=document.documentElement.scrollHeight-innerHeight;if(progress)progress.style.width=max>0?(current/max)*100+"%":"0%";if(topbar)topbar.style.transform=current>lastScroll&&current>140?"translate(-50%,-120px)":"translate(-50%,0)";lastScroll=current},{passive:true});
+const topbar=document.querySelector(".topbar"),progress=document.querySelector(".page-progress");
+addEventListener("scroll",()=>{const current=scrollY,max=document.documentElement.scrollHeight-innerHeight;if(progress)progress.style.width=max>0?(current/max)*100+"%":"0%"},{passive:true});
 
 /* custom cursor */
 const cursor=document.querySelector(".custom-cursor"),core=document.querySelector(".cursor-core"),ring=document.querySelector(".cursor-ring"),label=document.querySelector(".cursor-label"),glow=document.querySelector(".cursor-glow"),trail=document.querySelector(".cursor-trail");
@@ -74,3 +74,12 @@ heroLetter?.addEventListener("click",()=>{yClicks++;clearTimeout(yTimer);yTimer=
 
 /* smooth anchors */
 document.querySelectorAll('a[href^="#"]').forEach(link=>link.addEventListener("click",()=>{const target=document.querySelector(link.getAttribute("href"));if(target)target.scrollIntoView({behavior:"smooth",block:"start"})}));
+
+
+/* glass follows the pointer */
+if(fine&&!reduce){
+ document.querySelectorAll(".glass-panel,.about-card,.lab-card,.journey-card").forEach(panel=>{
+  panel.addEventListener("pointermove",e=>{const r=panel.getBoundingClientRect();panel.style.setProperty("--glass-x",((e.clientX-r.left)/r.width*100)+"%");panel.style.setProperty("--glass-y",((e.clientY-r.top)/r.height*100)+"%")});
+  panel.addEventListener("pointerleave",()=>{panel.style.removeProperty("--glass-x");panel.style.removeProperty("--glass-y")});
+ });
+}

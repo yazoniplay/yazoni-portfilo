@@ -440,3 +440,8 @@ a,button,[role="button"]{cursor:none}
 @keyframes orbOrbitC{0%,100%{translate:0 0}50%{translate:10px -18px}}
 @media (pointer:coarse),(max-width:800px){html,body{cursor:auto}.custom-cursor{display:none}}
 @media (prefers-reduced-motion:reduce){html,body{cursor:auto}.custom-cursor{display:none}.orb-dot{animation:none}}
+
+/* tiny hidden interactions */
+.hero-letter{pointer-events:auto;cursor:none;transition:filter .4s ease}
+.hero-letter.y-found{animation:yFound .9s cubic-bezier(.16,.8,.25,1);filter:drop-shadow(0 0 35px rgba(199,154,80,.45))}
+@keyframes yFound{0%{transform:translateY(-4px) scale(1) rotate(0)}35%{transform:translateY(-22px) scale(1.12) rotate(-5deg)}70%{transform:translateY(4px) scale(.96) rotate(4deg)}100%{transform:translateY(-4px) scale(1) rotate(0)}}

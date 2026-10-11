@@ -36,10 +36,11 @@ create policy "Admins can read their own allowlist row"
 on public.app_admins for select to authenticated
 using ((select auth.uid()) = user_id);
 
+drop policy if exists "Anyone can read published apps" on public.apps;
 drop policy if exists "Anyone can read published free apps" on public.apps;
-create policy "Anyone can read published free apps"
+create policy "Anyone can read published apps"
 on public.apps for select to anon, authenticated
-using (published = true and price = 0);
+using (published = true);
 
 drop policy if exists "Admins can read all app listings" on public.apps;
 create policy "Admins can read all app listings"

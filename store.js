@@ -17,7 +17,10 @@
       if(error)throw error;
       return await Promise.all((data||[]).map(async a=>{
         let downloadUrl='';
-        if(Number(a.price||0)===0&&a.file_path){const {data:link}=await client.storage.from('app-files').createSignedUrl(a.file_path,3600);downloadUrl=link?.signedUrl||'';}
+        if(Number(a.price||0)===0&&a.file_path){
+          if(/^https:\/\//i.test(a.file_path)) downloadUrl=safeUrl(a.file_path);
+          else {const {data:link}=await client.storage.from('app-files').createSignedUrl(a.file_path,3600);downloadUrl=link?.signedUrl||'';}
+        }
         return {...a,key:String(a.id),status:Number(a.price||0)>0?'PAID ACCESS':'AVAILABLE',icon:a.name?.slice(0,1)||'Y',iconColor:a.color,iconUrl:a.icon_url,downloadUrl};
       }));
     }

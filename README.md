@@ -1,38 +1,21 @@
-# Yazoni Labs — early-access app store
+# Yazoni Labs
 
-A static GitHub Pages storefront for sharing apps before their official release.
+A GitHub Pages app catalogue with a Supabase-backed private admin studio.
 
-## Add an app
+## Setup
+1. Use a **dedicated Supabase project** for Yazoni Labs.
+2. In Supabase **SQL Editor**, run all of `supabase-setup.sql`.
+3. In **Project Settings → API Keys**, copy the Project URL and **publishable key** (or legacy anon key) into `supabase-config.js`. Never put a service-role/secret key in browser code.
+4. In **Authentication → Users**, create your admin account using email and password.
+5. Copy the account's UUID, then run `insert into public.app_admins (user_id) values ('YOUR-USER-UUID');` in SQL Editor with the real UUID.
+6. Enable GitHub Pages from branch `main`, folder `/(root)`. Open `/admin.html` and sign in.
 
-Edit `apps.js` and add an object to `window.YAZONI_APPS`. The homepage renders a card for each entry. Example:
+## Features
+- Add, edit, publish/unpublish and delete apps.
+- Upload app icons and build files; add version, platform, release notes, accent color and price in SEK.
+- Public app listings show only after publishing.
+- Free builds use private Storage with a policy allowing downloads only for published free apps. Download links expire after one hour.
+- Paid listings can show a price and checkout URL, but **a checkout link alone does not verify payment or protect paid downloads**. A secure payment provider + server-side verification/webhook must be integrated before selling paid builds. Paid listings without a checkout URL are automatically saved as drafts.
 
-```js
-{
-  name: "Your App",
-  description: "A short, honest description of the app.",
-  version: "0.1.0",
-  platform: "Android",
-  status: "EARLY ACCESS",
-  icon: "Y",
-  color: "#e9e8dd",
-  iconColor: "#d7f36a",
-  downloadUrl: "https://github.com/yazoniplay/your-app/releases/download/v0.1.0/app.apk",
-  detailsUrl: "https://github.com/yazoniplay/your-app/releases"
-}
-```
-
-Use direct HTTPS URLs. A GitHub Release is a convenient place to host APKs and other public build files; upload the build as a release asset in the app's repository, then paste its download URL into `downloadUrl`. Keep `downloadUrl` empty until a real build is available.
-
-## Publishing with GitHub Pages
-
-In the repository settings, open **Pages** and set the source to **Deploy from a branch**, branch **main**, folder **/(root)**. The site uses only HTML, CSS, and JavaScript, so no build step is needed.
-
-## Platform notes
-
-- **Android:** you can distribute an APK for testers. Clearly label it as an early build and explain that users may need to allow installation from their chosen browser/file manager. Only share APKs you built and trust.
-- **iPhone/iPad:** a normal website cannot directly install an iOS app. Use **TestFlight** for beta testing, or the official App Store when it is ready. Put the TestFlight invitation URL in the app's details/download link when available.
-- Never imply an app is available for download until a working build exists. Include version, supported platform, known issues, and a way to report bugs for each release.
-
-## Local preview
-
-Open `index.html` in a browser. For full testing, use a local static server so browser behavior matches hosting more closely.
+## Security
+The publishable Supabase key is public by design. Security relies on Supabase Auth, Row Level Security and Storage policies. Never expose a service-role/secret key in this repository. Payment-provider account eligibility may require a parent/guardian.

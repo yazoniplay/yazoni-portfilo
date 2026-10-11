@@ -1,54 +1,39 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <meta name="theme-color" content="#f6f4ee">
-  <meta name="description" content="Discover early-access apps by Yazoni. Try new builds before their official release.">
-  <title>Yazoni Labs — Early Access Apps</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#f6f4ee"><meta name="description" content="Discover apps built by Yazoni Labs. Browse releases, explore features, and get the right build for your device.">
+  <title>Yazoni Labs — Apps, made useful.</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.57.0"></script>
-  <script src="supabase-config.js"></script>
-  <script src="apps.js" defer></script>
-  <script src="script.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.57.0"></script><script src="supabase-config.js"></script><script src="store.js" defer></script>
 </head>
 <body>
-  <div class="topline"><span class="pulse"></span> INDEPENDENT SOFTWARE · BUILDS BEFORE THE BIG RELEASE</div>
-  <header class="site-header">
-    <a class="wordmark" href="#" aria-label="Yazoni Labs home"><span class="mark">Y</span><span>yazoni<span class="wordmark-light">labs</span></span></a>
-    <nav aria-label="Main navigation"><a href="#apps">Apps</a><a href="#about">About</a><a href="admin.html">Studio</a><a class="nav-cta" href="https://github.com/yazoniplay" target="_blank" rel="noreferrer">GitHub <span>↗</span></a></nav>
-    <button class="menu-toggle" aria-label="Open navigation" aria-expanded="false">☰</button>
+  <div class="topline"><span class="pulse"></span> YAZONI LABS · INDEPENDENT APPS & SOFTWARE</div>
+  <header class="site-header"><a class="wordmark" href="index.html"><span class="mark">Y</span><span>yazoni<span class="wordmark-light">labs</span></span></a>
+    <nav aria-label="Main navigation"><a class="active-nav" href="index.html">Home</a><a href="apps.html">Explore apps</a><a href="about.html">About</a><a href="admin.html">Studio</a><a class="nav-cta" href="https://github.com/yazoniplay" target="_blank" rel="noreferrer">GitHub ↗</a></nav><button class="menu-toggle" aria-label="Open navigation" aria-expanded="false">☰</button>
   </header>
   <main>
-    <section class="hero">
-      <div class="hero-copy">
-        <p class="eyebrow"><span class="eyebrow-line"></span> THE YAZONI LABS DROP</p>
-        <h1>Try what's<br>coming <em>next.</em></h1>
-        <p class="hero-description">A home for my apps in progress. Get early builds, try new ideas, and help shape what ships next.</p>
-        <div class="hero-actions"><a class="button button-dark" href="#apps">Explore the apps <span>↘</span></a><a class="text-link" href="https://github.com/yazoniplay" target="_blank" rel="noreferrer">Built in public <span>↗</span></a></div>
-        <div class="hero-note"><span class="note-dot"></span> Small releases. Real experiments. No fake launch dates.</div>
+    <section class="hero home-hero">
+      <div class="hero-copy"><p class="eyebrow"><span class="eyebrow-line"></span> SOFTWARE THAT EARNS ITS PLACE</p>
+        <h1>Good apps.<br><em>No extra noise.</em></h1>
+        <p class="hero-description">A growing library of independent apps and tools from Yazoni Labs. Find what fits your device, see what each app does, and get the right release.</p>
+        <div class="hero-actions"><a class="button button-dark" href="apps.html">Browse all apps <span>↗</span></a><a class="text-link" href="about.html">Meet the studio <span>→</span></a></div>
+        <div class="hero-note"><span class="note-dot"></span> Clear details · Direct downloads · No mystery listings</div>
       </div>
-      <div class="hero-art" aria-label="Abstract layered app tiles illustration">
-        <div class="art-orbit orbit-one"></div><div class="art-orbit orbit-two"></div>
-        <div class="app-tile tile-back"><span class="tile-symbol">✳</span><span class="tile-label">IDEAS<br>IN MOTION</span></div>
-        <div class="app-tile tile-front"><span class="tile-top">Y / LABS</span><span class="tile-glyph">y.</span><span class="tile-bottom">BUILT TO BE TRIED<span>↗</span></span></div>
-        <div class="floating-tag tag-build"><span class="tag-led"></span> EARLY BUILD</div>
-        <div class="floating-tag tag-version">IN DEVELOPMENT <span>✳</span></div>
+      <div class="hero-art store-hero-art" aria-label="Illustration of app icons"><div class="art-orbit orbit-one"></div><div class="art-orbit orbit-two"></div>
+        <div class="store-icon icon-back"><span>⌘</span><small>TOOLS</small></div><div class="store-icon icon-front"><span>Y.</span><small>YAZONI LABS</small></div><div class="floating-tag tag-build"><span class="tag-led"></span> MADE INDEPENDENTLY</div><div class="floating-tag tag-version">APPS FOR REAL LIFE ↗</div>
       </div>
-      <div class="hero-index"><span>01</span><span>EXPERIMENTS, NOT HYPE</span><span>SCROLL TO EXPLORE ↓</span></div>
+      <div class="hero-index"><span>Y / 001</span><span>INDEPENDENT SOFTWARE</span><span>BUILT TO BE USEFUL ↓</span></div>
     </section>
-    <section class="apps-section" id="apps">
-      <div class="section-heading"><div><p class="eyebrow">THE COLLECTION / 001</p><h2>Apps in the <em>making.</em></h2></div><p class="section-intro">These are early releases, so expect rough edges. Each app's page will tell you what it does, which devices it supports, and how to try it.</p></div>
-      <div class="filter-row"><span class="filter-label">THE DROP LIST</span><span class="filter-count" id="app-count">0 APPS</span></div>
-      <div class="app-grid" id="app-grid" aria-live="polite"></div>
-      <div class="empty-state" id="empty-state"><div class="empty-icon">✳</div><p class="eyebrow">FIRST DROP LOADING</p><h3>Something's being built.</h3><p>There aren't any public builds here yet. When an app is ready to test, it'll land here with its details and download options.</p><a class="text-link" href="https://github.com/yazoniplay" target="_blank" rel="noreferrer">Follow the builds on GitHub <span>↗</span></a></div>
-      <p class="safety-note"><span>ⓘ</span> Early builds may contain bugs or change without notice. Only install builds from sources you trust, and back up important data first.</p>
+    <section class="apps-section home-featured">
+      <div class="section-heading"><div><p class="eyebrow">THE APP LIBRARY</p><h2>Find your next <em>favourite.</em></h2></div><p class="section-intro">Every listing has its own page with platform support, release details, and a clear way to get the app.</p></div>
+      <div class="filter-row"><span class="filter-label">RECENT RELEASES</span><a class="filter-count" href="apps.html">VIEW ALL APPS ↗</a></div>
+      <div class="app-grid" id="featured-apps" aria-live="polite"><div class="catalog-loading">Loading the app library…</div></div>
+      <div class="home-catalog-link"><a class="button button-dark" href="apps.html">Explore the full catalogue <span>↗</span></a></div>
     </section>
-    <section class="about-section" id="about"><div class="about-stamp">MADE<br>BY YAZONI<br><span>✳</span></div><div class="about-copy"><p class="eyebrow">A SMALL INDEPENDENT CORNER</p><h2>Made small.<br><em>Made to grow.</em></h2><p>Yazoni Labs is where I share apps before they're ready for a wider release. No big launch promises — just useful ideas, early versions, and improvements shaped by people who try them.</p><a class="text-link" href="https://github.com/yazoniplay" target="_blank" rel="noreferrer">See the source and projects <span>↗</span></a></div></section>
+    <section class="home-callout"><div><p class="eyebrow">SMALL TEAM. INDEPENDENT IDEAS.</p><h2>Built with care.<br><em>Shared with you.</em></h2></div><a class="button button-light" href="about.html">About Yazoni Labs <span>→</span></a></section>
   </main>
-  <footer><a class="wordmark footer-mark" href="#"><span class="mark">Y</span><span>yazoni<span class="wordmark-light">labs</span></span></a><span>EARLY BUILDS, SHARED CAREFULLY.</span><a href="#top" id="back-top">BACK TO TOP ↑</a></footer>
-</body>
-</html>
+  <footer><a class="wordmark footer-mark" href="index.html"><span class="mark">Y</span><span>yazoni<span class="wordmark-light">labs</span></span></a><span>INDEPENDENT APPS & SOFTWARE</span><a href="apps.html">EXPLORE APPS ↗</a></footer>
+</body></html>

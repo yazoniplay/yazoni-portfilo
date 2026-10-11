@@ -107,9 +107,16 @@
     const save=$("save-app");save.disabled=true;save.textContent="Saving…";$("upload-status").textContent="Saving app details…";
     try {
       const id=$("app-id").value||crypto.randomUUID(), existing=allApps.find(a=>a.id===id);
-      const iconFile=$("app-image").files[0], buildFile=$("app-file").files[0];
-      $("upload-status").textContent=buildFile?"Uploading build file…":"Saving listing…";
-      const filePath=await uploadFile(buildFile,"builds/"+id,existing?.file_path);
+      const iconFile=$("app-image").files[0];
+      const buildUrlInput=$("app-build-url").value.trim();
+      $("upload-status").textContent="Saving listing…";
+      let filePath=existing?.file_path||null;
+      if(buildUrlInput){
+        let parsed;
+        try { parsed=new URL(buildUrlInput); } catch { throw new Error("Enter a valid build download URL."); }
+        if(parsed.protocol!=="https:") throw new Error("Build download URLs must use HTTPS.");
+        filePath=parsed.href;
+      }
       // Icon files use a public icon bucket; app builds stay in private Storage.
       let publicIconPath=existing?.icon_path||null, publicIconUrl=existing?.icon_url||null;
       if(iconFile){

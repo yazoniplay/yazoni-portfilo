@@ -24,6 +24,7 @@
     $("app-name").value=app?.name||""; $("app-description").value=app?.description||""; $("app-version").value=app?.version||"";
     $("app-platform").value=app?.platform||"Android"; $("app-price").value=app?.price??0;
     $("app-published").value=String(Boolean(app?.published)); $("app-checkout").value=app?.checkout_url||""; $("app-notes").value=app?.release_notes||"";
+    $("app-build-url").value=/^https:\/\//i.test(app?.file_path||"")?app.file_path:"";
     selectedColor=app?.color||"#d7f36a"; document.querySelectorAll(".color-chip").forEach(b=>b.classList.toggle("selected",b.dataset.color===selectedColor));
     $("upload-status").textContent=""; modal.hidden=false; document.body.style.overflow="hidden"; $("app-name").focus();
   }

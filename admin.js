@@ -108,11 +108,9 @@
     try {
       const id=$("app-id").value||crypto.randomUUID(), existing=allApps.find(a=>a.id===id);
       const iconFile=$("app-image").files[0], buildFile=$("app-file").files[0];
-      const iconPath=await uploadFile(iconFile,"icons/"+id,existing?.icon_path);
       $("upload-status").textContent=buildFile?"Uploading build file…":"Saving listing…";
       const filePath=await uploadFile(buildFile,"builds/"+id,existing?.file_path);
-      const iconUrl=iconPath?client.storage.from("app-icons").getPublicUrl(iconPath).data.publicUrl:(existing?.icon_url||null);
-      // Icon files use a separate public bucket. Re-upload chosen icon to that bucket.
+      // Icon files use a public icon bucket; app builds stay in private Storage.
       let publicIconPath=existing?.icon_path||null, publicIconUrl=existing?.icon_url||null;
       if(iconFile){
         const publicPath="icons/"+id+"/"+crypto.randomUUID()+"-"+iconFile.name.normalize("NFKD").replace(/[^a-zA-Z0-9._-]/g,"-").slice(-90);

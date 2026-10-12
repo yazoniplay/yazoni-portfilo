@@ -13,7 +13,7 @@
     const url=window.YAZONI_SUPABASE_URL||'',key=window.YAZONI_SUPABASE_PUBLISHABLE_KEY||'';
     if(url&&key&&window.supabase?.createClient){
       const client=window.supabase.createClient(url,key);
-      const {data,error}=await client.from('apps').select('id,name,description,version,platform,price,published,checkout_url,icon_url,color,file_path,release_notes,created_at,updated_at').eq('published',true).order('created_at',{ascending:false});
+      const {data,error}=await client.from('apps').select('id,name,description,version,platform,price,published,checkout_url,icon_url,color,file_path,release_notes,download_count,created_at,updated_at').eq('published',true).order('created_at',{ascending:false});
       if(error)throw error;
       return await Promise.all((data||[]).map(async a=>{
         let downloadUrl='';
@@ -21,7 +21,7 @@
           if(/^https:\/\//i.test(a.file_path)) downloadUrl=safeUrl(a.file_path);
           else {const {data:link}=await client.storage.from('app-files').createSignedUrl(a.file_path,3600);downloadUrl=link?.signedUrl||'';}
         }
-        return {...a,key:String(a.id),status:Number(a.price||0)>0?'PAID ACCESS':'AVAILABLE',icon:a.name?.slice(0,1)||'Y',iconColor:a.color,iconUrl:a.icon_url,downloadUrl};
+        return {...a,key:String(a.id),status:Number(a.price||0)>0?'PAID ACCESS':'AVAILABLE',icon:a.name?.slice(0,1)||'Y',iconColor:a.color,iconUrl:a.icon_url,downloadUrl,downloadCount:Number(a.download_count||0)};
       }));
     }
     return (Array.isArray(window.YAZONI_APPS)?window.YAZONI_APPS:[]).map((a,i)=>({...a,key:String(a.id||a.slug||a.name||i),status:a.status||'AVAILABLE',price:Number(a.price||0)}));
@@ -62,13 +62,13 @@
     const copy=node('div','detail-copy');copy.append(node('p','eyebrow','APP OVERVIEW'),node('h1','',app.name),node('p','detail-description',app.description||'More information coming soon.'));
     const tags=node('div','detail-tags');tags.append(node('span','detail-tag',app.platform||'Platform details soon'),node('span','detail-tag',app.version?'Version '+app.version:'Version not specified'),node('span','detail-tag',Number(app.price)>0?'Paid app':'Free app'));copy.append(tags);
     const price=node('p','detail-price',Number(app.price)>0?money(app.price):'Free to use');copy.append(price);
-    const action=Number(app.price)>0?safeUrl(app.checkout_url):safeUrl(app.downloadUrl||app.downloadUrl);
-    if(action){const cta=node('a','button button-dark',Number(app.price)>0?'Get this app ↗':'Download app ↓');cta.href=action;cta.target='_blank';cta.rel='noreferrer';copy.append(cta);}
+    const action=Number(app.price)>0?safeUrl(app.checkout_url):safeUrl(app.downloadUrl);
+    if(action){const cta=node('a','button button-dark',Number(app.price)>0?'Get this app ↗':'Download app ↓');cta.href=action;cta.target='_blank';cta.rel='noreferrer';if(Number(app.price)===0&&app.id){cta.addEventListener('click',async e=>{e.preventDefault();cta.textContent='Preparing download…';cta.setAttribute('aria-disabled','true');try{const {data,error}=await window.supabase.createClient(window.YAZONI_SUPABASE_URL,window.YAZONI_SUPABASE_PUBLISHABLE_KEY).rpc('record_app_download',{p_app_id:app.id});if(error)throw error;const count=Number(data);app.downloadCount=count;const el=$('app-download-count');if(el)el.textContent=count.toLocaleString('en-US');}catch(err){console.warn('Download count could not be updated:',err);}window.location.assign(action);});}copy.append(cta);}
     else {const cta=node('span','button button-disabled',Number(app.price)>0?'Purchase link not available':'Build not available yet');copy.append(cta);}
     copy.append(node('p','detail-footnote',Number(app.price)>0?'Checkout opens on the provider’s website.':'Only install software you trust. Back up important data before installing early builds.'));
     layout.append(visual,copy);root.className='';root.replaceChildren(layout);
     const notes=node('section','release-panel'),noteHead=node('div','release-heading');noteHead.append(node('p','eyebrow','RELEASE INFORMATION'),node('h2','','About this release'));notes.append(noteHead,node('p','release-copy',app.release_notes||'No release notes have been added for this version yet.'));
-    const info=node('div','release-facts');[['PLATFORM',app.platform||'Not specified'],['VERSION',app.version||'Not specified'],['PRICE',Number(app.price)>0?money(app.price):'Free'],['STATUS',app.status||'Published']].forEach(([label,value])=>{const fact=node('div','release-fact');fact.append(node('span','',label),node('strong','',value));info.append(fact);});notes.append(info);root.append(notes);
+    const info=node('div','release-facts');[['PLATFORM',app.platform||'Not specified'],['VERSION',app.version||'Not specified'],['PRICE',Number(app.price)>0?money(app.price):'Free'],['STATUS',app.status||'Published']].forEach(([label,value])=>{const fact=node('div','release-fact');fact.append(node('span','',label),node('strong','',value));info.append(fact);});const downloadFact=node('div','release-fact');downloadFact.append(node('span','','DOWNLOADS'),Object.assign(node('strong','',''+Number(app.downloadCount||0).toLocaleString('en-US')),{id:'app-download-count'}));info.append(downloadFact);notes.append(info);root.append(notes);
     renderCards($('related-apps'),apps.filter(a=>a.key!==app.key).slice(0,3));
     if(!$('related-apps').children.length)$('related-apps').append(node('p','catalog-loading','More apps will appear here as they are released.'));
   }

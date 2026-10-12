@@ -23,6 +23,7 @@ create table if not exists public.apps (
   icon_path text,
   icon_url text,
   file_path text,
+  download_count bigint not null default 0 check (download_count >= 0),
   created_by uuid references auth.users(id) on delete set null,
   created_at timestamptz not null default now(),
   updated_at timestamptz not null default now()
@@ -122,3 +123,37 @@ using (
 -- After creating your account in Authentication > Users, copy its UUID and run:
 -- insert into public.app_admins (user_id) values ('YOUR-AUTH-USER-UUID');
 -- Never add public admin signup, and never expose service_role keys in browser code.
+
+
+-- Track public download-button clicks for published free apps with a build.
+-- This counts initiated downloads, not confirmed installs or unique people.
+alter table public.apps
+  add column if not exists download_count bigint not null default 0 check (download_count >= 0);
+
+create or replace function public.record_app_download(p_app_id uuid)
+returns bigint
+language plpgsql
+security definer
+set search_path = public
+as $$
+declare
+  new_count bigint;
+begin
+  update public.apps
+  set download_count = download_count + 1
+  where id = p_app_id
+    and published = true
+    and price = 0
+    and file_path is not null
+  returning download_count into new_count;
+
+  if new_count is null then
+    raise exception 'App is not available for download';
+  end if;
+
+  return new_count;
+end;
+$$;
+
+revoke all on function public.record_app_download(uuid) from public;
+grant execute on function public.record_app_download(uuid) to anon, authenticated;

@@ -53,6 +53,7 @@
     $("stat-published").textContent=allApps.filter(a=>a.published).length;
     $("stat-paid").textContent=allApps.filter(a=>Number(a.price)>0).length;
     $("stat-drafts").textContent=allApps.filter(a=>!a.published).length;
+    $("stat-downloads").textContent=allApps.reduce((sum,a)=>sum+Number(a.download_count||0),0).toLocaleString("en-US");
   }
   function renderApps() {
     const q=$("search-apps").value.trim().toLowerCase(), filter=$("filter-status").value;
@@ -70,7 +71,8 @@
       const meta=document.createElement("div");meta.className="admin-app-meta";
       const platform=document.createElement("span");platform.textContent=app.platform||"Platform not set";
       const version=document.createElement("span");version.textContent=app.version?"v"+app.version:"No version";
-      const price=document.createElement("span");price.className="price-tag";price.textContent=Number(app.price)>0?money(app.price):"FREE";meta.append(platform,version,price);
+      const price=document.createElement("span");price.className="price-tag";price.textContent=Number(app.price)>0?money(app.price):"FREE";
+      const downloads=document.createElement("span");downloads.textContent=Number(app.download_count||0).toLocaleString("en-US")+" downloads";meta.append(platform,version,price,downloads);
       info.append(title,desc,meta);
       const actions=document.createElement("div");actions.className="admin-actions";
       const edit=document.createElement("button");edit.className="small-button";edit.textContent="Edit";edit.addEventListener("click",()=>showModal(app));
